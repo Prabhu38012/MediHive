@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediHive — Medical QA System</title>
+<style>
+  :root {
+    --bg: #0f1419;
+    --panel: #171d26;
+    --panel-2: #1e2530;
+    --border: #2a3341;
+    --text: #e6edf3;
+    --text-dim: #8b98a9;
+    --accent: #4ea1ff;
+    --accent-2: #6fd6a3;
+    --warn: #e8b04b;
+    --danger: #e8746b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+  header {
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  header h1 {
+    margin: 0 0 4px;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+  }
+  header p {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+  #kb-status {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+  }
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 28px 20px 80px;
+  }
+  .ask-box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  textarea {
+    width: 100%;
+    min-height: 80px;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    padding: 12px;
+    font-size: 15px;
+    font-family: inherit;
+    resize: vertical;
+  }
+  textarea:focus { outline: 1px solid var(--accent); }
+  .ask-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+  }
+  button {
+    background: var(--accent);
+    color: #04121f;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  button:hover:not(:disabled) { filter: brightness(1.08); }
+
+  #status-line {
+    margin-top: 16px;
+    color: var(--text-dim);
+    font-size: 13px;
+    display: none;
+  }
+  .spinner {
+    display: inline-block;
+    width: 12px; height: 12px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
+    vertical-align: -1px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  #result { margin-top: 28px; display: none; }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .card h2 {
+    margin: 0 0 10px;
+    font-size: 15px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .consensus-answer {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .consensus-reasoning {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .badge {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--panel-2);
+  }
+  .badge.on { border-color: var(--accent-2); color: var(--accent-2); }
+  .badge.off { color: var(--text-dim); }
+  .badge.debate { border-color: var(--warn); color: var(--warn); }
+
+  .agent-list { display: grid; gap: 10px; }
+  .agent-card {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .agent-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .agent-name { font-weight: 600; font-size: 14px; }
+  .agent-meta { font-size: 12px; color: var(--text-dim); display: flex; gap: 10px; }
+  .weight-bar-track {
+    width: 100%; height: 5px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 8px 0 10px;
+  }
+  .weight-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+  }
+  .agent-answer { font-size: 13.5px; margin-bottom: 4px; }
+  .agent-reasoning { font-size: 13px; color: var(--text-dim); line-height: 1.5; }
+
+  .sources { display: flex; flex-wrap: wrap; gap: 8px; }
+  .source-chip {
+    font-size: 12px;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 10px;
+    color: var(--text-dim);
+  }
+
+  .error-box {
+    background: rgba(232, 116, 107, 0.1);
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 14px;
+    margin-top: 16px;
+    display: none;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 12px;
+    padding: 24px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>MediHive</h1>
+  <p>Multi-agent medical QA — 5 specialists, shared memory, debate, RAG-grounded, iterative fusion</p>
+  <div id="kb-status">Checking knowledge base…</div>
+</header>
+
+<main>
+  <div class="ask-box">
+    <textarea id="question" placeholder="Ask a medical question, e.g. &quot;What are the risk factors for hypertension?&quot;"></textarea>
+    <div class="ask-row">
+      <button id="askBtn" onclick="askQuestion()">Ask MediHive</button>
+    </div>
+    <div id="status-line"><span class="spinner"></span><span id="status-text">Sending to 5 agents…</span></div>
+  </div>
+
+  <div class="error-box" id="errorBox"></div>
+
+  <div id="result">
+    <div class="card">
+      <h2>Consensus Answer</h2>
+      <div class="consensus-answer" id="consensusAnswer"></div>
+      <div class="consensus-reasoning" id="consensusReasoning"></div>
+      <div class="badges">
+        <span class="badge" id="leadAgentBadge"></span>
+        <span class="badge" id="debateBadge"></span>
+        <span class="badge" id="ragBadge"></span>
+        <span class="badge" id="confBadge"></span>
+      </div>
+    </div>
+
+    <div class="card" id="sourcesCard" style="display:none;">
+      <h2>Retrieved Sources (RAG)</h2>
+      <div class="sources" id="sourcesList"></div>
+    </div>
+
+    <div class="card">
+      <h2>Agent Breakdown &amp; Fusion Weights</h2>
+      <div class="agent-list" id="agentList"></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  MediHive Medical QA System — connects to your local FastAPI server at 127.0.0.1:8000
+</footer>
+
+<script>
+const API_BASE = window.location.origin;
+
+async function checkKnowledgeBase() {
+  const el = document.getElementById('kb-status');
+  try {
+    const res = await fetch(`${API_BASE}/knowledge-base/status`);
+    const data = await res.json();
+    el.textContent = data.rag_active
+      ? `Knowledge base active — ${data.chunks_indexed} chunks indexed`
+      : 'Knowledge base empty — agents answering from base knowledge only';
+  } catch (e) {
+    el.textContent = 'Could not reach server';
+  }
+}
+
+function setLoading(isLoading, text) {
+  document.getElementById('askBtn').disabled = isLoading;
+  const statusLine = document.getElementById('status-line');
+  statusLine.style.display = isLoading ? 'block' : 'none';
+  if (text) document.getElementById('status-text').textContent = text;
+}
+
+function showError(msg) {
+  const box = document.getElementById('errorBox');
+  box.textContent = msg;
+  box.style.display = 'block';
+}
+
+function hideError() {
+  document.getElementById('errorBox').style.display = 'none';
+}
+
+async function askQuestion() {
+  const question = document.getElementById('question').value.trim();
+  if (!question) return;
+
+  hideError();
+  document.getElementById('result').style.display = 'none';
+  setLoading(true, 'Sending to 5 agents… this can take a few minutes on local models');
+
+  try {
+    const res = await fetch(`${API_BASE}/ask`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question }),
+    });
+
+    if (!res.ok) {
+      const errText = await res.text();
+      throw new Error(`Server returned ${res.status}: ${errText.slice(0, 300)}`);
+    }
+
+    const data = await res.json();
+    renderResult(data);
+  } catch (e) {
+    showError(`Request failed: ${e.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
+
+function renderResult(data) {
+  document.getElementById('consensusAnswer').textContent = data.consensus_answer;
+  document.getElementById('consensusReasoning').textContent = data.consensus_reasoning;
+
+  document.getElementById('leadAgentBadge').textContent = `Lead: ${data.lead_agent}`;
+
+  const debateBadge = document.getElementById('debateBadge');
+  debateBadge.textContent = data.debate_triggered ? 'Debate triggered' : 'No disagreement';
+  debateBadge.className = 'badge' + (data.debate_triggered ? ' debate' : '');
+
+  const ragBadge = document.getElementById('ragBadge');
+  ragBadge.textContent = data.rag_used ? 'RAG grounded' : 'No RAG context';
+  ragBadge.className = 'badge' + (data.rag_used ? ' on' : ' off');
+
+  document.getElementById('confBadge').textContent =
+    `Weighted confidence: ${(data.fusion_weighted_confidence * 100).toFixed(0)}%`;
+
+  const sourcesCard = document.getElementById('sourcesCard');
+  const sourcesList = document.getElementById('sourcesList');
+  sourcesList.innerHTML = '';
+  if (data.rag_sources && data.rag_sources.length > 0) {
+    sourcesCard.style.display = 'block';
+    data.rag_sources.forEach(s => {
+      const chip = document.createElement('div');
+      chip.className = 'source-chip';
+      chip.textContent = `${s.source} (distance ${s.distance})`;
+      sourcesList.appendChild(chip);
+    });
+  } else {
+    sourcesCard.style.display = 'none';
+  }
+
+  const agentList = document.getElementById('agentList');
+  agentList.innerHTML = '';
+  const sortedAgents = [...data.agent_breakdown].sort((a, b) => b.fusion_weight - a.fusion_weight);
+
+  sortedAgents.forEach(agent => {
+    const card = document.createElement('div');
+    card.className = 'agent-card';
+    card.innerHTML = `
+      <div class="agent-card-head">
+        <span class="agent-name">${agent.agent}</span>
+        <span class="agent-meta">
+          <span>confidence ${(agent.confidence * 100).toFixed(0)}%</span>
+          <span>fusion weight ${(agent.fusion_weight * 100).toFixed(0)}%</span>
+        </span>
+      </div>
+      <div class="weight-bar-track">
+        <div class="weight-bar-fill" style="width:${(agent.fusion_weight * 100).toFixed(0)}%"></div>
+      </div>
+      <div class="agent-answer">${agent.answer}</div>
+      <div class="agent-reasoning">${agent.reasoning}</div>
+    `;
+    agentList.appendChild(card);
+  });
+
+  document.getElementById('result').style.display = 'block';
+}
+
+checkKnowledgeBase();
+</script>
+
+</body>
+</html>

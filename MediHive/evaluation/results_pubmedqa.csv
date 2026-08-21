@@ -1,0 +1,21 @@
+index,question,ground_truth,predicted,consensus_answer,debate_triggered,average_confidence,correct,elapsed_sec
+1,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+Programmed cell death (PCD) is the regulated death of cells within an organism. The ",yes,yes,yes,True,0.966,True,302.0
+2,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+Assessment of visual acuity depends on the optotypes used for measurement. The abili",no,no,no,True,0.87,True,383.1
+3,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+Apparent life-threatening events in infants are a difficult and frequent problem in ",yes,yes,yes,True,0.93,True,255.7
+4,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+The transanal endorectal pull-through (TERPT) is becoming the most popular procedure",no,no,no,True,0.7,True,191.5
+5,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+Telephone counseling and tailored print communications have emerged as promising met",yes,yes,yes,True,0.94,True,232.2

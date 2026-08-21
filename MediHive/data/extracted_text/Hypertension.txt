@@ -1,0 +1,25 @@
+ACC/AHA & JNC-8 Guidelines: Hypertension
+1. Classification of Blood Pressure in Adults
+Blood pressure categories according to ACC/AHA criteria:
+- Normal: Systolic < 120 mmHg AND Diastolic < 80 mmHg.
+- Elevated: Systolic 120-129 mmHg AND Diastolic < 80 mmHg.
+- Stage 1 Hypertension: Systolic 130-139 mmHg OR Diastolic 80-89 mmHg.
+- Stage 2 Hypertension: Systolic >= 140 mmHg OR Diastolic >= 90 mmHg.
+- Hypertensive Crisis: Systolic > 180 mmHg and/or Diastolic > 120 mmHg.
+
+
+ACC/AHA & JNC-8 Guidelines: Hypertension
+2. First-Line Antihypertensive Medications
+Initial monotherapy or combination therapy includes four primary classes:
+- Thiazide or Thiazide-like Diuretics (Chlorthalidone, Hydrochlorothiazide).
+- ACE Inhibitors (Lisinopril, Enalapril) - reduce proteinuria in diabetic nephropathy.
+- Angiotensin Receptor Blockers (Losartan, Valsartan) - alternative if ACEi cough occurs.
+- Calcium Channel Blockers (Amlodipine, Nifedipine) - potent vasodilators.
+
+
+ACC/AHA & JNC-8 Guidelines: Hypertension
+3. Special Population Guidelines
+Demographic and comorbid adjustments for treatment selection:
+- Black Patients (without CKD): Initial treatment should include a CCB or Thiazide diuretic.
+- Chronic Kidney Disease (CKD) with Proteinuria: ACE Inhibitor or ARB is first-line regardless of race.
+- Pregnancy: Labetalol, Nifedipine ER, or Methyldopa. ACEi and ARBs are strictly contraindicated.

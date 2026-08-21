@@ -1,0 +1,9 @@
+{
+  "dataset": "PubMedQA",
+  "total_questions": 5,
+  "correct": 5,
+  "wrong": 0,
+  "unparsed": 0,
+  "request_errors": 0,
+  "accuracy": 1.0
+}

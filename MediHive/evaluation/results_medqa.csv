@@ -1,0 +1,8 @@
+index,question,ground_truth,predicted,consensus_answer,debate_triggered,average_confidence,correct,elapsed_sec
+1,"A junior orthopaedic surgery resident is completing a carpal tunnel repair with the department chairman as the attending physician. During the case, the resident inadvertently cuts a flexor tendon. Th",B,A,"{
+  ""answer"": A,
+  ""reasoning"": ""The resident has a duty of candor to the patient, which includes transparency about complications during treatment. Withholding information from the patient can be seen as a violation of trust and potentially lead to malpractice claims. Reporting the error in the operative report demonstrates accountability and commitment to patient safety."",
+  ""confidence"": 0.9
+}",True,0.2,False,196.6
+2,A 67-year-old man with transitional cell carcinoma of the bladder comes to the physician because of a 2-day history of ringing sensation in his ear. He received this first course of neoadjuvant chemot,D,B,B,True,0.954,False,191.4
+3,"Two weeks after undergoing an emergency cardiac catherization with stenting for unstable angina pectoris, a 61-year-old man has decreased urinary output and malaise. He has type 2 diabetes mellitus an",B,B,B,True,0.926,True,309.1

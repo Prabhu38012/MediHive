@@ -1,0 +1,232 @@
+[
+  {
+    "index": 1,
+    "session_id": "9ba8e73d-ede1-4dee-ae8f-2132d9071357",
+    "question_text": "A junior orthopaedic surgery resident is completing a carpal tunnel repair with the department chairman as the attending physician. During the case, the resident inadvertently cuts a flexor tendon. The tendon is repaired without complication. The attending tells the resident that the patient will do fine, and there is no need to report this minor complication that will not harm the patient, as he does not want to make the patient worry unnecessarily. He tells the resident to leave this complication out of the operative report. Which of the following is the correct next action for the resident to take?\n\nOptions:\nA) Disclose the error to the patient and put it in the operative report\nB) Tell the attending that he cannot fail to disclose this mistake\nC) Report the physician to the ethics committee\nD) Refuse to dictate the operative report\n\nAnswer with the single correct option letter and briefly justify why.",
+    "ground_truth": "B",
+    "predicted": "A",
+    "correct": false,
+    "debate_triggered": true,
+    "average_confidence": 0.2,
+    "lead_agent": "General Physician",
+    "consensus_answer": "{\n  \"answer\": A,\n  \"reasoning\": [\n    \"Maintaining patient trust is essential in medicine.\",\n    \"Accurate reporting of complications ensures transparency and accountability.\",\n    \"The attending physician's request may be perceived as an attempt to conceal an adverse event, which could compromise the resident's professionalism.\",\n    \"Omitting critical information from the operative report could lead to future litigation or harm if a similar error occurs in the future.\"\n  ],\n  \"confidence\": 0.8",
+    "consensus_reasoning": "Model did not return valid JSON; raw text captured as answer.",
+    "agent_breakdown": [
+      {
+        "agent": "General Physician",
+        "answer": "{\n  \"answer\": A,\n  \"reasoning\": [\n    \"Maintaining patient trust is essential in medicine.\",\n    \"Accurate reporting of complications ensures transparency and accountability.\",\n    \"The attending physician's request may be perceived as an attempt to conceal an adverse event, which could compromise the resident's professionalism.\",\n    \"Omitting critical information from the operative report could lead to future litigation or harm if a similar error occurs in the future.\"\n  ],\n  \"confidence\": 0.8",
+        "reasoning": "Model did not return valid JSON; raw text captured as answer.",
+        "confidence": 0.2
+      },
+      {
+        "agent": "Cardiologist",
+        "answer": "{\n  \"answer\": A,\n  \"reasoning\": [\n    \"Omitting critical information from the operative report could lead to future litigation or harm if a similar error occurs in the future.\",\n    \"Reporting errors to the ethics committee or refusing to dictate the report may not address the immediate concern of patient awareness.\",\n    \"As a resident, it is essential to maintain transparency with patients about their medical care.\"\n  ],\n  \"confidence\": 0.8\n}",
+        "reasoning": "Model did not return valid JSON; raw text captured as answer.",
+        "confidence": 0.2
+      },
+      {
+        "agent": "Neurologist",
+        "answer": "{\n  \"answer\": A,\n  \"reasoning\": [\n    \"Maintaining patient trust and transparency are crucial principles in medicine.\",\n    \"Accurate reporting of complications ensures accountability and upholds professional standards.\",\n    \"The attending physician's request may be perceived as an attempt to conceal an adverse event, which could compromise the resident's professionalism.\"\n  ],\n  \"confidence\": 0.99\n}",
+        "reasoning": "Model did not return valid JSON; raw text captured as answer.",
+        "confidence": 0.2
+      },
+      {
+        "agent": "Pharmacologist",
+        "answer": "{\n  \"answer\": A,\n  \"reasoning\": [\n    \"Reporting complications ensures transparency and accountability.\",\n    \"Omitting critical information from the operative report could lead to future litigation or harm if a similar error occurs in the future.\"\n  ],\n  \"confidence\": 0.8\n}",
+        "reasoning": "Model did not return valid JSON; raw text captured as answer.",
+        "confidence": 0.2
+      },
+      {
+        "agent": "Evidence Reviewer",
+        "answer": "{\n  \"answer\": A,\n  \"reasoning\": [\n    \"Reporting complications, including errors like this one, is a standard practice in medicine as it enhances patient safety, transparency, and accountability.\",\n    \"Omitting critical information from the operative report could lead to future litigation or harm if a similar error occurs in the future.\"\n  ],\n  \"confidence\": 0.95\n}",
+        "reasoning": "Model did not return valid JSON; raw text captured as answer.",
+        "confidence": 0.2
+      }
+    ],
+    "elapsed_sec": 261.1
+  },
+  {
+    "index": 2,
+    "session_id": "8028079a-d7b7-4399-890f-58192def156f",
+    "question_text": "A 67-year-old man with transitional cell carcinoma of the bladder comes to the physician because of a 2-day history of ringing sensation in his ear. He received this first course of neoadjuvant chemotherapy 1 week ago. Pure tone audiometry shows a sensorineural hearing loss of 45 dB. The expected beneficial effect of the drug that caused this patient's symptoms is most likely due to which of the following actions?\n\nOptions:\nA) Inhibition of proteasome\nB) Hyperstabilization of microtubules\nC) Generation of free radicals\nD) Cross-linking of DNA\n\nAnswer with the single correct option letter and briefly justify why.",
+    "ground_truth": "D",
+    "predicted": "C",
+    "correct": false,
+    "debate_triggered": true,
+    "average_confidence": 0.64,
+    "lead_agent": "Cardiologist",
+    "consensus_answer": "B",
+    "consensus_reasoning": "Many chemotherapeutic agents, particularly those used in neoadjuvant chemotherapy for bladder cancer (e.g., carboplatin), work by generating platinum-DNA adducts that inhibit DNA synthesis and transcription. This action is thought to be most closely related to the generation of microtubule damage and cell cycle arrest.",
+    "agent_breakdown": [
+      {
+        "agent": "General Physician",
+        "answer": "{\n  \"answer\": B,\n  \"reasoning\": \"Neoadjuvant chemotherapy for transitional cell carcinoma typically includes platinum-based drugs that work by hyperstabilizing microtubules, leading to disrupted axonal transport and damage to the auditory nerve. This mechanism is also believed to be responsible for the side effect of ototoxicity (hearing loss), as it can affect the hair cells in the inner ear.\",\n  \"confidence\": 0.95\n}",
+        "reasoning": "Model did not return valid JSON; raw text captured as answer.",
+        "confidence": 0.2
+      },
+      {
+        "agent": "Cardiologist",
+        "answer": "B",
+        "reasoning": "Many chemotherapeutic agents, particularly those used in neoadjuvant chemotherapy for bladder cancer (e.g., carboplatin), work by generating platinum-DNA adducts that inhibit DNA synthesis and transcription. This action is thought to be most closely related to the generation of microtubule damage and cell cycle arrest.",
+        "confidence": 0.95
+      },
+      {
+        "agent": "Neurologist",
+        "answer": "B",
+        "reasoning": "The patient received a first course of neoadjuvant chemotherapy, which likely includes platinum-based drugs such as cisplatin. These drugs are known to cause sensorineural hearing loss due to their ability to hyperstabilize microtubules, leading to disrupted axonal transport and damage to the auditory nerve.",
+        "confidence": 0.9
+      },
+      {
+        "agent": "Pharmacologist",
+        "answer": "{\n  \"answer\": B,\n  \"reasoning\": \"The patient's sensorineural hearing loss is most likely due to the hyperstabilization of microtubules caused by platinum-based chemotherapy, which disrupts axonal transport and damages the auditory nerve.\",\n  \"confidence\": 0.95\n}",
+        "reasoning": "Model did not return valid JSON; raw text captured as answer.",
+        "confidence": 0.2
+      },
+      {
+        "agent": "Evidence Reviewer",
+        "answer": "B",
+        "reasoning": "Many chemotherapeutic agents, particularly those used in neoadjuvant chemotherapy for bladder cancer (e.g., carboplatin), work by generating microtubule damage and cell cycle arrest through hyperstabilization of microtubules. This action is thought to be most closely related to the generation of ototoxicity.",
+        "confidence": 0.95
+      }
+    ],
+    "elapsed_sec": 256.1
+  },
+  {
+    "index": 3,
+    "session_id": "8493abe9-414a-4e73-9b2b-def5806f4855",
+    "question_text": "Two weeks after undergoing an emergency cardiac catherization with stenting for unstable angina pectoris, a 61-year-old man has decreased urinary output and malaise. He has type 2 diabetes mellitus and osteoarthritis of the hips. Prior to admission, his medications were insulin and naproxen. He was also started on aspirin, clopidogrel, and metoprolol after the coronary intervention. His temperature is 38\u00b0C (100.4\u00b0F), pulse is 93/min, and blood pressure is 125/85 mm Hg. Examination shows mottled, reticulated purplish discoloration of the feet. Laboratory studies show:\nHemoglobin count 14 g/dL\nLeukocyte count 16,400/mm3\nSegmented neutrophils 56%\nEosinophils 11%\nLymphocytes 31%\nMonocytes 2%\nPlatelet count 260,000/mm3\nErythrocyte sedimentation rate 68 mm/h\nSerum\nUrea nitrogen 25 mg/dL\nCreatinine 4.2 mg/dL\nRenal biopsy shows intravascular spindle-shaped vacuoles. Which of the following is the most likely cause of this patient's symptoms?\"\n\nOptions:\nA) Renal papillary necrosis\nB) Cholesterol embolization\nC) Eosinophilic granulomatosis with polyangiitis\nD) Polyarteritis nodosa\n\nAnswer with the single correct option letter and briefly justify why.",
+    "ground_truth": "B",
+    "predicted": "B",
+    "correct": true,
+    "debate_triggered": true,
+    "average_confidence": 0.32,
+    "lead_agent": "Neurologist",
+    "consensus_answer": "B",
+    "consensus_reasoning": "The patient's symptoms and laboratory findings are consistent with a systemic vasculitic process leading to renal damage. Cholesterol embolization syndrome is a known complication of cardiac catheterization, which could explain the intravascular spindle-shaped vacuoles on renal biopsy. Other options may not fully account for the combination of systemic symptoms and specific laboratory findings in this patient.",
+    "agent_breakdown": [
+      {
+        "agent": "General Physician",
+        "answer": "{\n  \"answer\": B,\n  \"reasoning\": [\n    \"The patient's presentation of decreased urinary output, malaise, and elevated erythrocyte sedimentation rate (ESR), along with laboratory findings of uremia (elevated serum urea nitrogen) and renal insufficiency (elevated creatinine), suggests a systemic vasculitic process.\",\n    \"The presence of intravascular spindle-shaped vacuoles on renal biopsy is highly suggestive of cholesterol embolization syndrome (CES), particularly given the recent history of car",
+        "reasoning": "Model did not return valid JSON; raw text captured as answer.",
+        "confidence": 0.2
+      },
+      {
+        "agent": "Cardiologist",
+        "answer": "{\n  \"answer\": B,\n  \"reasoning\": [\n    \"The patient's symptoms, including decreased urinary output and malaise two weeks after coronary intervention, are suggestive of cholesterol embolization syndrome (CES).\",\n    \"The renal biopsy showing intravascular spindle-shaped vacuoles further supports this diagnosis, as it is characteristic of CES.\",\n    \"Cholesterol deposition in the small vessels can lead to obstruction and damage, explaining the patient's symptoms.\"\n  ],\n  \"confidence\": 0.95\n}",
+        "reasoning": "Model did not return valid JSON; raw text captured as answer.",
+        "confidence": 0.2
+      },
+      {
+        "agent": "Neurologist",
+        "answer": "B",
+        "reasoning": "The patient's symptoms and laboratory findings are consistent with a systemic vasculitic process leading to renal damage. Cholesterol embolization syndrome is a known complication of cardiac catheterization, which could explain the intravascular spindle-shaped vacuoles on renal biopsy. Other options may not fully account for the combination of systemic symptoms and specific laboratory findings in this patient.",
+        "confidence": 0.8
+      },
+      {
+        "agent": "Pharmacologist",
+        "answer": "{\n  \"answer\": B,\n  \"reasoning\": [\n    \"The patient's symptoms, including decreased urinary output and malaise two weeks after coronary intervention, are suggestive of cholesterol embolization syndrome (CES).\",\n    \"The mottled, reticulated purplish discoloration of the feet is also consistent with CES.\",\n    \"The renal biopsy showing intravascular spindle-shaped vacuoles further supports this diagnosis, as it is characteristic of CES.\",\n    \"Cholesterol deposition in the small vessels can lead t",
+        "reasoning": "Model did not return valid JSON; raw text captured as answer.",
+        "confidence": 0.2
+      },
+      {
+        "agent": "Evidence Reviewer",
+        "answer": "{\n  \"answer\": B,\n  \"reasoning\": [\n    \"The presence of intravascular spindle-shaped vacuoles on renal biopsy strongly supports cholesterol embolization syndrome as the most likely cause of this patient's symptoms.\",\n    \"Recent history of cardiac catheterization with stenting increases the risk for CES.\",\n    \"Systemic symptoms such as decreased urinary output, malaise, and elevated erythrocyte sedimentation rate are consistent with CES.\"\n  ],\n  \"confidence\": 0.95\n}",
+        "reasoning": "Model did not return valid JSON; raw text captured as answer.",
+        "confidence": 0.2
+      }
+    ],
+    "elapsed_sec": 648.8
+  },
+  {
+    "index": 4,
+    "session_id": "1bb37bf1-6c7f-4663-9ce2-c2c698787ad4",
+    "question_text": "A 39-year-old woman is brought to the emergency department because of fevers, chills, and left lower quadrant pain. Her temperature is 39.1\u00b0C (102.3\u00b0F), pulse is 126/min, respirations are 28/min, and blood pressure is 80/50 mm Hg. There is blood oozing around the site of a peripheral intravenous line. Pelvic examination shows mucopurulent discharge from the cervical os and left adnexal tenderness. Laboratory studies show:\nPlatelet count 14,200/mm3\nFibrinogen 83 mg/mL (N = 200\u2013430 mg/dL)\nD-dimer 965 ng/mL (N < 500 ng/mL)\nWhen phenol is applied to a sample of the patient's blood at 90\u00b0C, a phosphorylated N-acetylglucosamine dimer with 6 fatty acids attached to a polysaccharide side chain is identified. A blood culture is most likely to show which of the following?\"\n\nOptions:\nA) Coagulase-positive, gram-positive cocci forming mauve-colored colonies on methicillin-containing agar\nB) Encapsulated, gram-negative coccobacilli forming grey-colored colonies on charcoal blood agar\nC) Spore-forming, gram-positive bacilli forming yellow colonies on casein agar\nD) Lactose-fermenting, gram-negative rods forming pink colonies on MacConkey agar\n\nAnswer with the single correct option letter and briefly justify why.",
+    "ground_truth": "D",
+    "predicted": null,
+    "correct": false,
+    "debate_triggered": true,
+    "average_confidence": 0.9,
+    "lead_agent": "Evidence Reviewer",
+    "consensus_answer": "B",
+    "consensus_reasoning": "The patient's presentation suggests Neisseria meningitidis infection, as indicated by the presence of mucopurulent discharge from the cervical os and left adnexal tenderness, which are consistent with a ruptured purulent follicle or puerperal sepsis. The low platelet count (thrombocytopenia) and elevated D-dimer level suggest disseminated intravascular coagulation (DIC). The specific identification of a phosphorylated N-acetylglucosamine dimer with 6 fatty acids attached to a polysaccharide side chain, also known as the CNA test or Neisseria antigen detection assay, is specific for N. meningitidis.",
+    "agent_breakdown": [
+      {
+        "agent": "General Physician",
+        "answer": "B",
+        "reasoning": "The patient's symptoms and laboratory findings are consistent with sepsis and disseminated intravascular coagulation (DIC), which is often associated with Neisseria meningitidis infection. The identification of a phosphorylated N-acetylglucosamine dimer with 6 fatty acids attached to a polysaccharide side chain, when phenol is applied at 90\u00b0C, is specific for Neisseria meningitidis. Although the patient's presentation could suggest group B streptococcus (GBS), the laboratory findings and clinical context lean more towards Neisseria meningitidis infection.",
+        "confidence": 0.85
+      },
+      {
+        "agent": "Cardiologist",
+        "answer": "B",
+        "reasoning": "The patient's symptoms and laboratory findings suggest a severe bacterial infection with characteristics consistent with Neisseria meningitidis, which matches the description of encapsulated, gram-negative coccobacilli forming grey-colored colonies on charcoal blood agar in option B.",
+        "confidence": 0.9
+      },
+      {
+        "agent": "Neurologist",
+        "answer": "B",
+        "reasoning": "The patient's symptoms and laboratory findings strongly suggest Neisseria meningitidis infection, supported by the identification of a phosphorylated N-acetylglucosamine dimer with 6 fatty acids attached to a polysaccharide side chain. This finding is specific for N. meningitidis, which matches the expected morphology and characteristics in option B.",
+        "confidence": 0.9
+      },
+      {
+        "agent": "Pharmacologist",
+        "answer": "B",
+        "reasoning": "The patient's symptoms and laboratory findings are consistent with Neisseria meningitidis infection, including mucopurulent discharge from the cervical os, left adnexal tenderness, low platelet count, high D-dimer level, and the specific identification of a phosphorylated N-acetylglucosamine dimer. While group B streptococcus (GBS) is also encapsulated and gram-negative, the additional clinical features in this patient make N. meningitidis a more likely cause.",
+        "confidence": 0.9
+      },
+      {
+        "agent": "Evidence Reviewer",
+        "answer": "B",
+        "reasoning": "The patient's presentation suggests Neisseria meningitidis infection, as indicated by the presence of mucopurulent discharge from the cervical os and left adnexal tenderness, which are consistent with a ruptured purulent follicle or puerperal sepsis. The low platelet count (thrombocytopenia) and elevated D-dimer level suggest disseminated intravascular coagulation (DIC). The specific identification of a phosphorylated N-acetylglucosamine dimer with 6 fatty acids attached to a polysaccharide side chain, also known as the CNA test or Neisseria antigen detection assay, is specific for N. meningitidis.",
+        "confidence": 0.95
+      }
+    ],
+    "elapsed_sec": 328.2
+  },
+  {
+    "index": 5,
+    "session_id": "9d9920dd-802c-4650-83c1-f775668d676a",
+    "question_text": "A 35-year-old man comes to the physician because of itchy, watery eyes for the past week. He has also been sneezing multiple times a day during this period. He had a similar episode 1 year ago around springtime. He has iron deficiency anemia and ankylosing spondylitis. Current medications include ferrous sulfate, artificial tear drops, and indomethacin. He works as an elementary school teacher. His vital signs are within normal limits. Visual acuity is 20/20 without correction. Physical examination shows bilateral conjunctival injection with watery discharge. The pupils are 3 mm, equal, and reactive to light. Examination of the anterior chamber of the eye is unremarkable. Which of the following is the most appropriate treatment?\n\nOptions:\nA) Erythromycin ointment\nB) Ketotifen eye drops\nC) Warm compresses\nD) Fluorometholone eye drops\n\nAnswer with the single correct option letter and briefly justify why.",
+    "ground_truth": "B",
+    "predicted": "B",
+    "correct": true,
+    "debate_triggered": true,
+    "average_confidence": 0.49,
+    "lead_agent": "Neurologist",
+    "consensus_answer": "B",
+    "consensus_reasoning": "The patient's symptoms of itchy, watery eyes and sneezing are suggestive of allergic conjunctivitis. The fact that he had a similar episode around springtime supports this diagnosis. Bilateral conjunctival injection with watery discharge is consistent with allergic conjunctivitis. Ketotifen eye drops are an antihistamine and mast cell stabilizer, making them an appropriate treatment for allergic conjunctivitis. The patient's history and symptoms align with the standard treatment guidelines for allergic conjunctivitis.",
+    "agent_breakdown": [
+      {
+        "agent": "General Physician",
+        "answer": "{\n  \"answer\": B,\n  \"reasoning\": [\n    \"The patient's symptoms of itchy, watery eyes and sneezing are suggestive of allergic conjunctivitis.\",\n    \"The fact that he had a similar episode around springtime supports this diagnosis.\",\n    \"Bilateral conjunctival injection with watery discharge is consistent with allergic conjunctivitis.\",\n    \"Ketotifen eye drops are an antihistamine and mast cell stabilizer, making them an appropriate treatment for allergic conjunctivitis.\",\n    \"Erythromycin ointm",
+        "reasoning": "Model did not return valid JSON; raw text captured as answer.",
+        "confidence": 0.2
+      },
+      {
+        "agent": "Cardiologist",
+        "answer": "B",
+        "reasoning": "The patient's symptoms of itchy, watery eyes and sneezing are consistent with allergic conjunctivitis, exacerbated by his work in an elementary school setting. Ketotifen eye drops are a first-line treatment for allergic conjunctivitis, providing anti-inflammatory and antihistamine effects. Erythromycin ointment is not indicated for this condition, warm compresses may provide temporary relief but do not address the underlying cause, and fluorometholone eye drops are typically used for more severe conditions such as uveitis.",
+        "confidence": 0.9
+      },
+      {
+        "agent": "Neurologist",
+        "answer": "B",
+        "reasoning": "The patient's symptoms of itchy, watery eyes and sneezing are suggestive of allergic conjunctivitis. The fact that he had a similar episode around springtime supports this diagnosis. Bilateral conjunctival injection with watery discharge is consistent with allergic conjunctivitis. Ketotifen eye drops are an antihistamine and mast cell stabilizer, making them an appropriate treatment for allergic conjunctivitis. The patient's history and symptoms align with the standard treatment guidelines for allergic conjunctivitis.",
+        "confidence": 0.95
+      },
+      {
+        "agent": "Pharmacologist",
+        "answer": "{\n  \"answer\": B,\n  \"reasoning\": [\n    \"The patient's symptoms of itchy, watery eyes and sneezing are consistent with allergic conjunctivitis.\",\n    \"The history of a similar episode around springtime further supports this diagnosis.\",\n    \"Ketotifen eye drops are an antihistamine and mast cell stabilizer, making them an appropriate treatment for allergic conjunctivitis.\"\n  ],\n  \"confidence\": 0.95\n}",
+        "reasoning": "Model did not return valid JSON; raw text captured as answer.",
+        "confidence": 0.2
+      },
+      {
+        "agent": "Evidence Reviewer",
+        "answer": "{\n  \"answer\": B,\n  \"reasoning\": [\n    \"The patient's symptoms and history are consistent with allergic conjunctivitis.\",\n    \"Ketotifen eye drops are a first-line treatment for allergic conjunctivitis, providing anti-inflammatory and antihistamine effects.\",\n    \"Erythromycin ointment is not indicated for this condition.\",\n    \"Warm compresses provide temporary relief but do not address the underlying cause.\",\n    \"Fluorometholone eye drops are typically used for more severe conditions such as u",
+        "reasoning": "Model did not return valid JSON; raw text captured as answer.",
+        "confidence": 0.2
+      }
+    ],
+    "elapsed_sec": 299.2
+  }
+]
