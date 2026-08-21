@@ -1,0 +1,26 @@
+WHO Guidelines: Diabetes Mellitus
+1. Diagnostic Criteria for Diabetes Mellitus
+Diagnosis of Diabetes Mellitus is established if any of the following criteria are met:
+1. Fasting Plasma Glucose (FPG) >= 126 mg/dL (7.0 mmol/L) after an 8-hour fast.
+2. 2-hour Post-Prandial Glucose >= 200 mg/dL (11.1 mmol/L) during a 75g OGTT.
+3. Glycated Hemoglobin (HbA1c) >= 6.5% (48 mmol/mol).
+4. Random Plasma Glucose >= 200 mg/dL (11.1 mmol/L) in patients with classic symptoms of
+hyperglycemia (polyuria, polydipsia, unexplained weight loss).
+
+
+WHO Guidelines: Diabetes Mellitus
+2. Prediabetes Categories
+Prediabetes indicates high risk for progression to Type 2 Diabetes:
+1. Impaired Fasting Glucose (IFG): Fasting glucose 100-125 mg/dL (5.6-6.9 mmol/L).
+2. Impaired Glucose Tolerance (IGT): 2-hour OGTT glucose 140-199 mg/dL (7.8-11.0 mmol/L).
+3. HbA1c range: 5.7% to 6.4% (39-47 mmol/mol).
+
+
+WHO Guidelines: Diabetes Mellitus
+3. Pharmacological Management
+First-line therapy for Type 2 Diabetes is Metformin combined with lifestyle intervention.
+- SGLT2 Inhibitors (Empagliflozin, Dapagliflozin) are recommended for patients with established
+ASCVD, Heart Failure, or Chronic Kidney Disease.
+- GLP-1 Receptor Agonists (Semaglutide, Liraglutide) offer strong glycemic efficacy and weight loss
+benefits.
+- Insulin therapy is indicated when HbA1c > 10% or symptoms of catabolism are present.

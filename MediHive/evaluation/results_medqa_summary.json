@@ -1,0 +1,9 @@
+{
+  "dataset": "MedQA",
+  "total_questions": 5,
+  "correct": 2,
+  "wrong": 2,
+  "unparsed": 1,
+  "request_errors": 0,
+  "accuracy": 0.4
+}
