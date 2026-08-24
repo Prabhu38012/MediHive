@@ -642,5 +642,361 @@
       }
     ],
     "elapsed_sec": 241.8
+  },
+  {
+    "index": 15,
+    "session_id": "045e4a40-6865-4740-8d01-438874bb7c08",
+    "question_text": "Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.\n\nAbstract:\nRecent years have seen a rapid proliferation of emergency ultrasound (EUS) programs in the United States. To date, there is no evidence supporting that EUS fellowships enhance residents' ultrasound (US) educational experiences. The purpose of this study was to determine the impact of EUS fellowships on emergency medicine (EM) residents' US education. We conducted a cross-sectional study at 9 academic medical centers. A questionnaire on US education and bedside US use was pilot tested and given to EM residents. The primary outcomes included the number of US examinations performed, scope of bedside US applications, barriers to residents' US education, and US use in the emergency department. The secondary outcomes were factors that would impact residents' US education. The outcomes were compared between residency programs with and without EUS fellowships. A total of 244 EM residents participated in this study. Thirty percent (95% confidence interval, 24%-35%) reported they had performed more than 150 scans. Residents in programs with EUS fellowships reported performing more scans than those in programs without fellowships (P = .04). Significant differences were noted in most applications of bedside US between residency programs with and without fellowships (P<.05). There were also significant differences in the barriers to US education between residency programs with and without fellowships (P<.05).\n\nQuestion: Do emergency ultrasound fellowship programs impact emergency medicine residents' ultrasound education?",
+    "ground_truth": "yes",
+    "predicted": "yes",
+    "correct": true,
+    "debate_triggered": true,
+    "average_confidence": 0.98,
+    "lead_agent": "Neurologist",
+    "consensus_answer": "yes",
+    "consensus_reasoning": "1. The study directly compared EM residency programs with and without EUS fellowships using a cross\u2011sectional survey of 244 residents. 2. Primary outcomes measured were the number of US examinations performed, scope of bedside US applications, and barriers to education. 3. Results showed residents in fellowship programs performed more scans (P = .04) and had broader application use (P < .05), with significant differences in barriers (P < .05). 4. These statistically significant differences indicate a measurable positive impact of fellowship programs on residents\u2019 ultrasound education. 5. No alternative explanation or contradictory data were presented. 6. Therefore the evidence supports a positive impact.",
+    "agent_breakdown": [
+      {
+        "agent": "General Physician",
+        "answer": "yes",
+        "reasoning": "1. Study design: cross\u2011sectional survey of 244 EM residents at 9 academic centers, comparing programs with vs. without EUS fellowships.\n2. Primary outcomes: number of US exams performed, scope of bedside US applications, barriers to education.\n3. Results: Residents in fellowship programs performed more scans (30% >150 scans vs. lower in non\u2011fellowship) with P\u202f=\u202f.04; broader application use and different barriers with P\u202f<\u202f.05.\n4. Statistically significant differences directly indicate that the presence of an EUS fellowship is associated with enhanced ultrasound education.\n5. No alternative explanation (e.g., confounding) is presented that would negate this effect.\n6. Therefore, the evidence supports a positive impact of EUS fellowships on residents\u2019 ultrasound education.",
+        "confidence": 0.98,
+        "fusion_weight": 0.152
+      },
+      {
+        "agent": "Cardiologist",
+        "answer": "yes",
+        "reasoning": "1. The study compared EM residency programs with and without EUS fellowships using a cross\u2011sectional survey of 244 residents. 2. Primary outcomes included the number of US examinations performed, scope of bedside US applications, and barriers to education. 3. Results showed residents in fellowship programs performed more scans (30% >150 scans vs lower in non\u2011fellowship) with a statistically significant difference (P\u202f=\u202f.04). 4. They also had broader application use and reported different barriers, all with P\u202f<\u202f.05. 5. These statistically significant differences directly support that EUS fellowships enhance residents\u2019 ultrasound education. 6. No alternative explanation or contradictory data were presented. 7. Therefore the evidence indicates a positive impact.",
+        "confidence": 0.99,
+        "fusion_weight": 0.202
+      },
+      {
+        "agent": "Neurologist",
+        "answer": "yes",
+        "reasoning": "1. The study directly compared EM residency programs with and without EUS fellowships using a cross\u2011sectional survey of 244 residents. 2. Primary outcomes measured were the number of US examinations performed, scope of bedside US applications, and barriers to education. 3. Results showed residents in fellowship programs performed more scans (P = .04) and had broader application use (P < .05), with significant differences in barriers (P < .05). 4. These statistically significant differences indicate a measurable positive impact of fellowship programs on residents\u2019 ultrasound education. 5. No alternative explanation or contradictory data were presented. 6. Therefore the evidence supports a positive impact.",
+        "confidence": 0.99,
+        "fusion_weight": 0.287
+      },
+      {
+        "agent": "Pharmacologist",
+        "answer": "yes",
+        "reasoning": "1. The study compared EM residency programs with and without EUS fellowships using a cross\u2011sectional survey of 244 residents. 2. Primary outcomes included number of US examinations performed, scope of bedside US applications, and barriers to education. 3. Results showed residents in fellowship programs performed more scans (30% >150 scans vs lower in non\u2011fellowship) with a statistically significant difference (P\u202f=\u202f.04). 4. They also had broader application use and different barriers, all with P\u202f<\u202f.05. 5. These statistically significant differences directly support that EUS fellowships enhance residents\u2019 ultrasound education. 6. No alternative explanation or contradictory data were presented. 7. Therefore the evidence indicates a positive impact.",
+        "confidence": 0.99,
+        "fusion_weight": 0.205
+      },
+      {
+        "agent": "Evidence Reviewer",
+        "answer": "yes",
+        "reasoning": "1. Study design: cross\u2011sectional survey comparing EM residency programs with and without EUS fellowships (n=244). 2. Primary outcomes measured: number of US examinations performed, scope of bedside US applications, barriers to education, and US use in ED. 3. Results: Residents in fellowship programs performed more scans (30% >150 scans vs lower in non\u2011fellowship) with P\u202f=\u202f.04; broader application use and different barriers with P\u202f<\u202f.05. 4. Statistically significant differences directly indicate that the presence of an EUS fellowship is associated with enhanced ultrasound education. 5. No contradictory evidence or major confounders reported. 6. Therefore the claim that fellowship programs impact residents\u2019 ultrasound education is supported.",
+        "confidence": 0.95,
+        "fusion_weight": 0.154
+      }
+    ],
+    "rag_used": true,
+    "rag_sources": [
+      {
+        "source": "Patient safety.txt",
+        "distance": 1.2419
+      },
+      {
+        "source": "Patient safety.txt",
+        "distance": 1.2686
+      },
+      {
+        "source": "Patient safety.txt",
+        "distance": 1.2829
+      },
+      {
+        "source": "Cardiovascular diseases.txt",
+        "distance": 1.2946
+      }
+    ],
+    "elapsed_sec": 71.0
+  },
+  {
+    "index": 16,
+    "session_id": "60f335bb-18f7-4798-908f-06f321ec8deb",
+    "question_text": "Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.\n\nAbstract:\nBreathlessness is one of the most distressing symptoms experienced by patients with advanced cancer and noncancer diagnoses alike. Often, severity of breathlessness increases quickly, calling for rapid symptom control. Oral, buccal, and parenteral routes of provider-controlled drug administration have been described. It is unclear whether patient-controlled therapy (PCT) systems would be an additional treatment option. To investigate whether intravenous opioid PCT can be an effective therapeutic method to reduce breathlessness in patients with advanced disease. Secondary aims were to study the feasibility and acceptance of opioid PCT in patients with refractory breathlessness. This was a pilot observational study with 18 inpatients with advanced disease and refractory breathlessness receiving opioid PCT. Breathlessness was measured on a self-reported numeric rating scale. Richmond Agitation Sedation Scale scores, Palliative Performance Scale scores, vital signs, and a self-developed patient satisfaction questionnaire were used for measuring secondary outcomes. Descriptive and interference analyses (Friedman test) and post hoc analyses (Wilcoxon tests and Bonferroni corrections) were performed. Eighteen of 815 patients (advanced cancer; median age\u00a0=\u00a057.5\u00a0years [range 36-81]; 77.8% female) received breathlessness symptom control with opioid PCT; daily morphine equivalent dose at Day 1 was median\u00a0=\u00a020.3\u00a0mg (5.0-49.6\u00a0mg); Day 2: 13.0\u00a0mg (1.0-78.5\u00a0mg); Day 3: 16.0\u00a0mg (8.3-47.0\u00a0mg). Numeric rating scale of current breathlessness decreased (baseline: median\u00a0=\u00a05 [range 1-10]; Day 1: median\u00a0=\u00a04 [range 0-8], P\u00a0<\u00a00.01; Day 2: median\u00a0=\u00a04 [range 0-5], P\u00a0<\u00a00.01). Physiological parameters were stable over time. On Day 3, 12/12 patients confirmed that this mode of application provided relief of breathlessness.\n\nQuestion: Patient-Controlled Therapy of Breathlessness in Palliative Care: A New Therapeutic Concept for Opioid Administration?",
+    "ground_truth": "yes",
+    "predicted": "yes",
+    "correct": true,
+    "debate_triggered": true,
+    "average_confidence": 0.906,
+    "lead_agent": "Cardiologist",
+    "consensus_answer": "yes",
+    "consensus_reasoning": "1. The study evaluated intravenous opioid patient\u2011controlled therapy (PCT) in 18 advanced\u2011disease patients with refractory breathlessness.\n2. Breathlessness scores (NRS) decreased significantly from baseline (median 5) to Day\u202f1 (median 4) and remained low thereafter (P\u202f<\u202f0.01), indicating clinical benefit.\n3. Physiological parameters (vital signs, sedation scores) remained stable, suggesting safety and tolerability.\n4. All patients who completed Day\u202f3 reported relief, demonstrating feasibility and high patient acceptance.\n5. No major adverse events or contraindications were reported.\n6. These findings collectively support the proposition that opioid PCT is an effective, new therapeutic concept for breathlessness in palliative care.\n7. Therefore, the correct answer is \"yes\".",
+    "agent_breakdown": [
+      {
+        "agent": "General Physician",
+        "answer": "yes",
+        "reasoning": "1. Study evaluated intravenous opioid patient\u2011controlled therapy (PCT) in 18 inpatients with refractory breathlessness. 2. Breathlessness scores (NRS) decreased significantly from median 5 at baseline to 4 on Day\u202f1 and remained low, with P<0.01. 3. Physiological parameters (vital signs, sedation scores) remained stable, indicating safety. 4. All patients who completed Day\u202f3 reported relief, demonstrating feasibility and high patient satisfaction. 5. No major adverse events were reported. 6. These findings support the concept that opioid PCT is an effective, feasible, and acceptable new therapeutic option for breathlessness in palliative care.",
+        "confidence": 0.95,
+        "fusion_weight": 0.205
+      },
+      {
+        "agent": "Cardiologist",
+        "answer": "yes",
+        "reasoning": "1. The study evaluated intravenous opioid patient\u2011controlled therapy (PCT) in 18 advanced\u2011disease patients with refractory breathlessness.\n2. Breathlessness scores (NRS) decreased significantly from baseline (median 5) to Day\u202f1 (median 4) and remained low thereafter (P\u202f<\u202f0.01), indicating clinical benefit.\n3. Physiological parameters (vital signs, sedation scores) remained stable, suggesting safety and tolerability.\n4. All patients who completed Day\u202f3 reported relief, demonstrating feasibility and high patient acceptance.\n5. No major adverse events or contraindications were reported.\n6. These findings collectively support the proposition that opioid PCT is an effective, new therapeutic concept for breathlessness in palliative care.\n7. Therefore, the correct answer is \"yes\".",
+        "confidence": 0.98,
+        "fusion_weight": 0.306
+      },
+      {
+        "agent": "Neurologist",
+        "answer": "yes",
+        "reasoning": "1. The study evaluated intravenous opioid patient\u2011controlled therapy (PCT) in 18 inpatients with refractory breathlessness.\n2. Breathlessness scores (NRS) decreased significantly from baseline (median 5) to Day\u202f1 (median 4) and remained low thereafter (P\u202f<\u202f0.01), indicating clinical benefit.\n3. Physiological parameters (vital signs, sedation scores) remained stable, suggesting safety and tolerability.\n4. All patients who completed Day\u202f3 reported relief, demonstrating feasibility and high patient satisfaction.\n5. No major adverse events or contraindications were reported.\n6. These findings collectively support the proposition that opioid PCT is an effective, feasible, and acceptable new therapeutic concept for breathlessness in palliative care.\n7. Therefore, the correct answer is \"yes\".",
+        "confidence": 0.98,
+        "fusion_weight": 0.279
+      },
+      {
+        "agent": "Pharmacologist",
+        "answer": "yes",
+        "reasoning": "1. The study directly evaluated intravenous opioid patient\u2011controlled therapy (PCT) in 18 advanced\u2011disease patients with refractory breathlessness.\n2. Breathlessness scores (NRS) decreased significantly from baseline (median 5) to Day\u202f1 (median 4) and remained low thereafter (P\u202f<\u202f0.01), indicating clinical benefit.\n3. Physiological parameters (vital signs, sedation scores) remained stable, suggesting safety and tolerability of the PCT approach.\n4. All patients who completed Day\u202f3 reported relief, and the patient\u2011satisfaction questionnaire confirmed feasibility and acceptance.\n5. Although the study is small and observational, the consistent improvement across multiple outcome measures supports the concept that opioid PCT is a viable new therapeutic option for breathlessness in palliative care.\n6. No contradictory evidence or major adverse events were reported, and the intervention aligns with known opioid pharmacodynamics for dyspnea relief.\n7. Therefore, the evidence supports the proposition that opioid PCT is a new therapeutic concept for breathlessness management.\n8. The consensus among multiple specialists and the data presented justify a definitive \u201cyes\u201d answer.",
+        "confidence": 0.92,
+        "fusion_weight": 0.169
+      },
+      {
+        "agent": "Evidence Reviewer",
+        "answer": "maybe",
+        "reasoning": "1. The study is a small (n=18) pilot observational design without a control group, limiting causal inference.\n2. It reports statistically significant reductions in breathlessness scores and stable vitals, indicating potential efficacy.\n3. High patient satisfaction suggests feasibility and acceptance.\n4. However, the lack of randomization, blinding, and larger sample size means the evidence is not definitive.\n5. Therefore, while the concept appears promising, the current data do not conclusively establish it as a new therapeutic option.\n6. The most cautious conclusion is that the evidence is uncertain, hence \"maybe\".",
+        "confidence": 0.7,
+        "fusion_weight": 0.041
+      }
+    ],
+    "rag_used": true,
+    "rag_sources": [
+      {
+        "source": "Chronic obstructive pulmonary disease (COPD).txt",
+        "distance": 1.1084
+      },
+      {
+        "source": "Chronic obstructive pulmonary disease (COPD).txt",
+        "distance": 1.1243
+      },
+      {
+        "source": "Chronic obstructive pulmonary disease (COPD).txt",
+        "distance": 1.1375
+      },
+      {
+        "source": "Chronic obstructive pulmonary disease (COPD).txt",
+        "distance": 1.1639
+      }
+    ],
+    "elapsed_sec": 146.3
+  },
+  {
+    "index": 17,
+    "session_id": "4d9f6146-9b78-47f0-bdab-715ea115ee7e",
+    "question_text": "Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.\n\nAbstract:\nTo assess and compare the value of split-liver transplantation (SLT) and living-related liver transplantation (LRT). The concept of SLT results from the development of reduced-size transplantation. A further development of SLT, the in situ split technique, is derived from LRT, which itself marks the optimized outcome in terms of postoperative graft function and survival. The combination of SLT and LRT has abolished deaths on the waiting list, thus raising the question whether living donor liver transplantation is still necessary. Outcomes and postoperative liver function of 43 primary LRT patients were compared with those of 49 primary SLT patients (14 ex situ, 35 in situ) with known graft weight performed between April 1996 and December 2000. Survival rates were analyzed using the Kaplan-Meier method. After a median follow-up of 35 months, actual patient survival rates were 82% in the SLT group and 88% in the LRT group. Actual graft survival rates were 76% and 81%, respectively. The incidence of primary nonfunction was 12% in the SLT group and 2.3% in the LRT group. Liver function parameters (prothrombin time, factor V, bilirubin clearance) and surgical complication rates did not differ significantly. In the SLT group, mean cold ischemic time was longer than in the LRT group. Serum values of alanine aminotransferase during the first postoperative week were significantly higher in the SLT group. In the LRT group, there were more grafts with signs of fatty degeneration than in the SLT group.\n\nQuestion: Is there still a need for living-related liver transplantation in children?",
+    "ground_truth": "yes",
+    "predicted": "maybe",
+    "correct": false,
+    "debate_triggered": true,
+    "average_confidence": 0.756,
+    "lead_agent": "Evidence Reviewer",
+    "consensus_answer": "maybe",
+    "consensus_reasoning": "1. The abstract reports outcomes of 43 living-related liver transplant (LRT) and 49 split-liver transplant (SLT) recipients, with comparable patient and graft survival but higher primary non\u2011function in SLT.\n2. The study population is not restricted to children; no subgroup analysis by age is provided.\n3. Therefore, the data do not directly address pediatric outcomes or the necessity of LRT in children.\n4. While LRT shows some advantages (lower early non\u2011function, better early liver function), the lack of pediatric evidence means we cannot confirm that LRT is still required for children.\n5. The most appropriate conclusion, based on the available evidence, is that the need for LRT in children remains uncertain \u2013 hence \"maybe\".",
+    "agent_breakdown": [
+      {
+        "agent": "General Physician",
+        "answer": "yes",
+        "reasoning": "1. Key findings: The study shows comparable overall survival between LRT and SLT but a markedly lower primary non\u2011function rate (2.3% vs 12%) and better early liver function (lower ALT) in LRT. 2. In pediatric transplantation, graft size matching, immediate availability, and early graft function are critical for survival and growth. 3. The advantages of LRT in early function and lower non\u2011function directly benefit children, who are more vulnerable to early graft failure. 4. Although the cohort was not pediatric, the pathophysiologic principles (size match, early function) apply to children. 5. Therefore, LRT remains necessary for optimal pediatric outcomes. 6. No alternative option (e.g., SLT alone) can fully replace LRT\u2019s advantages in children.",
+        "confidence": 0.78,
+        "fusion_weight": 0.097
+      },
+      {
+        "agent": "Cardiologist",
+        "answer": "maybe",
+        "reasoning": "1. The study compares outcomes of living-related liver transplantation (LRT) and split-liver transplantation (SLT) in 92 primary recipients, but the cohort is not age-stratified and likely adult-dominated. 2. Overall survival and graft survival are similar (LRT 88%/81% vs SLT 82%/76%), yet LRT shows a markedly lower primary non\u2011function rate (2.3% vs 12%) and better early liver function (lower ALT). 3. In pediatric transplantation, graft size matching, immediate availability, and early graft function are critical; living donors typically provide these advantages. 4. However, the abstract provides no pediatric-specific data, so we cannot directly assess whether LRT offers superior outcomes in children. 5. Therefore, while LRT may still be advantageous for children, the evidence presented does not conclusively prove its necessity; the question remains unresolved. 6. The most appropriate conclusion is that the need for LRT in children is uncertain based on this abstract.",
+        "confidence": 0.75,
+        "fusion_weight": 0.167
+      },
+      {
+        "agent": "Neurologist",
+        "answer": "maybe",
+        "reasoning": "1. The study compares outcomes of living-related liver transplantation (LRT) and split-liver transplantation (SLT) in a cohort of 92 primary recipients, but it does not stratify by age or specifically analyze pediatric patients. 2. While overall patient and graft survival are similar (LRT 88%/81% vs SLT 82%/76%), LRT shows a lower incidence of primary non\u2011function (2.3% vs 12%) and better early liver function (lower ALT). 3. In children, graft size matching, immediate availability, and early function are critical; living donors often provide these advantages. 4. However, the abstract provides no direct evidence that LRT is superior or necessary in the pediatric population, nor does it demonstrate that SLT can fully replace LRT for children. 5. Therefore, the evidence is inconclusive regarding the necessity of LRT in children, leading to a \u201cmaybe\u201d conclusion.",
+        "confidence": 0.75,
+        "fusion_weight": 0.136
+      },
+      {
+        "agent": "Pharmacologist",
+        "answer": "maybe",
+        "reasoning": "1. The abstract compares outcomes of living-related liver transplantation (LRT) and split-liver transplantation (SLT) in 92 primary recipients, with similar overall patient (88% vs 82%) and graft survival (81% vs 76%). 2. LRT shows a markedly lower primary non\u2011function rate (2.3% vs 12%) and better early liver function (lower ALT). 3. These advantages are clinically relevant, especially in pediatric transplantation where graft size, immediate availability, and early function are critical. 4. However, the study cohort is not stratified by age; no pediatric-specific data are presented. 5. Therefore, while LRT offers technical benefits that may be particularly important for children, the abstract alone does not provide definitive evidence that LRT is still required or can be safely omitted in pediatric cases. 6. The most prudent conclusion is that the necessity of LRT in children remains uncertain based on this data alone.",
+        "confidence": 0.7,
+        "fusion_weight": 0.161
+      },
+      {
+        "agent": "Evidence Reviewer",
+        "answer": "maybe",
+        "reasoning": "1. The abstract reports outcomes of 43 living-related liver transplant (LRT) and 49 split-liver transplant (SLT) recipients, with comparable patient and graft survival but higher primary non\u2011function in SLT.\n2. The study population is not restricted to children; no subgroup analysis by age is provided.\n3. Therefore, the data do not directly address pediatric outcomes or the necessity of LRT in children.\n4. While LRT shows some advantages (lower early non\u2011function, better early liver function), the lack of pediatric evidence means we cannot confirm that LRT is still required for children.\n5. The most appropriate conclusion, based on the available evidence, is that the need for LRT in children remains uncertain \u2013 hence \"maybe\".",
+        "confidence": 0.8,
+        "fusion_weight": 0.439
+      }
+    ],
+    "rag_used": true,
+    "rag_sources": [
+      {
+        "source": "Hepatitis B.txt",
+        "distance": 1.0609
+      },
+      {
+        "source": "Hepatitis B.txt",
+        "distance": 1.1465
+      },
+      {
+        "source": "Hepatitis B.txt",
+        "distance": 1.1619
+      },
+      {
+        "source": "Hepatitis B.txt",
+        "distance": 1.2619
+      }
+    ],
+    "elapsed_sec": 147.1
+  },
+  {
+    "index": 18,
+    "session_id": "788548ff-eac9-40a7-b27f-66654704c1f7",
+    "question_text": "Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.\n\nAbstract:\nTo examine patterns of knowledge and attitudes among adults aged>65 years unvaccinated for influenza. Surveyed Medicare beneficiaries in 5 areas; clustered unvaccinated seniors by their immunization related knowledge and attitudes. Identified 4 clusters: Potentials (45%) would receive influenza vaccine to prevent disease; Fearful Uninformeds (9%) were unsure if influenza vaccine causes illness; Doubters (27%) were unsure if vaccine is efficacious; Misinformeds (19%) believed influenza vaccine causes illness. More Potentials (75%) and Misinformeds (70%) ever received influenza vaccine than did Fearful Uninformeds (18%) and Doubters (29%).\n\nQuestion: Do patterns of knowledge and attitudes exist among unvaccinated seniors?",
+    "ground_truth": "yes",
+    "predicted": "yes",
+    "correct": true,
+    "debate_triggered": true,
+    "average_confidence": 0.99,
+    "lead_agent": "Neurologist",
+    "consensus_answer": "yes",
+    "consensus_reasoning": "1. The abstract reports a survey of unvaccinated seniors that identified four distinct clusters based on knowledge and attitudes toward influenza vaccination. 2. The existence of these clusters (Potentials, Fearful Uninformeds, Doubters, Misinformeds) demonstrates systematic variation in attitudes and knowledge within the population. 3. Therefore, the data directly support the presence of patterns of knowledge and attitudes among unvaccinated seniors. 4. No alternative interpretation contradicts this finding.",
+    "agent_breakdown": [
+      {
+        "agent": "General Physician",
+        "answer": "yes",
+        "reasoning": "1. The study surveyed unvaccinated seniors and identified four distinct clusters based on knowledge and attitudes: Potentials, Fearful Uninformeds, Doubters, and Misinformeds. 2. The existence of these distinct, reproducible clusters demonstrates systematic patterns in the population\u2019s knowledge and attitudes. 3. Therefore, the data directly support the presence of such patterns. 4. No alternative interpretation suggests otherwise.",
+        "confidence": 0.99,
+        "fusion_weight": 0.168
+      },
+      {
+        "agent": "Cardiologist",
+        "answer": "yes",
+        "reasoning": "1. The study surveyed unvaccinated seniors and identified four distinct clusters based on knowledge and attitudes: Potentials, Fearful Uninformeds, Doubters, and Misinformeds. 2. The existence of these distinct, reproducible groupings demonstrates systematic patterns in the population\u2019s knowledge and attitudes. 3. Therefore, the data directly support the presence of such patterns. 4. No alternative interpretation contradicts the findings.",
+        "confidence": 0.99,
+        "fusion_weight": 0.175
+      },
+      {
+        "agent": "Neurologist",
+        "answer": "yes",
+        "reasoning": "1. The abstract reports a survey of unvaccinated seniors that identified four distinct clusters based on knowledge and attitudes toward influenza vaccination. 2. The existence of these clusters (Potentials, Fearful Uninformeds, Doubters, Misinformeds) demonstrates systematic variation in attitudes and knowledge within the population. 3. Therefore, the data directly support the presence of patterns of knowledge and attitudes among unvaccinated seniors. 4. No alternative interpretation contradicts this finding.",
+        "confidence": 0.99,
+        "fusion_weight": 0.335
+      },
+      {
+        "agent": "Pharmacologist",
+        "answer": "yes",
+        "reasoning": "1. The study surveyed unvaccinated seniors and identified four distinct clusters based on knowledge and attitudes: Potentials, Fearful Uninformeds, Doubters, and Misinformeds. 2. The existence of these distinct, reproducible clusters demonstrates systematic patterns in the population\u2019s knowledge and attitudes. 3. Therefore, the data directly support the presence of such patterns.",
+        "confidence": 0.99,
+        "fusion_weight": 0.161
+      },
+      {
+        "agent": "Evidence Reviewer",
+        "answer": "yes",
+        "reasoning": "1. The study surveyed unvaccinated seniors and identified distinct clusters based on knowledge and attitudes. 2. The existence of four distinct clusters (Potentials, Fearful Uninformeds, Doubters, Misinformeds) demonstrates systematic patterns. 3. Therefore, patterns of knowledge and attitudes do exist among unvaccinated seniors.",
+        "confidence": 0.99,
+        "fusion_weight": 0.16
+      }
+    ],
+    "rag_used": true,
+    "rag_sources": [
+      {
+        "source": "Influenza (seasonal).txt",
+        "distance": 0.9276
+      },
+      {
+        "source": "Influenza (seasonal).txt",
+        "distance": 0.9714
+      },
+      {
+        "source": "Influenza (seasonal).txt",
+        "distance": 1.0231
+      },
+      {
+        "source": "Influenza (seasonal).txt",
+        "distance": 1.0351
+      }
+    ],
+    "elapsed_sec": 101.2
+  },
+  {
+    "index": 19,
+    "session_id": "76ee3859-4495-4070-8b33-9bec545429e5",
+    "question_text": "Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.\n\nAbstract:\nAlthough the retroperitoneal approach has been the preferred choice for open urological procedures, retroperitoneoscopy is not the preferred approach for laparoscopy. This study aims to develop a training model for retroperitoneoscopy and to establish an experimental learning curve. Fifteen piglets were operated on to develop a standard retroperitoneoscopic nephrectomy (RPN) training model. All procedures were performed with three ports. Intraoperative data (side, operative time, blood loss, peritoneal opening) were recorded. Animals were divided into groups A, the first eight, and B, the last seven cases. Data were statistically analyzed. We performed fifteen RPNs. The operative time varied from 15 to 50 minutes (median 30 minutes). Blood loss varied from 5 to 100 mL (median 20 mL). We experienced five peritoneal openings; we had two surgical vascular complications managed laparoscopically. There was statistical difference between groups A and B for peritoneal opening (p = 0.025), operative time (p = 0.0037), and blood loss (p = 0.026). RPN in a porcine model could simulate the whole procedure, from creating the space to nephrectomy completion. Experimental learning curve was eight cases, after statistical data analysis.\n\nQuestion: Is there a model to teach and practice retroperitoneoscopic nephrectomy?",
+    "ground_truth": "yes",
+    "predicted": "yes",
+    "correct": true,
+    "debate_triggered": true,
+    "average_confidence": 0.99,
+    "lead_agent": "Neurologist",
+    "consensus_answer": "yes",
+    "consensus_reasoning": "1. The abstract explicitly states the development of a standard retroperitoneoscopic nephrectomy (RPN) training model using piglets.\n2. Fifteen RPN procedures were performed, with operative data recorded and a learning curve established.\n3. The study concludes that RPN in a porcine model could simulate the entire procedure, indicating a usable teaching model.\n4. No contradictory evidence is presented; all specialist opinions confirm the existence of such a model.\n5. Therefore, the correct answer is affirmative.",
+    "agent_breakdown": [
+      {
+        "agent": "General Physician",
+        "answer": "yes",
+        "reasoning": "1. The abstract explicitly states the development of a standard retroperitoneoscopic nephrectomy (RPN) training model using piglets.\n2. Fifteen RPN procedures were performed, with operative data recorded and a learning curve established.\n3. The study concludes that RPN in a porcine model could simulate the entire procedure, indicating a viable teaching model.\n4. No contradictory evidence is presented.\n5. Therefore, a model to teach and practice retroperitoneoscopic nephrectomy exists.",
+        "confidence": 0.99,
+        "fusion_weight": 0.193
+      },
+      {
+        "agent": "Cardiologist",
+        "answer": "yes",
+        "reasoning": "1. The abstract explicitly states the development of a standard retroperitoneoscopic nephrectomy (RPN) training model using piglets.\n2. Fifteen RPN procedures were performed, with operative data recorded and a learning curve established.\n3. The study concludes that RPN in a porcine model could simulate the entire procedure and that an experimental learning curve was achieved.\n4. Therefore, the evidence directly supports the existence of a model for teaching and practicing retroperitoneoscopic nephrectomy.",
+        "confidence": 0.99,
+        "fusion_weight": 0.179
+      },
+      {
+        "agent": "Neurologist",
+        "answer": "yes",
+        "reasoning": "1. The abstract explicitly states the development of a standard retroperitoneoscopic nephrectomy (RPN) training model using piglets.\n2. Fifteen RPN procedures were performed, with operative data recorded and a learning curve established.\n3. The study concludes that RPN in a porcine model could simulate the entire procedure, indicating a usable teaching model.\n4. No contradictory evidence is presented; all specialist opinions confirm the existence of such a model.\n5. Therefore, the correct answer is affirmative.",
+        "confidence": 0.99,
+        "fusion_weight": 0.259
+      },
+      {
+        "agent": "Pharmacologist",
+        "answer": "yes",
+        "reasoning": "1. The abstract explicitly states the development of a standard retroperitoneoscopic nephrectomy (RPN) training model using piglets.\n2. Fifteen RPN procedures were performed, with operative data recorded and a learning curve established.\n3. The study concludes that RPN in a porcine model could simulate the entire procedure, indicating a viable teaching and practice model.\n4. No contradictory evidence is presented.\n5. Therefore, the correct answer is affirmative.",
+        "confidence": 0.99,
+        "fusion_weight": 0.216
+      },
+      {
+        "agent": "Evidence Reviewer",
+        "answer": "yes",
+        "reasoning": "1. Abstract states a standard retroperitoneoscopic nephrectomy (RPN) training model was developed using piglets.\n2. Fifteen RPN procedures were performed, with operative data recorded.\n3. The study reports that the porcine model could simulate the entire procedure and establishes an experimental learning curve.\n4. No contradictory evidence is presented.\n5. Therefore, a model exists to teach and practice retroperitoneoscopic nephrectomy.",
+        "confidence": 0.99,
+        "fusion_weight": 0.153
+      }
+    ],
+    "rag_used": true,
+    "rag_sources": [
+      {
+        "source": "Patient safety.txt",
+        "distance": 1.4166
+      },
+      {
+        "source": "Patient safety.txt",
+        "distance": 1.4219
+      },
+      {
+        "source": "Patient safety.txt",
+        "distance": 1.5026
+      },
+      {
+        "source": "Patient safety.txt",
+        "distance": 1.5378
+      }
+    ],
+    "elapsed_sec": 111.4
+  },
+  {
+    "index": 20,
+    "question_text": "Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.\n\nAbstract:\nElevated resting heart rate (RHR) is a neglected marker in cardiovascular risk factor studies of sub-Saharan African populations. This study aimed to determine the prevalence of elevated RHR and other risk factors for cardiovascular disease (CVD) and to investigate any associations between RHR and these risk factors in a rural population in Ghana. Cross-sectional analysis. A total of 574 adults aged between 18-65 years were randomly sampled from a population register. Data collected included those on sociodemographic variables and anthropometric, blood pressure (BP), and RHR measurements. Within-person variability in RHR was calculated using data from repeat measurements taken 2 weeks apart. Of study participants, 36% were male. Prevalence of casual high BP was 19%. In the population, 10% were current cigarette smokers and habitual alcohol use was high at 56%. As measured by body mass index, 2% were obese and 14% had abdominal obesity. RHR was elevated (>90 bpm) in 19%. Overall, 79% of study participants were found to have at least one CVD risk factor. RHR was significantly associated with age, waist circumference, and BP. Individuals with an elevated RHR had a higher risk (OR 1.94, 95% CI 1.15-3.26%, p = 0.013) of casual high BP compared with participants with normal RHR independently of several established CVD risk factors. The regression dilution ratio of RHR was 0.75 (95% CI 0.62-0.89).\n\nQuestion: Cardiovascular risk in a rural adult West African population: is resting heart rate also relevant?",
+    "ground_truth": "yes",
+    "error": "500 Server Error: Internal Server Error for url: http://127.0.0.1:8000/ask"
   }
 ]

@@ -1,11 +1,8 @@
-"""
-evaluation/test_debate.py
-
-Basic tests for the disagreement scoring logic (Phase 5).
-Run with: pytest evaluation/test_debate.py
-"""
-
+import os
+import sys
 from datetime import datetime, timezone
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from agents.base_agent import AgentResponse
 from debate.debate_engine import compute_disagreement_score, _pairwise_overlap
 
@@ -27,7 +24,7 @@ def test_identical_answers_have_zero_disagreement():
         _mk_response("B", "Take ibuprofen for the headache"),
     ]
     score = compute_disagreement_score(responses)
-    assert score == 0.0
+    assert score == 0.0, f"Expected 0.0, got {score}"
 
 
 def test_completely_different_answers_have_high_disagreement():
@@ -36,7 +33,7 @@ def test_completely_different_answers_have_high_disagreement():
         _mk_response("B", "Rest and hydration should resolve symptoms"),
     ]
     score = compute_disagreement_score(responses)
-    assert score > 0.8
+    assert score > 0.8, f"Expected >0.8, got {score}"
 
 
 def test_pairwise_overlap_symmetry():
@@ -48,3 +45,12 @@ def test_pairwise_overlap_symmetry():
 def test_single_response_has_no_disagreement():
     responses = [_mk_response("A", "Some answer")]
     assert compute_disagreement_score(responses) == 0.0
+
+
+if __name__ == "__main__":
+    test_identical_answers_have_zero_disagreement()
+    test_completely_different_answers_have_high_disagreement()
+    test_pairwise_overlap_symmetry()
+    test_single_response_has_no_disagreement()
+    print("All debate unit tests passed successfully!")
+
