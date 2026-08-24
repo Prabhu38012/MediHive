@@ -82,10 +82,11 @@ async def ask(request: QuestionRequest):
     rag_used = bool(context)
 
     # --- Phase 3: run all 5 agents concurrently, with retrieved context ---
-    loop = asyncio.get_event_loop()
+    loop = asyncio.get_running_loop()
     round1_responses = await asyncio.gather(
         *[loop.run_in_executor(None, agent.run, question, context) for agent in ALL_AGENTS]
     )
+
 
     # --- Phase 4: persist round 1 to shared memory ---
     for response in round1_responses:

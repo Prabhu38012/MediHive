@@ -228,5 +228,53 @@
       }
     ],
     "elapsed_sec": 299.2
+  },
+  {
+    "index": 6,
+    "question_text": "A 39-year-old man presents to the emergency department because of progressively worsening chest pain and nausea that started at a local bar 30 minutes prior. The pain radiates to the epigastric area. He has a 5-year history of untreated hypertension. He has smoked 1 pack of cigarettes daily for the past 5 years and started abusing cocaine 2 weeks before his emergency room visit. The patient is diaphoretic and in marked distress. What should be the first step in management?\n\nOptions:\nA) Diltiazem\nB) Labetalol\nC) Propranolol\nD) Reassurance and continuous monitoring\n\nAnswer with the single correct option letter and briefly justify why.",
+    "ground_truth": "D",
+    "error": "500 Server Error: Internal Server Error for url: http://127.0.0.1:8000/ask"
+  },
+  {
+    "index": 7,
+    "question_text": "A 68-year-old male comes to the physician for evaluation of right flank pain. He has a history of diabetes and peripheral artery disease. His blood pressure is 160/90 mm Hg. Physical examination shows abdominal tenderness and right flank tenderness. An ultrasound shows dilation of the right ureter and renal pelvis. Which of the following is the most likely underlying cause of this patient's condition?\n\nOptions:\nA) Renal artery stenosis\nB) Benign prostatic hyperplasia\nC) Common iliac artery aneurysm\nD) Urethral stricture\n\nAnswer with the single correct option letter and briefly justify why.",
+    "ground_truth": "C",
+    "error": "500 Server Error: Internal Server Error for url: http://127.0.0.1:8000/ask"
+  },
+  {
+    "index": 8,
+    "question_text": "A 65-year-old man is brought to the emergency department 30 minutes after the onset of acute chest pain. He has hypertension and asthma. Current medications include atorvastatin, lisinopril, and an albuterol inhaler. He appears pale and diaphoretic. His pulse is 114/min and blood pressure is 130/88 mm Hg. An ECG shows ST-segment depressions in leads II, III, and aVF. Laboratory studies show an increased serum troponin T concentration. The patient is treated for acute coronary syndrome and undergoes percutaneous transluminal coronary angioplasty. At the time of discharge, echocardiography shows a left ventricular ejection fraction of 58%. In addition to aspirin, which of the following drugs should be added to this patient's medication regimen?\n\nOptions:\nA) Nifedipine\nB) Enoxaparin\nC) Clopidogrel\nD) Spironolactone\n\nAnswer with the single correct option letter and briefly justify why.",
+    "ground_truth": "C",
+    "error": "500 Server Error: Internal Server Error for url: http://127.0.0.1:8000/ask"
+  },
+  {
+    "index": 9,
+    "question_text": "A 37-year-old-woman presents to her primary care physician requesting a new form of birth control. She has been utilizing oral contraceptive pills (OCPs) for the past 8 years, but asks to switch to an intrauterine device (IUD). Her vital signs are: blood pressure 118/78 mm Hg, pulse 73/min and respiratory rate 16/min. She is afebrile. Physical examination is within normal limits. Which of the following past medical history statements would make copper IUD placement contraindicated in this patient?\n\nOptions:\nA) A history of stroke or venous thromboembolism\nB) Active or recurrent pelvic inflammatory disease (PID)\nC) Past medical history of breast cancer\nD) Known liver neoplasm\n\nAnswer with the single correct option letter and briefly justify why.",
+    "ground_truth": "B",
+    "error": "500 Server Error: Internal Server Error for url: http://127.0.0.1:8000/ask"
+  },
+  {
+    "index": 10,
+    "question_text": "A 23-year-old woman comes to the physician because she is embarrassed about the appearance of her nails. She has no history of serious illness and takes no medications. She appears well. A photograph of the nails is shown. Which of the following additional findings is most likely in this patient?\n\nOptions:\nA) Silvery plaques on extensor surfaces\nB) Flesh-colored papules in the lumbosacral region\nC) Erosions of the dental enamel\nD) Holosystolic murmur at the left lower sternal border\n\nAnswer with the single correct option letter and briefly justify why.",
+    "ground_truth": "A",
+    "error": "500 Server Error: Internal Server Error for url: http://127.0.0.1:8000/ask"
+  },
+  {
+    "index": 11,
+    "question_text": "A 24-year-old G2P1 woman at 39 weeks\u2019 gestation presents to the emergency department complaining of painful contractions occurring every 10 minutes for the past 2 hours, consistent with latent labor. She says she has not experienced vaginal discharge, bleeding, or fluid leakage, and is currently taking no medications. On physical examination, her blood pressure is 110/70 mm Hg, heart rate is 86/min, and temperature is 37.6\u00b0C (99.7\u00b0F). She has had little prenatal care and uses condoms inconsistently. Her sexually transmitted infections status is unknown. As part of the patient\u2019s workup, she undergoes a series of rapid screening tests that result in the administration of zidovudine during delivery. The infant is also given zidovudine to reduce the risk of transmission. A confirmatory test is then performed in the mother to confirm the diagnosis of HIV. Which of the following is most true about the confirmatory test?\n\nOptions:\nA) It is a Southwestern blot, identifying the presence of DNA-binding proteins\nB) It is a Northern blot, identifying the presence of RNA\nC) It is a Northern blot, identifying the presence of DNA\nD) It is an HIV-1/HIV2 antibody differentiation immunoassay\n\nAnswer with the single correct option letter and briefly justify why.",
+    "ground_truth": "D",
+    "error": "500 Server Error: Internal Server Error for url: http://127.0.0.1:8000/ask"
+  },
+  {
+    "index": 12,
+    "question_text": "A 72-year-old man comes to the physician because of a 2-month history of fatigue and worsening abdominal pain. During this period, he also has excessive night sweats and shortness of breath on exertion. Over the past 3 months, he has had a 5.6-kg (12-lb) weight loss. He had a myocardial infarction 3 years ago. He has hypertension, diabetes mellitus, and chronic bronchitis. His medications include insulin, aspirin, lisinopril, and an albuterol inhaler. He has smoked half a pack of cigarettes for the past 45 years. Vital signs are within normal limits. The spleen is palpated 6 cm below the left costal margin. Laboratory studies show:\nHemoglobin 6.4 g/dL\nMean corpuscular volume 85 \u03bcm3\nLeukocyte count 5,200/mm3\nPlatelet count 96,000/mm3\nA blood smear is shown. Bone marrow aspiration shows extensive fibrosis and a few scattered plasma cells. A JAK 2 assay is positive. Which of the following is the most appropriate next step in management?\"\n\nOptions:\nA) Cladribine\nB) Prednisone\nC) Imatinib\nD) Ruxolitinib\n\nAnswer with the single correct option letter and briefly justify why.",
+    "ground_truth": "D",
+    "error": "500 Server Error: Internal Server Error for url: http://127.0.0.1:8000/ask"
+  },
+  {
+    "index": 13,
+    "question_text": "A 20-year-old man comes to the physician because of worsening gait unsteadiness and bilateral hearing loss for 1 month. He has had intermittent tingling sensations on both cheeks over this time period. He has no history of serious medical illness and takes no medications. Audiometry shows bilateral sensorineural hearing loss. Genetic evaluation shows a mutation of a tumor suppressor gene on chromosome 22 that encodes merlin. This patient is at increased risk for which of the following conditions?\n\nOptions:\nA) Renal cell carcinoma\nB) Meningioma\nC) Astrocytoma\nD) Vascular malformations\n\nAnswer with the single correct option letter and briefly justify why.",
+    "ground_truth": "B",
+    "error": "500 Server Error: Internal Server Error for url: http://127.0.0.1:8000/ask"
   }
 ]

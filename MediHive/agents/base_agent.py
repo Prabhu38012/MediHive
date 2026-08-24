@@ -19,29 +19,34 @@ class MedicalAgent:
         self.system_prompt = system_prompt
 
     def run(self, question: str, context: str | None = None) -> AgentResponse:
-        """Run this agent on a question. `context` is reserved for the
-        RAG phase (retrieved document chunks) — currently unused (None)
-        since the 40% build has no retrieval yet.
+        """Run this agent on a question. `context` is passed when
+        RAG retrieved document chunks are available.
         """
         user_prompt = question
         if context:
-            user_prompt = f"Relevant context:\n{context}\n\nQuestion:\n{question}"
+            user_prompt = f"Relevant Medical Context:\n{context}\n\nClinical Case / Question:\n{question}"
 
         result = call_llm(self.system_prompt, user_prompt)
 
-        # Some local models (e.g. Llama via Ollama) sometimes return
-        # reasoning/answer as a list of strings instead of one string.
-        # Normalize both fields to plain strings before validation.
         def _to_text(value):
             if isinstance(value, list):
                 return " ".join(str(item) for item in value)
-            return str(value) if value is not None else ""
+            return str(value).strip() if value is not None else ""
+
+        raw_answer = _to_text(result.get("answer", ""))
+        raw_reasoning = _to_text(result.get("reasoning", ""))
+
+        try:
+            conf = float(result.get("confidence", 0.75))
+            conf = min(max(conf, 0.0), 1.0)
+        except (ValueError, TypeError):
+            conf = 0.75
 
         return AgentResponse(
             agent=self.name,
             question=question,
-            answer=_to_text(result.get("answer", "")),
-            reasoning=_to_text(result.get("reasoning", "")),
-            confidence=float(result.get("confidence", 0.5)),
+            answer=raw_answer,
+            reasoning=raw_reasoning,
+            confidence=conf,
             timestamp=datetime.now(timezone.utc).isoformat(),
         )

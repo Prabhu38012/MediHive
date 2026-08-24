@@ -60,30 +60,63 @@ def call_medihive_with_retry(question_text: str, max_retries: int = 2, retry_wai
 
 
 def extract_yes_no_maybe(text: str) -> str | None:
-    text_lower = text.lower()
+    if not text:
+        return None
+    text_clean = text.strip().lower().strip("\"'.,;:")
+    # Direct match
+    if text_clean in {"yes", "no", "maybe"}:
+        return text_clean
+
+    # JSON or embedded regex check
+    match = re.search(r'"answer"\s*:\s*"?\b(maybe|yes|no)\b', text, re.IGNORECASE)
+    if match:
+        return match.group(1).lower()
+
+    # Priority search in whole text
     for label in ["maybe", "yes", "no"]:
-        if re.search(rf"\b{label}\b", text_lower):
+        if re.search(rf"\b{label}\b", text.lower()):
             return label
     return None
 
 
 def extract_mc_choice(text: str, options: dict) -> str | None:
+    if not text:
+        return None
+
+    text_clean = text.strip().strip("\"'.,;:").upper()
+    valid_letters = set(k.upper() for k in options.keys())
+
+    # 1. Exact letter match (e.g. "B" or "A")
+    if text_clean in valid_letters:
+        return text_clean
+
+    # 2. Check JSON answer field
+    match = re.search(r'"answer"\s*:\s*"?\b([A-Da-d])\b', text)
+    if match and match.group(1).upper() in valid_letters:
+        return match.group(1).upper()
+
     text_lower = text.lower()
 
+    # 3. Explicit prefix patterns
     for letter in options.keys():
+        letter_l = letter.lower()
         patterns = [
-            rf"\b{letter.lower()}\)",
-            rf"\({letter.lower()}\)",
-            rf"\boption {letter.lower()}\b",
-            rf"^{letter.lower()}\.",
-            rf"\b{letter.lower()}\.",
+            rf"\b{letter_l}\)",
+            rf"\({letter_l}\)",
+            rf"\boption\s*[:\-]?\s*{letter_l}\b",
+            rf"\bchoice\s*[:\-]?\s*{letter_l}\b",
+            rf"\banswer\s*[:\-]?\s*{letter_l}\b",
+            rf"^{letter_l}\.",
+            rf"\b{letter_l}\.",
+            rf"\b{letter_l}\b",
         ]
         for pattern in patterns:
             if re.search(pattern, text_lower):
-                return letter
+                return letter.upper()
 
+    # 4. Token overlap fallback
     def _tokenize(s):
-        return set(w.lower().strip(".,;:!?") for w in s.split() if len(w) > 3)
+        return set(w.lower().strip(".,;:!?\"'()[]{}") for w in s.split() if len(w) > 3)
 
     answer_tokens = _tokenize(text)
     if not answer_tokens:
@@ -97,9 +130,10 @@ def extract_mc_choice(text: str, options: dict) -> str | None:
         overlap = len(answer_tokens & option_tokens) / len(option_tokens)
         if overlap > best_score:
             best_score = overlap
-            best_letter = letter
+            best_letter = letter.upper()
 
-    return best_letter if best_score > 0 else None
+    return best_letter if best_score > 0.3 else None
+
 
 
 def compute_prf1(results: list[dict]) -> dict:

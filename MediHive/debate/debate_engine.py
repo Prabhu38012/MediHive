@@ -49,15 +49,19 @@ def compute_disagreement_score(responses: list[AgentResponse]) -> float:
 
 def _build_revision_prompt(question: str, responses: list[AgentResponse]) -> str:
     summary = "\n\n".join(
-        f"- {r.agent} (confidence {r.confidence:.2f}): {r.answer}\n  Reasoning: {r.reasoning}"
+        f"- Specialist: {r.agent} (Confidence: {r.confidence:.2f})\n"
+        f"  Diagnosis/Answer: {r.answer}\n"
+        f"  Clinical Rationale: {r.reasoning}"
         for r in responses
     )
     return (
-        f"Original question:\n{question}\n\n"
-        f"Here is what all agents concluded in round 1:\n\n{summary}\n\n"
-        "Reconsider your original answer in light of the other agents' views. "
-        "You may keep your answer if you still believe it is correct, or revise "
-        "it. Explain what changed (or why nothing changed) in your reasoning."
+        f"Clinical Case / Question:\n{question}\n\n"
+        f"--- ROUND 1 SPECIALIST OPINIONS ---\n{summary}\n\n"
+        f"--- DEBATE & REVISION INSTRUCTION ---\n"
+        "Critically evaluate your peers' diagnoses and pharmacologic/pathophysiologic arguments. "
+        "Check for potential diagnostic errors, missed drug mechanisms, or misinterpreted clinical findings. "
+        "You may either maintain your position or revise your diagnosis if another specialist presented stronger evidence. "
+        "Provide your revised step-by-step reasoning and final answer adhering strictly to the JSON schema."
     )
 
 

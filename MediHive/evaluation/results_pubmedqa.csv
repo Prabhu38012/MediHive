@@ -1,21 +1,78 @@
-index,question,ground_truth,predicted,consensus_answer,debate_triggered,average_confidence,correct,elapsed_sec
+index,question,ground_truth,predicted,consensus_answer,debate_triggered,average_confidence,correct,elapsed_sec,session_id,rag_used,error
 1,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
 
 Abstract:
-Programmed cell death (PCD) is the regulated death of cells within an organism. The ",yes,yes,yes,True,0.966,True,302.0
+Programmed cell death (PCD) is the regulated death of cells within an organism. The ",yes,yes,yes,True,0.92,True,186.6,cfaa6f00-ad36-4800-ad9b-ee04aed3a126,,
 2,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
 
 Abstract:
-Assessment of visual acuity depends on the optotypes used for measurement. The abili",no,no,no,True,0.87,True,383.1
+Assessment of visual acuity depends on the optotypes used for measurement. The abili",no,no,no,True,0.86,True,176.8,09eeef4e-ed8c-49a8-8dbb-7a16e7b4b03e,,
 3,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
 
 Abstract:
-Apparent life-threatening events in infants are a difficult and frequent problem in ",yes,yes,yes,True,0.93,True,255.7
+Apparent life-threatening events in infants are a difficult and frequent problem in ",yes,yes,yes,True,0.962,True,183.2,9c022758-8019-433b-83d9-d459a7ff4d45,,
 4,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
 
 Abstract:
-The transanal endorectal pull-through (TERPT) is becoming the most popular procedure",no,no,no,True,0.7,True,191.5
+The transanal endorectal pull-through (TERPT) is becoming the most popular procedure",no,no,no,True,0.82,True,138.0,8261f3aa-86ae-472a-83e0-759538d6e7d0,,
 5,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
 
 Abstract:
-Telephone counseling and tailored print communications have emerged as promising met",yes,yes,yes,True,0.94,True,232.2
+Telephone counseling and tailored print communications have emerged as promising met",yes,yes,yes,True,0.93,True,133.8,ab726d0d-9162-41bc-8d9f-d6da16242ec4,,
+6,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+From March 2007 to January 2011, 88 DBE procedures were performed on 66 patients. In",yes,yes,yes,True,0.924,True,220.8,f7139464-296f-4455-9662-4a0adadf7852,,
+7,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+Emergency surgery is associated with poorer outcomes and higher mortality with recen",maybe,yes,yes,True,0.93,False,211.5,29f20acd-ef92-4dfc-bd46-a905f0feaedc,,
+8,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+Anchoring vignettes are brief texts describing a hypothetical character who illustra",no,yes,yes,True,0.91,False,242.5,545d47ef-74cc-4a90-a1e1-1395a1aee8bc,,
+9,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+Although observational data support an inverse relationship between high-density lip",no,no,no,True,0.92,True,205.2,721eca9a-87f3-4baf-a75b-6340bb2bd4cd,,
+10,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+We evaluated the usefulness of a short stay or 23-hour ward in a pediatric unit of a",yes,yes,yes,True,0.954,True,320.3,977084c8-ee16-4534-94f5-e5b0b44ff966,,
+11,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+The objective of the current study is to determine to what extent the reduction of C",yes,yes,yes,True,0.96,True,238.3,8763364d-3cf5-4777-a48f-aa602260ae39,,
+12,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+Trauma patients who require therapeutic anticoagulation pose a difficult treatment p",no,no,no,True,0.75,True,347.0,6b5321fa-06a9-4d12-9a5e-750402a85070,,
+13,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+Specific markers for differentiation of nonalcoholic (NASH) from alcoholic steatohep",yes,yes,yes,True,0.88,True,720.9,1469940c-a7fc-43fb-bc86-9a76dc25577b,,
+14,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+Electronic health records have the potential to facilitate family history use by pri",no,no,no,True,0.744,True,241.8,f295976e-37f5-49e0-b8af-20c39776b24f,,
+15,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+Recent years have seen a rapid proliferation of emergency ultrasound (EUS) programs ",yes,yes,yes,True,0.98,True,71.0,045e4a40-6865-4740-8d01-438874bb7c08,True,
+16,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+Breathlessness is one of the most distressing symptoms experienced by patients with ",yes,yes,yes,True,0.906,True,146.3,60f335bb-18f7-4798-908f-06f321ec8deb,True,
+17,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+To assess and compare the value of split-liver transplantation (SLT) and living-rela",yes,maybe,maybe,True,0.756,False,147.1,4d9f6146-9b78-47f0-bdab-715ea115ee7e,True,
+18,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+To examine patterns of knowledge and attitudes among adults aged>65 years unvaccinat",yes,yes,yes,True,0.99,True,101.2,788548ff-eac9-40a7-b27f-66654704c1f7,True,
+19,"Based on the following research abstract, answer the question strictly with one word: yes, no, or maybe.
+
+Abstract:
+Although the retroperitoneal approach has been the preferred choice for open urologi",yes,yes,yes,True,0.99,True,111.4,76ee3859-4495-4070-8b33-9bec545429e5,True,
+20,,yes,,,,,False,304.8,,,500 Server Error: Internal Server Error for url: http://127.0.0.1:8000/ask
