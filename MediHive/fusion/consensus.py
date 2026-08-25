@@ -103,19 +103,60 @@ def iterative_fusion(responses: list[AgentResponse], context: str = "") -> dict:
     return {"weights": weights, "reference_agent": final_agent.agent}
 
 
+def _extract_decision_key(text: str) -> str:
+    """Normalize answer to a decision cluster key (A/B/C/D, yes/no/maybe, or cleaned snippet)."""
+    import re
+    if not text:
+        return "unknown"
+    text_clean = text.strip().lower()
+
+    # Check yes/no/maybe
+    for yn in ["yes", "no", "maybe"]:
+        if re.search(rf"\b{yn}\b", text_clean):
+            return yn
+
+    # Check option letter A, B, C, D
+    match = re.search(r'\b([a-d])\b', text_clean)
+    if match:
+        return match.group(1).upper()
+
+    return text_clean[:30]
+
+
 def build_consensus(responses: list[AgentResponse], debate_triggered: bool, context: str = "") -> dict:
     """Combine final-round agent responses into one consensus answer
-    using iterative fusion (see above) instead of a single-shot
-    confidence pick. `context` is the RAG-retrieved text for this
-    question, if any - pass "" when RAG wasn't used, which reduces this
-    to weighting purely by confidence + iterative agreement (still an
-    upgrade over the old fixed single-pick).
+    using Self-Consistency (SC) clustering + Iterative Soft-Voting Fusion.
     """
+    if not responses:
+        return {
+            "consensus_answer": "No response produced.",
+            "consensus_reasoning": "",
+            "lead_agent": "None",
+            "average_confidence": 0.0,
+            "fusion_weighted_confidence": 0.0,
+            "fusion_weights": {},
+            "debate_triggered": debate_triggered,
+            "agent_breakdown": [],
+        }
+
     fusion_result = iterative_fusion(responses, context=context)
     weights = fusion_result["weights"]
 
-    lead_agent_name = fusion_result["reference_agent"]
-    lead_response = next(r for r in responses if r.agent == lead_agent_name)
+    # Group responses by Self-Consistency (SC) decision cluster
+    clusters = {}
+    for r in responses:
+        key = _extract_decision_key(r.answer)
+        if key not in clusters:
+            clusters[key] = {"total_weight": 0.0, "responses": []}
+        clusters[key]["total_weight"] += weights.get(r.agent, 0.0)
+        clusters[key]["responses"].append(r)
+
+    # Winning cluster = cluster with highest cumulative Self-Consistency + Fusion weight
+    winning_key = max(clusters.keys(), key=lambda k: clusters[k]["total_weight"])
+    winning_responses = clusters[winning_key]["responses"]
+
+    # Lead agent = highest-weighted agent within the winning cluster
+    lead_response = max(winning_responses, key=lambda r: weights.get(r.agent, 0.0))
 
     avg_confidence = sum(r.confidence for r in responses) / len(responses)
     weighted_confidence = sum(r.confidence * weights[r.agent] for r in responses)
@@ -124,6 +165,8 @@ def build_consensus(responses: list[AgentResponse], debate_triggered: bool, cont
         "consensus_answer": lead_response.answer,
         "consensus_reasoning": lead_response.reasoning,
         "lead_agent": lead_response.agent,
+        "consensus_cluster": winning_key,
+        "cluster_support_weight": round(clusters[winning_key]["total_weight"], 3),
         "average_confidence": round(avg_confidence, 3),
         "fusion_weighted_confidence": round(weighted_confidence, 3),
         "fusion_weights": {agent: round(w, 3) for agent, w in weights.items()},
@@ -139,3 +182,4 @@ def build_consensus(responses: list[AgentResponse], debate_triggered: bool, cont
             for r in responses
         ],
     }
+

@@ -1,9 +1,8 @@
 """
 utils/llm_client.py
 
-Single wrapper around the LLM provider. All agents call through this module
-so that swapping OpenAI <-> Ollama <-> any future provider only requires
-changes here, not in every agent file.
+Single wrapper around the LLM provider (Ollama / Groq). All agents call through
+this module so that swapping providers only requires changes here.
 
 Design note: we ask the model to return STRICT JSON matching a known schema
 (answer, reasoning, confidence) so downstream code (memory, debate, fusion)
@@ -17,15 +16,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-LLM_PROVIDER = os.getenv("LLM_PROVIDER", "openai").lower()
-OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "ollama").lower()
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2:3b")
-GROK_MODEL = os.getenv("GROK_MODEL", "grok-2-latest")
-GROQ_MODEL = os.getenv("GROQ_MODEL", "groq/compound-mini")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-20b")
 LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0.1"))
-
-
 
 
 JSON_INSTRUCTION = """
@@ -115,7 +110,6 @@ def _extract_json(raw_text: str) -> dict:
 
 
 _groq_client = None
-_openai_client = None
 
 
 def _get_groq_client():
@@ -130,17 +124,7 @@ def _get_groq_client():
     return _groq_client
 
 
-def _get_openai_client():
-    global _openai_client
-    if _openai_client is None:
-        from openai import OpenAI
-        load_dotenv(override=True)
-        api_key = os.getenv("OPENAI_API_KEY")
-        _openai_client = OpenAI(api_key=api_key)
-    return _openai_client
-
-
-def _call_groq(system_prompt: str, user_prompt: str, max_retries: int = 5) -> dict:
+def _call_groq(system_prompt: str, user_prompt: str, max_retries: int = 10) -> dict:
     import time
     import random
     from openai import RateLimitError, APIError
@@ -150,7 +134,7 @@ def _call_groq(system_prompt: str, user_prompt: str, max_retries: int = 5) -> di
     if not model_name or "llama-" in model_name:
         model_name = "openai/gpt-oss-20b"
 
-    time.sleep(random.uniform(0.05, 0.25))
+    time.sleep(random.uniform(0.1, 0.4))
 
     for attempt in range(max_retries):
         try:
@@ -168,48 +152,44 @@ def _call_groq(system_prompt: str, user_prompt: str, max_retries: int = 5) -> di
         except RateLimitError as e:
             msg = str(e)
             match = re.search(r"try again in (\d+(?:\.\d+)?)s", msg)
-            wait_time = float(match.group(1)) + 0.5 if match else (attempt + 1) * 2.0
+            wait_time = (float(match.group(1)) + 1.0) if match else ((attempt + 1) * 3.0)
             if attempt < max_retries - 1:
                 time.sleep(wait_time)
             else:
                 raise e
         except APIError as e:
             if attempt < max_retries - 1:
-                time.sleep(1.0)
+                time.sleep(2.0)
             else:
                 raise e
 
 
-def _call_openai(system_prompt: str, user_prompt: str) -> dict:
-    client = _get_openai_client()
-    response = client.chat.completions.create(
-        model=OPENAI_MODEL,
-        messages=[
+def _call_ollama(system_prompt: str, user_prompt: str) -> dict:
+    import httpx
+
+    payload = {
+        "model": OLLAMA_MODEL,
+        "messages": [
             {"role": "system", "content": system_prompt + JSON_INSTRUCTION},
             {"role": "user", "content": user_prompt},
         ],
-        temperature=LLM_TEMPERATURE,
-        response_format={"type": "json_object"},
-    )
-    raw = response.choices[0].message.content
+        "stream": False,
+        "format": "json",
+        "options": {
+            "temperature": LLM_TEMPERATURE,
+        },
+    }
+    resp = httpx.post(f"{OLLAMA_BASE_URL}/api/chat", json=payload, timeout=600)
+    resp.raise_for_status()
+    raw = resp.json()["message"]["content"]
     return _extract_json(raw)
 
 
-
-
-
 def call_llm(system_prompt: str, user_prompt: str) -> dict:
-    """Route to the configured provider. Returns dict with
+    """Route to the configured provider ('ollama' or 'groq'). Returns dict with
     keys: answer, reasoning, confidence.
     """
-    provider = os.getenv("LLM_PROVIDER", "openai").lower()
-    if provider == "ollama":
-        return _call_ollama(system_prompt, user_prompt)
-    elif provider == "groq":
+    provider = os.getenv("LLM_PROVIDER", "ollama").lower()
+    if provider == "groq":
         return _call_groq(system_prompt, user_prompt)
-    elif provider in ("grok", "xai"):
-        return _call_grok(system_prompt, user_prompt)
-    return _call_openai(system_prompt, user_prompt)
-
-
-
+    return _call_ollama(system_prompt, user_prompt)

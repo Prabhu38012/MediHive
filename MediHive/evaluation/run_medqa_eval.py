@@ -39,20 +39,50 @@ def load_medqa(limit: int):
     return ds
 
 
-def build_question_text(item) -> str:
+FEW_SHOT_COT_MEDQA = """
+[EXEMPLAR 1]
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse goiter. TSH is elevated, free T4 is low, anti-TPO antibodies positive. Most likely diagnosis?
+Options: A) Graves disease B) Subacute thyroiditis C) Hashimoto thyroiditis D) Riedel thyroiditis
+Reasoning: Hypothyroid symptoms with elevated TSH, low T4, and positive anti-TPO antibodies confirm Hashimoto thyroiditis. Graves causes hyperthyroidism; Riedel is a hard fibrotic mass.
+Answer: C
+
+[EXEMPLAR 2]
+Question: A 67-year-old man with bladder cancer has sensorineural hearing loss after cisplatin chemo. What is the mechanism of action of the drug?
+Options: A) Proteasome inhibition B) Microtubule stabilization C) Intrastrand DNA cross-linking D) Free radical generation
+Reasoning: Cisplatin forms intra- and inter-strand DNA cross-links, inhibiting DNA synthesis and causing ototoxicity.
+Answer: C
+"""
+
+
+
+def build_question_text(item, setting: str = "few_shot_cot") -> str:
     options = item["options"]
     options_text = "\n".join(f"{letter}) {text}" for letter, text in options.items())
 
-    return (
+    target = (
+        f"[TARGET CLINICAL QUESTION]\n"
         f"{item['question']}\n\n"
         f"Options:\n{options_text}\n\n"
-        f"Answer with the single correct option letter and briefly justify why."
+        f"Provide your step-by-step clinical chain-of-thought and state the single correct option letter."
     )
+
+    if setting == "few_shot_cot":
+        return f"{FEW_SHOT_COT_MEDQA.strip()}\n\n{target}"
+    elif setting == "zero_shot":
+        return (
+            f"{item['question']}\n\n"
+            f"Options:\n{options_text}\n\n"
+            f"Answer with the single correct option letter only."
+        )
+    return target
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=20, help="Number of questions to evaluate")
+    parser.add_argument("--setting", type=str, default="few_shot_cot",
+                        choices=["few_shot_cot", "zero_shot_cot", "zero_shot"],
+                        help="Benchmark setting (matches paper baseline table)")
     parser.add_argument("--output", type=str, default="evaluation/results_medqa",
                          help="Base output path, no extension (e.g. evaluation/results_medqa)")
     parser.add_argument("--max-retries", type=int, default=2,
@@ -60,6 +90,7 @@ def main():
     parser.add_argument("--retry-wait", type=int, default=15,
                          help="Seconds to wait between retries")
     args = parser.parse_args()
+
 
     output_base = args.output.replace(".csv", "")
 
@@ -69,10 +100,11 @@ def main():
     print(f"\nRunning {len(dataset)} MedQA questions against MediHive...\n")
 
     for i, item in enumerate(dataset, start=1):
-        question_text = build_question_text(item)
+        question_text = build_question_text(item, setting=args.setting)
         options = item["options"]
         ground_truth = item["answer_idx"]
         runner.run_one(i, len(dataset), question_text, ground_truth, extract_mc_choice, parse_args=(options,))
+
 
     summary = runner.summary()
 
