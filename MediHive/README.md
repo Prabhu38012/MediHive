@@ -49,13 +49,18 @@ pip install -r requirements_rag_addon.txt
 
 ### 2. Environment Configuration
 
-Copy `.env.example` to `.env` and configure your API keys:
+Copy `.env.example` to `.env` and configure your settings:
 
 ```ini
-OPENAI_API_KEY=your_api_key_here
-LLM_PROVIDER=openai # or 'groq' or 'ollama'
-LLM_MODEL=gpt-4o-mini
-DEBATE_DISAGREEMENT_THRESHOLD=0.5
+LLM_PROVIDER=ollama # or 'groq'
+
+# If using local Ollama (100% Free):
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=llama3.2:3b
+
+# If using Groq Cloud (Free API tier):
+GROQ_API_KEY=your_groq_api_key_here
+GROQ_MODEL=openai/gpt-oss-20b
 ```
 
 ### 3. Ingesting Medical Documents (RAG)

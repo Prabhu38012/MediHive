@@ -14,23 +14,23 @@ from rag.vector_store import get_embedding_model, get_chroma_collection, collect
 TOP_K = 4  # number of chunks to retrieve per question
 
 
-def retrieve_context(question: str, top_k: int = TOP_K) -> str:
-    """Given a question, return the top-k most relevant document chunks
-    concatenated into a single context string, ready to inject into
-    agent.run(question, context=...).
+def _clean_query(question: str) -> str:
+    """Extract only the target query if few-shot exemplars are present in the prompt."""
+    if "[TARGET" in question:
+        parts = question.split("[TARGET")
+        return parts[-1][:1000]
+    return question[:1000]
 
-    Returns an empty string if no documents have been ingested yet -
-    in that case, agents simply fall back to answering from their own
-    knowledge (same as the 40% build), so this is safe to call even
-    before any PDFs are ingested.
-    """
+
+def retrieve_context(question: str, top_k: int = TOP_K) -> str:
     if collection_size() == 0:
         return ""
 
     model = get_embedding_model()
     collection = get_chroma_collection()
 
-    query_embedding = model.encode([question], convert_to_numpy=True).tolist()
+    clean_q = _clean_query(question)
+    query_embedding = model.encode([clean_q], convert_to_numpy=True).tolist()
 
     results = collection.query(
         query_embeddings=query_embedding,
@@ -52,22 +52,20 @@ def retrieve_context(question: str, top_k: int = TOP_K) -> str:
 
 
 def retrieve_context_with_sources(question: str, top_k: int = TOP_K) -> dict:
-    """Same as retrieve_context, but also returns which sources were
-    used - useful for showing citations in the API response or for
-    debugging retrieval quality.
-    """
     if collection_size() == 0:
         return {"context": "", "sources": []}
 
     model = get_embedding_model()
     collection = get_chroma_collection()
 
-    query_embedding = model.encode([question], convert_to_numpy=True).tolist()
+    clean_q = _clean_query(question)
+    query_embedding = model.encode([clean_q], convert_to_numpy=True).tolist()
 
     results = collection.query(
         query_embeddings=query_embedding,
         n_results=min(top_k, collection_size()),
     )
+
 
     documents = results.get("documents", [[]])[0]
     metadatas = results.get("metadatas", [[]])[0]

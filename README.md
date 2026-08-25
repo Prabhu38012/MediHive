@@ -35,7 +35,7 @@
 ┌──────────────┐       ┌───────────────┐       ┌───────────────┐
 │ RAG Pipeline │       │ 5 Specialist  │       │ Shared Memory │
 │  (ChromaDB + │       │    Agents     │       │   (SQLite     │
-│   PyMuPDF)   │       │(GPT/Groq/Oll) │       │ Audit Trail)  │
+│   PyMuPDF)   │       │ (Groq/Ollama) │       │ Audit Trail)  │
 └──────┬───────┘       └───────┬───────┘       └───────┬───────┘
        │                       │                       │
        └───────────────────────┼───────────────────────┘
@@ -43,12 +43,12 @@
                ┌───────────────────────────────┐
                │    Autonomous Debate Engine   │
                │ (Triggers on Disagreement)   │
-               └───────────────┬───────────────┘
+               └───────────────┬───────┬───────┘
                                ▼
                ┌───────────────────────────────┐
                │   Iterative Fusion Consensus  │
                │ (RAG Alignment + Conf-Weight) │
-               └───────────────┬───────────────┘
+               └───────────────┬───────┬───────┘
                                ▼
                      Final Consensus Output
 ```
@@ -99,7 +99,7 @@
 | **Frontend UI** | React 18, Vite, JavaScript (ES6+), Vanilla CSS (Design Tokens), Lucide Icons |
 | **Middleware Proxy** | Node.js, Express.js, Axios, CORS |
 | **Backend API** | Python 3.11+, FastAPI, Uvicorn, Pydantic, Asyncio |
-| **LLM Orchestration** | OpenAI API / Groq / Local Ollama, Structured JSON Schemas |
+| **LLM Orchestration** | Local Ollama / Groq Cloud (Free API tier), Structured JSON Schemas |
 | **Vector DB & RAG** | ChromaDB, PyMuPDF (`fitz`), Recursive Chunker |
 | **Persistence / Memory** | SQLite (`shared_memory.py`) |
 | **Testing & Evaluation**| Pytest, MedQA, PubMedQA evaluation pipeline |
@@ -132,7 +132,7 @@
 │   │   ├── test_debate.py                  # Pytest unit tests for debate logic
 │   │   └── results_*.json / .csv           # Evaluation results
 │   ├── utils/
-│   │   └── llm_client.py                   # LLM client (OpenAI / Groq / Ollama)
+│   │   └── llm_client.py                   # LLM client (Groq / Ollama)
 │   ├── requirements.txt                    # Core Python dependencies
 │   └── requirements_rag_addon.txt          # RAG dependencies (ChromaDB, PyMuPDF)
 │

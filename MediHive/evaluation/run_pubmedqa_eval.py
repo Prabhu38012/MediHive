@@ -42,22 +42,51 @@ def load_pubmedqa(limit: int):
     return ds
 
 
-def build_question_text(item) -> str:
+FEW_SHOT_COT_PUBMEDQA = """
+[EXEMPLAR 1]
+Abstract: We tested whether early metformin reduces 5-year diabetes incidence in prediabetic patients. The cumulative incidence was 14.3% with metformin vs 28.6% with placebo (p < 0.001).
+Question: Does early metformin intervention reduce diabetes incidence in prediabetes?
+Reasoning: The trial showed a statistically significant 50% relative risk reduction (p < 0.001) in diabetes incidence with metformin.
+Answer: yes
+
+[EXEMPLAR 2]
+Abstract: High-dose Vitamin C was tested in septic shock for 28-day mortality vs standard care. Mortality was 34.8% in Vitamin C vs 35.1% in control (p = 0.95).
+Question: Does intravenous vitamin C improve survival in septic shock?
+Reasoning: Mortality differences were non-significant (p = 0.95), showing no survival benefit.
+Answer: no
+"""
+
+
+
+def build_question_text(item, setting: str = "few_shot_cot") -> str:
     contexts = item.get("context", {})
     abstract_parts = contexts.get("contexts", []) if isinstance(contexts, dict) else []
     abstract_text = " ".join(abstract_parts)
 
-    return (
-        f"Based on the following research abstract, answer the question "
-        f"strictly with one word: yes, no, or maybe.\n\n"
+    target = (
+        f"[TARGET RESEARCH STUDY]\n"
         f"Abstract:\n{abstract_text}\n\n"
-        f"Question: {item['question']}"
+        f"Question: {item['question']}\n\n"
+        f"Provide your evidence-based chain-of-thought reasoning and conclude strictly with one word: yes, no, or maybe."
     )
+
+    if setting == "few_shot_cot":
+        return f"{FEW_SHOT_COT_PUBMEDQA.strip()}\n\n{target}"
+    elif setting == "zero_shot":
+        return (
+            f"Abstract:\n{abstract_text}\n\n"
+            f"Question: {item['question']}\n\n"
+            f"Answer strictly with one word: yes, no, or maybe."
+        )
+    return target
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=20, help="Number of questions to evaluate")
+    parser.add_argument("--setting", type=str, default="few_shot_cot",
+                        choices=["few_shot_cot", "zero_shot_cot", "zero_shot"],
+                        help="Benchmark setting (matches paper baseline table)")
     parser.add_argument("--output", type=str, default="evaluation/results_pubmedqa",
                          help="Base output path, no extension (e.g. evaluation/results_pubmedqa)")
     parser.add_argument("--max-retries", type=int, default=2,
@@ -71,12 +100,13 @@ def main():
     dataset = load_pubmedqa(args.limit)
     runner = EvalRunner("PubMedQA", output_base, max_retries=args.max_retries, retry_wait=args.retry_wait)
 
-    print(f"\nRunning {len(dataset)} PubMedQA questions against MediHive...\n")
+    print(f"\nRunning {len(dataset)} PubMedQA questions against MediHive [{args.setting}]...\n")
 
     for i, item in enumerate(dataset, start=1):
-        question_text = build_question_text(item)
+        question_text = build_question_text(item, setting=args.setting)
         ground_truth = item["final_decision"]
         runner.run_one(i, len(dataset), question_text, ground_truth, extract_yes_no_maybe)
+
 
     summary = runner.summary()
 

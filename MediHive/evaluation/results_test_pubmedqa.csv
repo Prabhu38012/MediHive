@@ -1,0 +1,3 @@
+index,ground_truth,predicted,correct,error,elapsed_sec
+1,yes,,False,500 Server Error: Internal Server Error for url: http://127.0.0.1:8000/ask,34.7
+2,no,,False,500 Server Error: Internal Server Error for url: http://127.0.0.1:8000/ask,30.3
