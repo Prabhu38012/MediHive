@@ -1,8 +1,24 @@
-index,question,ground_truth,predicted,consensus_answer,debate_triggered,average_confidence,correct,elapsed_sec
+index,question,ground_truth,predicted,consensus_answer,debate_triggered,average_confidence,correct,elapsed_sec,session_id,rag_used
 1,"A junior orthopaedic surgery resident is completing a carpal tunnel repair with the department chairman as the attending physician. During the case, the resident inadvertently cuts a flexor tendon. Th",B,A,"{
   ""answer"": A,
-  ""reasoning"": ""The resident has a duty of candor to the patient, which includes transparency about complications during treatment. Withholding information from the patient can be seen as a violation of trust and potentially lead to malpractice claims. Reporting the error in the operative report demonstrates accountability and commitment to patient safety."",
-  ""confidence"": 0.9
-}",True,0.2,False,196.6
-2,A 67-year-old man with transitional cell carcinoma of the bladder comes to the physician because of a 2-day history of ringing sensation in his ear. He received this first course of neoadjuvant chemot,D,B,B,True,0.954,False,191.4
-3,"Two weeks after undergoing an emergency cardiac catherization with stenting for unstable angina pectoris, a 61-year-old man has decreased urinary output and malaise. He has type 2 diabetes mellitus an",B,B,B,True,0.926,True,309.1
+  ""reasoning"": [
+    ""Maintaining patient trust is essential in medicine."",
+    ""Accurate reporting of complications ensures transparency and accountability."",
+    ""The attending physician's request may be perceived as an attempt to conceal an adverse event, which could compromise the resident's professionalism."",
+    ""Omitting critical information from the operative report could lead to future litigation or harm if a similar error occurs in the future.""
+  ],
+  ""confidence"": 0.8",True,0.2,False,261.1,9ba8e73d-ede1-4dee-ae8f-2132d9071357,
+2,A 67-year-old man with transitional cell carcinoma of the bladder comes to the physician because of a 2-day history of ringing sensation in his ear. He received this first course of neoadjuvant chemot,D,C,B,True,0.64,False,256.1,8028079a-d7b7-4399-890f-58192def156f,
+3,"Two weeks after undergoing an emergency cardiac catherization with stenting for unstable angina pectoris, a 61-year-old man has decreased urinary output and malaise. He has type 2 diabetes mellitus an",B,B,B,True,0.32,True,648.8,8493abe9-414a-4e73-9b2b-def5806f4855,
+4,"A 39-year-old woman is brought to the emergency department because of fevers, chills, and left lower quadrant pain. Her temperature is 39.1°C (102.3°F), pulse is 126/min, respirations are 28/min, and ",D,,B,True,0.9,False,328.2,1bb37bf1-6c7f-4663-9ce2-c2c698787ad4,
+5,"A 35-year-old man comes to the physician because of itchy, watery eyes for the past week. He has also been sneezing multiple times a day during this period. He had a similar episode 1 year ago around ",B,B,B,True,0.49,True,299.2,9d9920dd-802c-4650-83c1-f775668d676a,
+6,"[EXEMPLAR 1]
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse goiter. TSH is elevated, free T4 is low, anti-TP",D,A,A,True,0.97,False,105.6,2315e8ce-5b50-4e11-ac3c-7d17ece1b8c7,True
+7,"[EXEMPLAR 1]
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse goiter. TSH is elevated, free T4 is low, anti-TP",C,A,C,True,0.97,False,176.1,c25ed5d4-d232-4277-a136-3afbf979e4ea,True
+8,"[EXEMPLAR 1]
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse goiter. TSH is elevated, free T4 is low, anti-TP",C,A,C,True,0.99,False,194.5,87a8dd3e-1746-4753-81e5-1388b738c45b,True
+9,"[EXEMPLAR 1]
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse goiter. TSH is elevated, free T4 is low, anti-TP",B,A,B,True,0.99,False,219.5,4d92dd9f-f161-4006-8fb7-42f41946ffd1,True
+10,"[EXEMPLAR 1]
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse goiter. TSH is elevated, free T4 is low, anti-TP",A,A,A,True,0.976,True,292.0,193970a1-ad01-4643-923b-4911b6d73151,True

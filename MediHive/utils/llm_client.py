@@ -19,7 +19,7 @@ load_dotenv()
 LLM_PROVIDER = os.getenv("LLM_PROVIDER", "ollama").lower()
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2:3b")
-GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-20b")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0.1"))
 
 
@@ -110,6 +110,72 @@ def _extract_json(raw_text: str) -> dict:
 
 
 _groq_client = None
+_gemini_client = None
+
+
+def _get_gemini_client():
+    global _gemini_client
+    if _gemini_client is None:
+        from openai import OpenAI
+        load_dotenv(override=True)
+        api_key = os.getenv("GEMINI_API_KEY")
+        if not api_key:
+            raise ValueError("GEMINI_API_KEY is not set in your .env file. Get a free key at https://aistudio.google.com/app/apikey")
+        _gemini_client = OpenAI(
+            api_key=api_key,
+            base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+        )
+    return _gemini_client
+
+
+import threading
+
+_gemini_lock = threading.Lock()
+_last_gemini_call_time = 0.0
+
+
+def _call_gemini(system_prompt: str, user_prompt: str, max_retries: int = 15) -> dict:
+    global _last_gemini_call_time
+    import time
+    import random
+    from openai import RateLimitError, APIError
+
+    client = _get_gemini_client()
+    model_name = os.getenv("GEMINI_MODEL", "gemini-3.7-flash")
+
+    for attempt in range(max_retries):
+        # Spacing calls by >= 3.2s ensures maximum 12 RPM (always stays strictly under the 15 RPM limit!)
+        with _gemini_lock:
+            now = time.time()
+            elapsed = now - _last_gemini_call_time
+            if elapsed < 3.2:
+                time.sleep(3.2 - elapsed)
+            _last_gemini_call_time = time.time()
+
+        try:
+            response = client.chat.completions.create(
+                model=model_name,
+                messages=[
+                    {"role": "system", "content": system_prompt + JSON_INSTRUCTION},
+                    {"role": "user", "content": user_prompt},
+                ],
+                temperature=LLM_TEMPERATURE,
+                response_format={"type": "json_object"},
+            )
+            raw = response.choices[0].message.content
+            return _extract_json(raw)
+        except RateLimitError as e:
+            wait_time = 15.0 + random.uniform(1.0, 3.0)
+            print(f"  [Gemini RateLimit] Waiting {wait_time:.1f}s for quota window to reset (attempt {attempt + 1}/{max_retries})...", flush=True)
+            if attempt < max_retries - 1:
+                time.sleep(wait_time)
+            else:
+                raise e
+        except APIError as e:
+            if attempt < max_retries - 1:
+                time.sleep(3.0)
+            else:
+                raise e
 
 
 def _get_groq_client():
@@ -124,17 +190,17 @@ def _get_groq_client():
     return _groq_client
 
 
-def _call_groq(system_prompt: str, user_prompt: str, max_retries: int = 10) -> dict:
+def _call_groq(system_prompt: str, user_prompt: str, max_retries: int = 25) -> dict:
     import time
     import random
     from openai import RateLimitError, APIError
 
     client = _get_groq_client()
-    model_name = os.getenv("GROQ_MODEL", "openai/gpt-oss-20b")
-    if not model_name or "llama-" in model_name:
-        model_name = "openai/gpt-oss-20b"
+    model_name = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+    if not model_name:
+        model_name = "openai/gpt-oss-120b"
 
-    time.sleep(random.uniform(0.1, 0.4))
+    time.sleep(random.uniform(0.2, 0.6))
 
     for attempt in range(max_retries):
         try:
@@ -151,15 +217,23 @@ def _call_groq(system_prompt: str, user_prompt: str, max_retries: int = 10) -> d
             return _extract_json(raw)
         except RateLimitError as e:
             msg = str(e)
-            match = re.search(r"try again in (\d+(?:\.\d+)?)s", msg)
-            wait_time = (float(match.group(1)) + 1.0) if match else ((attempt + 1) * 3.0)
+            sec_match = re.search(r"try again in (\d+(?:\.\d+)?)s", msg, re.IGNORECASE)
+            ms_match = re.search(r"try again in (\d+(?:\.\d+)?)ms", msg, re.IGNORECASE)
+            if sec_match:
+                wait_time = float(sec_match.group(1)) + random.uniform(1.0, 2.5)
+            elif ms_match:
+                wait_time = (float(ms_match.group(1)) / 1000.0) + random.uniform(0.5, 1.5)
+            else:
+                wait_time = min(3.0 * (1.4 ** attempt) + random.uniform(1.0, 3.0), 45.0)
+
+            print(f"  [Groq RateLimit] Quota reached. Auto-waiting {wait_time:.1f}s (attempt {attempt + 1}/{max_retries})...", flush=True)
             if attempt < max_retries - 1:
                 time.sleep(wait_time)
             else:
                 raise e
         except APIError as e:
             if attempt < max_retries - 1:
-                time.sleep(2.0)
+                time.sleep(3.0 + random.uniform(0.5, 1.5))
             else:
                 raise e
 
@@ -186,10 +260,12 @@ def _call_ollama(system_prompt: str, user_prompt: str) -> dict:
 
 
 def call_llm(system_prompt: str, user_prompt: str) -> dict:
-    """Route to the configured provider ('ollama' or 'groq'). Returns dict with
+    """Route to the configured provider ('gemini', 'groq', or 'ollama'). Returns dict with
     keys: answer, reasoning, confidence.
     """
-    provider = os.getenv("LLM_PROVIDER", "ollama").lower()
-    if provider == "groq":
+    provider = os.getenv("LLM_PROVIDER", "gemini").lower()
+    if provider in ("gemini", "google"):
+        return _call_gemini(system_prompt, user_prompt)
+    elif provider == "groq":
         return _call_groq(system_prompt, user_prompt)
     return _call_ollama(system_prompt, user_prompt)

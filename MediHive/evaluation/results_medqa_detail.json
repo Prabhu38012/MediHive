@@ -276,5 +276,355 @@
     "question_text": "A 20-year-old man comes to the physician because of worsening gait unsteadiness and bilateral hearing loss for 1 month. He has had intermittent tingling sensations on both cheeks over this time period. He has no history of serious medical illness and takes no medications. Audiometry shows bilateral sensorineural hearing loss. Genetic evaluation shows a mutation of a tumor suppressor gene on chromosome 22 that encodes merlin. This patient is at increased risk for which of the following conditions?\n\nOptions:\nA) Renal cell carcinoma\nB) Meningioma\nC) Astrocytoma\nD) Vascular malformations\n\nAnswer with the single correct option letter and briefly justify why.",
     "ground_truth": "B",
     "error": "500 Server Error: Internal Server Error for url: http://127.0.0.1:8000/ask"
+  },
+  {
+    "index": 6,
+    "session_id": "2315e8ce-5b50-4e11-ac3c-7d17ece1b8c7",
+    "question_text": "[EXEMPLAR 1]\nQuestion: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse goiter. TSH is elevated, free T4 is low, anti-TPO antibodies positive. Most likely diagnosis?\nOptions: A) Graves disease B) Subacute thyroiditis C) Hashimoto thyroiditis D) Riedel thyroiditis\nReasoning: Hypothyroid symptoms with elevated TSH, low T4, and positive anti-TPO antibodies confirm Hashimoto thyroiditis. Graves causes hyperthyroidism; Riedel is a hard fibrotic mass.\nAnswer: C\n\n[EXEMPLAR 2]\nQuestion: A 67-year-old man with bladder cancer has sensorineural hearing loss after cisplatin chemo. What is the mechanism of action of the drug?\nOptions: A) Proteasome inhibition B) Microtubule stabilization C) Intrastrand DNA cross-linking D) Free radical generation\nReasoning: Cisplatin forms intra- and inter-strand DNA cross-links, inhibiting DNA synthesis and causing ototoxicity.\nAnswer: C\n\n[TARGET CLINICAL QUESTION]\nA 39-year-old man presents to the emergency department because of progressively worsening chest pain and nausea that started at a local bar 30 minutes prior. The pain radiates to the epigastric area. He has a 5-year history of untreated hypertension. He has smoked 1 pack of cigarettes daily for the past 5 years and started abusing cocaine 2 weeks before his emergency room visit. The patient is diaphoretic and in marked distress. What should be the first step in management?\n\nOptions:\nA) Diltiazem\nB) Labetalol\nC) Propranolol\nD) Reassurance and continuous monitoring\n\nProvide your step-by-step clinical chain-of-thought and state the single correct option letter.",
+    "ground_truth": "D",
+    "predicted": "A",
+    "correct": false,
+    "debate_triggered": true,
+    "average_confidence": 0.97,
+    "lead_agent": "General Physician",
+    "consensus_answer": "A",
+    "consensus_reasoning": "1. Key findings: 39\u2011year\u2011old male with acute chest pain radiating to epigastrium, diaphoresis, untreated hypertension, smoking, and recent cocaine use. 2. Cocaine blocks norepinephrine reuptake \u2192 intense sympathetic stimulation \u2192 coronary vasospasm, tachycardia, hypertension, precipitating myocardial ischemia. 3. Management of cocaine\u2011induced chest pain prioritizes controlling the vasospasm and sympathetic surge. 4. First\u2011line pharmacologic agents are benzodiazepines (to blunt sympathetic tone) and vasodilators such as nitrates or calcium\u2011channel blockers. 5. Beta\u2011blockers (propranolol) are contraindicated because they block \u03b2\u2011adrenergic receptors while leaving \u03b1\u2011adrenergic stimulation unopposed, worsening vasospasm. Labetalol, though an \u03b1/\u03b2 blocker, still carries risk of unopposed \u03b1\u2011effects and is not the initial agent. Reassurance alone is inadequate for a patient with possible acute coronary syndrome. 6. Among the options, diltiazem (a calcium\u2011channel blocker) is the appropriate first pharmacologic step to relieve vasospasm and hypertension in cocaine\u2011related chest pain.",
+    "agent_breakdown": [
+      {
+        "agent": "General Physician",
+        "answer": "A",
+        "reasoning": "1. Key findings: 39\u2011year\u2011old male with acute chest pain radiating to epigastrium, diaphoresis, untreated hypertension, smoking, and recent cocaine use. 2. Cocaine blocks norepinephrine reuptake \u2192 intense sympathetic stimulation \u2192 coronary vasospasm, tachycardia, hypertension, precipitating myocardial ischemia. 3. Management of cocaine\u2011induced chest pain prioritizes controlling the vasospasm and sympathetic surge. 4. First\u2011line pharmacologic agents are benzodiazepines (to blunt sympathetic tone) and vasodilators such as nitrates or calcium\u2011channel blockers. 5. Beta\u2011blockers (propranolol) are contraindicated because they block \u03b2\u2011adrenergic receptors while leaving \u03b1\u2011adrenergic stimulation unopposed, worsening vasospasm. Labetalol, though an \u03b1/\u03b2 blocker, still carries risk of unopposed \u03b1\u2011effects and is not the initial agent. Reassurance alone is inadequate for a patient with possible acute coronary syndrome. 6. Among the options, diltiazem (a calcium\u2011channel blocker) is the appropriate first pharmacologic step to relieve vasospasm and hypertension in cocaine\u2011related chest pain.",
+        "confidence": 0.97,
+        "fusion_weight": 0.276
+      },
+      {
+        "agent": "Cardiologist",
+        "answer": "A",
+        "reasoning": "1. Key findings: 39\u2011year\u2011old male with acute chest pain radiating to epigastrium, diaphoresis, untreated hypertension, smoking, and recent cocaine use. 2. Cocaine blocks norepinephrine reuptake \u2192 massive sympathetic surge, causing coronary vasospasm, tachycardia, and hypertension, precipitating myocardial ischemia. 3. Management of cocaine\u2011induced chest pain prioritizes controlling the sympathetic surge (benzodiazepines) and relieving vasospasm with vasodilators. 4. Calcium\u2011channel blockers (e.g., diltiazem) are effective for vasospasm and are first\u2011line after benzodiazepines. 5. Beta\u2011blockers (propranolol) are contraindicated because they block \u03b2\u2011adrenergic receptors while leaving \u03b1\u2011adrenergic stimulation unopposed, worsening vasospasm. 6. Labetalol, though an \u03b1/\u03b2 blocker, still carries risk of unopposed \u03b1\u2011effects and is not the initial agent. 7. Reassurance alone is inadequate for a patient with possible acute coronary syndrome. 8. Therefore the first pharmacologic step is diltiazem.",
+        "confidence": 0.97,
+        "fusion_weight": 0.213
+      },
+      {
+        "agent": "Neurologist",
+        "answer": "A",
+        "reasoning": "1. Key findings: 39\u2011year\u2011old male with acute chest pain radiating to epigastrium, diaphoresis, nausea, untreated hypertension, smoking, and recent cocaine use. 2. Pathophysiology: Cocaine blocks norepinephrine reuptake \u2192 intense sympathetic stimulation, causing coronary vasospasm, tachycardia, and hypertension, precipitating myocardial ischemia. 3. Management principles: First, blunt the sympathetic surge with benzodiazepines; then relieve vasospasm with nitrates or calcium\u2011channel blockers. Beta\u2011blockers are contraindicated because they block \u03b2\u2011adrenergic receptors while leaving \u03b1\u2011adrenergic stimulation unopposed, worsening vasospasm. 4. Among the options, diltiazem (a calcium\u2011channel blocker) is the appropriate first pharmacologic step to counteract vasospasm and hypertension. Labetalol (\u03b1/\u03b2 blocker) and propranolol (\u03b2 blocker) are contraindicated; reassurance alone is inadequate for a patient with possible acute coronary syndrome. 5. Therefore the first step in management is diltiazem.",
+        "confidence": 0.97,
+        "fusion_weight": 0.195
+      },
+      {
+        "agent": "Pharmacologist",
+        "answer": "A",
+        "reasoning": "1. Key findings: 39\u2011year\u2011old male with acute chest pain radiating to epigastrium, diaphoresis, untreated hypertension, smoking, and recent cocaine use \u2013 classic presentation of cocaine\u2011induced coronary vasospasm and possible acute coronary syndrome.\n2. Pathophysiology: Cocaine blocks norepinephrine reuptake, producing intense sympathetic stimulation (\u2191\u03b1\u2011adrenergic tone) \u2192 coronary vasoconstriction, tachycardia, hypertension, and myocardial ischemia.\n3. Initial management principles: 1) Control the sympathetic surge (benzodiazepines are first\u2011line, but not an option here). 2) Relieve vasospasm with a vasodilator \u2013 either nitrates or a calcium\u2011channel blocker. 4. Contraindications: \u03b2\u2011blockers (propranolol) worsen unopposed \u03b1\u2011adrenergic activity; labetalol, though \u03b1/\u03b2\u2011blocking, still carries risk of unopposed \u03b1\u2011effects and is not the first choice.\n4. Among the provided options, diltiazem (a non\u2011dihydropyridine calcium\u2011channel blocker) is the appropriate first pharmacologic step to counteract coronary vasospasm and hypertension in cocaine\u2011related chest pain.\n5. Reassurance alone is insufficient for a patient with possible acute coronary syndrome.\nConclusion: The first step in management is administration of diltiazem.",
+        "confidence": 0.97,
+        "fusion_weight": 0.156
+      },
+      {
+        "agent": "Evidence Reviewer",
+        "answer": "A",
+        "reasoning": "1. Key findings: acute chest pain radiating to epigastrium, diaphoresis, untreated hypertension, recent cocaine use \u2013 classic presentation of cocaine\u2011induced coronary vasospasm and possible acute coronary syndrome.\n2. Pathophysiology: Cocaine blocks norepinephrine reuptake, causing intense sympathetic stimulation, alpha\u2011adrenergic vasoconstriction, tachycardia, and hypertension, precipitating myocardial ischemia.\n3. First\u2011line therapy for cocaine\u2011related chest pain: control sympathetic surge with benzodiazepines, then relieve vasospasm with nitrates or calcium\u2011channel blockers. Beta\u2011blockers are contraindicated because they block \u03b2\u2011receptors while leaving unopposed alpha stimulation, worsening vasospasm.\n4. Among the options, diltiazem (a calcium\u2011channel blocker) directly counteracts coronary vasospasm and lowers blood pressure. Labetalol (alpha/beta blocker) still carries risk of unopposed alpha effects; propranolol (beta blocker) is contraindicated; reassurance alone is inadequate for a patient with possible ACS.\n5. Therefore the first pharmacologic step is diltiazem.",
+        "confidence": 0.97,
+        "fusion_weight": 0.16
+      }
+    ],
+    "rag_used": true,
+    "rag_sources": [
+      {
+        "source": "Stroke.txt",
+        "distance": 1.1738
+      },
+      {
+        "source": "Hypertension.txt",
+        "distance": 1.1753
+      },
+      {
+        "source": "Hypertension.txt",
+        "distance": 1.1951
+      },
+      {
+        "source": "Stroke.txt",
+        "distance": 1.2085
+      }
+    ],
+    "elapsed_sec": 105.6
+  },
+  {
+    "index": 7,
+    "session_id": "c25ed5d4-d232-4277-a136-3afbf979e4ea",
+    "question_text": "[EXEMPLAR 1]\nQuestion: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse goiter. TSH is elevated, free T4 is low, anti-TPO antibodies positive. Most likely diagnosis?\nOptions: A) Graves disease B) Subacute thyroiditis C) Hashimoto thyroiditis D) Riedel thyroiditis\nReasoning: Hypothyroid symptoms with elevated TSH, low T4, and positive anti-TPO antibodies confirm Hashimoto thyroiditis. Graves causes hyperthyroidism; Riedel is a hard fibrotic mass.\nAnswer: C\n\n[EXEMPLAR 2]\nQuestion: A 67-year-old man with bladder cancer has sensorineural hearing loss after cisplatin chemo. What is the mechanism of action of the drug?\nOptions: A) Proteasome inhibition B) Microtubule stabilization C) Intrastrand DNA cross-linking D) Free radical generation\nReasoning: Cisplatin forms intra- and inter-strand DNA cross-links, inhibiting DNA synthesis and causing ototoxicity.\nAnswer: C\n\n[TARGET CLINICAL QUESTION]\nA 68-year-old male comes to the physician for evaluation of right flank pain. He has a history of diabetes and peripheral artery disease. His blood pressure is 160/90 mm Hg. Physical examination shows abdominal tenderness and right flank tenderness. An ultrasound shows dilation of the right ureter and renal pelvis. Which of the following is the most likely underlying cause of this patient's condition?\n\nOptions:\nA) Renal artery stenosis\nB) Benign prostatic hyperplasia\nC) Common iliac artery aneurysm\nD) Urethral stricture\n\nProvide your step-by-step clinical chain-of-thought and state the single correct option letter.",
+    "ground_truth": "C",
+    "predicted": "A",
+    "correct": false,
+    "debate_triggered": true,
+    "average_confidence": 0.97,
+    "lead_agent": "Evidence Reviewer",
+    "consensus_answer": "C",
+    "consensus_reasoning": "1. Key findings: 68\u2011year\u2011old man with right flank pain, hypertension, diabetes, peripheral artery disease, and ultrasound evidence of right ureteral and renal pelvic dilation (hydronephrosis). 2. Hydronephrosis indicates an obstruction of urine flow distal to the kidney, most commonly at the ureter. 3. Evaluate options:\n- Renal artery stenosis causes hypertension and renal ischemia but does not produce ureteral dilation.\n- Benign prostatic hyperplasia (BPH) causes bladder outlet obstruction; it typically results in bilateral hydronephrosis or bladder distension, not isolated unilateral flank pain.\n- Urethral stricture also causes bladder outlet obstruction and usually bilateral effects.\n- A common iliac artery aneurysm can externally compress the adjacent ureter, producing unilateral hydronephrosis and flank pain, especially in a patient with atherosclerotic risk factors (diabetes, PAD).\n4. The unilateral right\u2011sided hydronephrosis and risk profile best fit compression by a common iliac artery aneurysm.\n5. Therefore the most likely underlying cause is a common iliac artery aneurysm.",
+    "agent_breakdown": [
+      {
+        "agent": "General Physician",
+        "answer": "C",
+        "reasoning": "1. Key findings: 68\u2011year\u2011old man with right flank pain, hypertension, diabetes, peripheral artery disease, abdominal tenderness, and ultrasound evidence of right ureteral and renal pelvic dilation (hydronephrosis). 2. Hydronephrosis indicates an obstruction of urinary flow distal to the kidney, most commonly at the ureter. 3. Evaluate options:\n- Renal artery stenosis causes hypertension and renal ischemia but does not produce ureteral dilation.\n- Benign prostatic hyperplasia (BPH) causes bladder outlet obstruction; it typically results in bilateral hydronephrosis or bladder distension, not isolated unilateral flank pain.\n- Urethral stricture also causes bladder outlet obstruction and usually bilateral effects.\n- A common iliac artery aneurysm can externally compress the adjacent ureter, producing unilateral hydronephrosis and flank pain, especially in a patient with atherosclerotic risk factors such as diabetes and peripheral artery disease.\n4. The unilateral right\u2011sided hydronephrosis and the patient\u2019s atherosclerotic background make compression by a common iliac artery aneurysm the most plausible explanation.\n5. Therefore the most likely underlying cause is a common iliac artery aneurysm.",
+        "confidence": 0.97,
+        "fusion_weight": 0.198
+      },
+      {
+        "agent": "Cardiologist",
+        "answer": "C",
+        "reasoning": "1. Key findings: 68\u2011year\u2011old man with right flank pain, hypertension, diabetes, peripheral artery disease, and ultrasound evidence of right ureteral and renal pelvis dilation (hydronephrosis). 2. Hydronephrosis indicates an obstruction of urinary flow distal to the kidney, most commonly at the ureter. 3. Evaluate options:\n- Renal artery stenosis causes hypertension and renal ischemia but does not produce ureteral dilation.\n- Benign prostatic hyperplasia (BPH) causes bladder outlet obstruction, typically leading to bilateral hydronephrosis and lower urinary tract symptoms; unilateral flank pain without urinary retention is atypical.\n- Urethral stricture also causes bladder outlet obstruction and usually presents with bilateral effects or bladder distension, not isolated flank pain.\n- A common iliac artery aneurysm can externally compress the adjacent ureter, producing unilateral hydronephrosis and flank pain, especially in a patient with atherosclerotic risk factors such as diabetes and PAD.\n4. The unilateral right\u2011sided hydronephrosis and risk profile best fit compression by a common iliac artery aneurysm.\nConclusion: Option C.",
+        "confidence": 0.97,
+        "fusion_weight": 0.177
+      },
+      {
+        "agent": "Neurologist",
+        "answer": "C",
+        "reasoning": "1. Key findings: 68\u2011year\u2011old man with right flank pain, hypertension, diabetes, peripheral artery disease, and ultrasound evidence of right ureteral and renal pelvic dilation (hydronephrosis). 2. Hydronephrosis indicates an obstruction of urine flow distal to the kidney, most commonly at the ureter or ureterovesical junction. 3. Evaluate options:\n- Renal artery stenosis causes hypertension and renal ischemia but does not produce ureteral dilation.\n- Benign prostatic hyperplasia (BPH) causes bladder outlet obstruction; it typically results in bilateral or symmetric hydronephrosis and lower urinary tract symptoms, not isolated unilateral flank pain.\n- Urethral stricture also causes bladder outlet obstruction and usually presents with lower urinary symptoms and bilateral effects.\n- A common iliac artery aneurysm can externally compress the adjacent ureter, producing unilateral hydronephrosis and flank pain. The patient\u2019s atherosclerotic risk factors (diabetes, PAD, hypertension) predispose to aneurysm formation.\n4. The unilateral right\u2011sided hydronephrosis with flank pain and the presence of atherosclerotic disease strongly point to compression by a common iliac artery aneurysm.\n5. Therefore the most likely underlying cause is a common iliac artery aneurysm.",
+        "confidence": 0.97,
+        "fusion_weight": 0.181
+      },
+      {
+        "agent": "Pharmacologist",
+        "answer": "C",
+        "reasoning": "1. Key findings: 68\u2011year\u2011old man with right flank pain, hypertension, diabetes, peripheral artery disease, and ultrasound evidence of right ureteral and renal pelvic dilation (hydronephrosis). 2. Hydronephrosis indicates an obstruction of urine flow distal to the kidney, most commonly at the ureter. 3. Evaluate options:\n- Renal artery stenosis causes hypertension and renal ischemia but does not produce ureteral dilation.\n- Benign prostatic hyperplasia (BPH) causes bladder outlet obstruction; it typically results in bilateral hydronephrosis or bladder distension, not isolated unilateral flank pain.\n- Urethral stricture also causes bladder outlet obstruction and usually bilateral effects.\n- A common iliac artery aneurysm, especially in a patient with atherosclerotic risk factors (diabetes, PAD), can externally compress the adjacent ureter, producing unilateral hydronephrosis and flank pain.\n4. The unilateral right\u2011sided hydronephrosis and risk profile best fit compression by a common iliac artery aneurysm.\n5. No other option explains the imaging findings and clinical presentation.\nConclusion: Option C.",
+        "confidence": 0.97,
+        "fusion_weight": 0.206
+      },
+      {
+        "agent": "Evidence Reviewer",
+        "answer": "C",
+        "reasoning": "1. Key findings: 68\u2011year\u2011old man with right flank pain, hypertension, diabetes, peripheral artery disease, and ultrasound evidence of right ureteral and renal pelvic dilation (hydronephrosis). 2. Hydronephrosis indicates an obstruction of urine flow distal to the kidney, most commonly at the ureter. 3. Evaluate options:\n- Renal artery stenosis causes hypertension and renal ischemia but does not produce ureteral dilation.\n- Benign prostatic hyperplasia (BPH) causes bladder outlet obstruction; it typically results in bilateral hydronephrosis or bladder distension, not isolated unilateral flank pain.\n- Urethral stricture also causes bladder outlet obstruction and usually bilateral effects.\n- A common iliac artery aneurysm can externally compress the adjacent ureter, producing unilateral hydronephrosis and flank pain, especially in a patient with atherosclerotic risk factors (diabetes, PAD).\n4. The unilateral right\u2011sided hydronephrosis and risk profile best fit compression by a common iliac artery aneurysm.\n5. Therefore the most likely underlying cause is a common iliac artery aneurysm.",
+        "confidence": 0.97,
+        "fusion_weight": 0.238
+      }
+    ],
+    "rag_used": true,
+    "rag_sources": [
+      {
+        "source": "Cardiovascular diseases.txt",
+        "distance": 1.3179
+      },
+      {
+        "source": "Hypertension.txt",
+        "distance": 1.3194
+      },
+      {
+        "source": "Hypertension.txt",
+        "distance": 1.3497
+      },
+      {
+        "source": "Cardiovascular diseases.txt",
+        "distance": 1.3635
+      }
+    ],
+    "elapsed_sec": 176.1
+  },
+  {
+    "index": 8,
+    "session_id": "87a8dd3e-1746-4753-81e5-1388b738c45b",
+    "question_text": "[EXEMPLAR 1]\nQuestion: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse goiter. TSH is elevated, free T4 is low, anti-TPO antibodies positive. Most likely diagnosis?\nOptions: A) Graves disease B) Subacute thyroiditis C) Hashimoto thyroiditis D) Riedel thyroiditis\nReasoning: Hypothyroid symptoms with elevated TSH, low T4, and positive anti-TPO antibodies confirm Hashimoto thyroiditis. Graves causes hyperthyroidism; Riedel is a hard fibrotic mass.\nAnswer: C\n\n[EXEMPLAR 2]\nQuestion: A 67-year-old man with bladder cancer has sensorineural hearing loss after cisplatin chemo. What is the mechanism of action of the drug?\nOptions: A) Proteasome inhibition B) Microtubule stabilization C) Intrastrand DNA cross-linking D) Free radical generation\nReasoning: Cisplatin forms intra- and inter-strand DNA cross-links, inhibiting DNA synthesis and causing ototoxicity.\nAnswer: C\n\n[TARGET CLINICAL QUESTION]\nA 65-year-old man is brought to the emergency department 30 minutes after the onset of acute chest pain. He has hypertension and asthma. Current medications include atorvastatin, lisinopril, and an albuterol inhaler. He appears pale and diaphoretic. His pulse is 114/min and blood pressure is 130/88 mm Hg. An ECG shows ST-segment depressions in leads II, III, and aVF. Laboratory studies show an increased serum troponin T concentration. The patient is treated for acute coronary syndrome and undergoes percutaneous transluminal coronary angioplasty. At the time of discharge, echocardiography shows a left ventricular ejection fraction of 58%. In addition to aspirin, which of the following drugs should be added to this patient's medication regimen?\n\nOptions:\nA) Nifedipine\nB) Enoxaparin\nC) Clopidogrel\nD) Spironolactone\n\nProvide your step-by-step clinical chain-of-thought and state the single correct option letter.",
+    "ground_truth": "C",
+    "predicted": "A",
+    "correct": false,
+    "debate_triggered": true,
+    "average_confidence": 0.99,
+    "lead_agent": "Evidence Reviewer",
+    "consensus_answer": "C",
+    "consensus_reasoning": "1. The patient had an acute coronary syndrome (ST\u2011segment depression with elevated troponin) and underwent percutaneous coronary intervention (PCI). 2. Current guideline\u2011based therapy for patients who receive a stent is dual antiplatelet therapy (DAPT) to prevent stent thrombosis. 3. Aspirin is already prescribed; the second agent should be a P2Y12 inhibitor such as clopidogrel, ticagrelor, or prasugrel. 4. Enoxaparin is a low\u2011molecular\u2011weight heparin used acutely during PCI but not for long\u2011term discharge. 5. Nifedipine is a calcium\u2011channel blocker used for hypertension or angina but is not first\u2011line post\u2011PCI therapy. 6. Spironolactone is indicated for heart failure with reduced ejection fraction or severe LV dysfunction; this patient\u2019s EF is preserved (58%). 7. Therefore the appropriate drug to add to aspirin is clopidogrel.",
+    "agent_breakdown": [
+      {
+        "agent": "General Physician",
+        "answer": "C",
+        "reasoning": "1. Patient had an acute coronary syndrome (ST\u2011segment depression, elevated troponin) and underwent percutaneous coronary intervention (PCI). 2. Guideline\u2011directed discharge therapy for post\u2011PCI patients is dual antiplatelet therapy (DAPT) to prevent stent thrombosis. 3. Aspirin is already prescribed; the second agent should be a P2Y12 inhibitor such as clopidogrel, ticagrelor, or prasugrel. 4. Enoxaparin is a low\u2011molecular\u2011weight heparin used acutely during PCI, not for long\u2011term discharge. 5. Nifedipine is a calcium\u2011channel blocker used for hypertension or angina but is not first\u2011line for post\u2011PCI prevention of ischemic events. 6. Spironolactone is indicated for heart failure with reduced ejection fraction or severe LV dysfunction; this patient\u2019s EF is preserved (58%). 7. Therefore the appropriate drug to add to aspirin is clopidogrel.",
+        "confidence": 0.99,
+        "fusion_weight": 0.207
+      },
+      {
+        "agent": "Cardiologist",
+        "answer": "C",
+        "reasoning": "1. Patient had an acute inferior MI (ST\u2011depression in II, III, aVF) with elevated troponin and underwent PCI. 2. Guideline\u2011directed discharge therapy for PCI patients is dual antiplatelet therapy (DAPT) to prevent stent thrombosis. 3. Aspirin is already prescribed; the second agent should be a P2Y12 inhibitor (clopidogrel, ticagrelor, or prasugrel). 4. Enoxaparin is used acutely during PCI, not for long\u2011term discharge. 5. Nifedipine is a calcium\u2011channel blocker used for hypertension or angina but not indicated as first\u2011line post\u2011PCI therapy. 6. Spironolactone is reserved for heart failure with reduced EF or severe LV dysfunction; this patient\u2019s EF is preserved (58%). 7. Therefore the appropriate drug to add is clopidogrel.",
+        "confidence": 0.99,
+        "fusion_weight": 0.152
+      },
+      {
+        "agent": "Neurologist",
+        "answer": "C",
+        "reasoning": "1. The patient had an acute inferior MI (ST\u2011segment depressions in II, III, aVF, elevated troponin) and underwent percutaneous transluminal coronary angioplasty (PCI). 2. Guideline\u2011directed therapy for patients who receive a stent requires dual antiplatelet therapy (DAPT) to prevent stent thrombosis. 3. Aspirin is already prescribed; the second agent should be a P2Y12 inhibitor such as clopidogrel, ticagrelor, or prasugrel. 4. Enoxaparin is a low\u2011molecular\u2011weight heparin used acutely during PCI but not for long\u2011term discharge. 5. Nifedipine is a calcium\u2011channel blocker used for hypertension or angina but is not first\u2011line post\u2011PCI therapy. 6. Spironolactone is indicated for heart failure with reduced ejection fraction or severe LV dysfunction; this patient\u2019s EF is preserved (58%). 7. Therefore the appropriate drug to add to aspirin is clopidogrel.",
+        "confidence": 0.99,
+        "fusion_weight": 0.193
+      },
+      {
+        "agent": "Pharmacologist",
+        "answer": "C",
+        "reasoning": "1. The patient had an acute coronary syndrome (ST\u2011segment depression, elevated troponin) and underwent percutaneous transluminal coronary angioplasty (PCI). 2. Current guideline\u2011directed therapy for patients who receive a stent is dual antiplatelet therapy (DAPT) to prevent stent thrombosis. 3. Aspirin is already prescribed; the second agent should be a P2Y12 inhibitor such as clopidogrel, ticagrelor, or prasugrel. 4. Enoxaparin is a low\u2011molecular\u2011weight heparin used acutely during PCI but not for long\u2011term discharge. 5. Nifedipine is a calcium\u2011channel blocker used for hypertension or angina but is not first\u2011line post\u2011PCI therapy. 6. Spironolactone is indicated for heart failure with reduced ejection fraction or severe LV dysfunction; this patient\u2019s EF is preserved (58%). 7. Therefore the appropriate drug to add to aspirin is clopidogrel.",
+        "confidence": 0.99,
+        "fusion_weight": 0.216
+      },
+      {
+        "agent": "Evidence Reviewer",
+        "answer": "C",
+        "reasoning": "1. The patient had an acute coronary syndrome (ST\u2011segment depression with elevated troponin) and underwent percutaneous coronary intervention (PCI). 2. Current guideline\u2011based therapy for patients who receive a stent is dual antiplatelet therapy (DAPT) to prevent stent thrombosis. 3. Aspirin is already prescribed; the second agent should be a P2Y12 inhibitor such as clopidogrel, ticagrelor, or prasugrel. 4. Enoxaparin is a low\u2011molecular\u2011weight heparin used acutely during PCI but not for long\u2011term discharge. 5. Nifedipine is a calcium\u2011channel blocker used for hypertension or angina but is not first\u2011line post\u2011PCI therapy. 6. Spironolactone is indicated for heart failure with reduced ejection fraction or severe LV dysfunction; this patient\u2019s EF is preserved (58%). 7. Therefore the appropriate drug to add to aspirin is clopidogrel.",
+        "confidence": 0.99,
+        "fusion_weight": 0.232
+      }
+    ],
+    "rag_used": true,
+    "rag_sources": [
+      {
+        "source": "Hypertension.txt",
+        "distance": 1.014
+      },
+      {
+        "source": "Stroke.txt",
+        "distance": 1.1297
+      },
+      {
+        "source": "Hypertension.txt",
+        "distance": 1.1744
+      },
+      {
+        "source": "Hypertension.txt",
+        "distance": 1.1745
+      }
+    ],
+    "elapsed_sec": 194.5
+  },
+  {
+    "index": 9,
+    "session_id": "4d92dd9f-f161-4006-8fb7-42f41946ffd1",
+    "question_text": "[EXEMPLAR 1]\nQuestion: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse goiter. TSH is elevated, free T4 is low, anti-TPO antibodies positive. Most likely diagnosis?\nOptions: A) Graves disease B) Subacute thyroiditis C) Hashimoto thyroiditis D) Riedel thyroiditis\nReasoning: Hypothyroid symptoms with elevated TSH, low T4, and positive anti-TPO antibodies confirm Hashimoto thyroiditis. Graves causes hyperthyroidism; Riedel is a hard fibrotic mass.\nAnswer: C\n\n[EXEMPLAR 2]\nQuestion: A 67-year-old man with bladder cancer has sensorineural hearing loss after cisplatin chemo. What is the mechanism of action of the drug?\nOptions: A) Proteasome inhibition B) Microtubule stabilization C) Intrastrand DNA cross-linking D) Free radical generation\nReasoning: Cisplatin forms intra- and inter-strand DNA cross-links, inhibiting DNA synthesis and causing ototoxicity.\nAnswer: C\n\n[TARGET CLINICAL QUESTION]\nA 37-year-old-woman presents to her primary care physician requesting a new form of birth control. She has been utilizing oral contraceptive pills (OCPs) for the past 8 years, but asks to switch to an intrauterine device (IUD). Her vital signs are: blood pressure 118/78 mm Hg, pulse 73/min and respiratory rate 16/min. She is afebrile. Physical examination is within normal limits. Which of the following past medical history statements would make copper IUD placement contraindicated in this patient?\n\nOptions:\nA) A history of stroke or venous thromboembolism\nB) Active or recurrent pelvic inflammatory disease (PID)\nC) Past medical history of breast cancer\nD) Known liver neoplasm\n\nProvide your step-by-step clinical chain-of-thought and state the single correct option letter.",
+    "ground_truth": "B",
+    "predicted": "A",
+    "correct": false,
+    "debate_triggered": true,
+    "average_confidence": 0.99,
+    "lead_agent": "Cardiologist",
+    "consensus_answer": "B",
+    "consensus_reasoning": "1. Key clinical scenario: 37\u2011year\u2011old woman seeking copper IUD, otherwise healthy. 2. Copper IUD contraindications per ACOG/WHO: active or untreated pelvic inflammatory disease (PID), pregnancy, cervical or uterine cancer, uterine anomalies, and certain infections. 3. Evaluate options:\n- A) History of stroke or VTE: contraindicates hormonal IUDs, not copper IUD.\n- B) Active or recurrent PID: explicitly listed as an absolute contraindication for copper IUD placement.\n- C) Past breast cancer: no contraindication for copper IUD.\n- D) Known liver neoplasm: no contraindication for copper IUD.\n4. Only option B matches the established contraindication list. 5. Therefore, copper IUD placement would be contraindicated if the patient had active or recurrent PID.",
+    "agent_breakdown": [
+      {
+        "agent": "General Physician",
+        "answer": "B",
+        "reasoning": "1. Identify the scenario: a healthy 37\u2011year\u2011old woman seeking a copper IUD. 2. Review copper IUD contraindications: pregnancy, active or untreated pelvic inflammatory disease (PID), cervical or uterine cancer, uterine anomalies, and certain infections. 3. Evaluate each option:\n- A) History of stroke or venous thromboembolism is a contraindication for hormonal IUDs, not for copper IUDs.\n- B) Active or recurrent PID is an absolute contraindication for copper IUD placement because it increases the risk of severe infection and infertility.\n- C) Past breast cancer is not a contraindication for copper IUDs.\n- D) Known liver neoplasm is not a contraindication for copper IUDs.\n4. Only option B matches the established contraindication list. 5. Therefore, copper IUD placement would be contraindicated if the patient had active or recurrent PID.",
+        "confidence": 0.99,
+        "fusion_weight": 0.169
+      },
+      {
+        "agent": "Cardiologist",
+        "answer": "B",
+        "reasoning": "1. Key clinical scenario: 37\u2011year\u2011old woman seeking copper IUD, otherwise healthy. 2. Copper IUD contraindications per ACOG/WHO: active or untreated pelvic inflammatory disease (PID), pregnancy, cervical or uterine cancer, uterine anomalies, and certain infections. 3. Evaluate options:\n- A) History of stroke or VTE: contraindicates hormonal IUDs, not copper IUD.\n- B) Active or recurrent PID: explicitly listed as an absolute contraindication for copper IUD placement.\n- C) Past breast cancer: no contraindication for copper IUD.\n- D) Known liver neoplasm: no contraindication for copper IUD.\n4. Only option B matches the established contraindication list. 5. Therefore, copper IUD placement would be contraindicated if the patient had active or recurrent PID.",
+        "confidence": 0.99,
+        "fusion_weight": 0.238
+      },
+      {
+        "agent": "Neurologist",
+        "answer": "B",
+        "reasoning": "1. Key clinical scenario: 37\u2011year\u2011old woman requesting copper IUD, otherwise healthy. 2. Copper IUD contraindications per ACOG/CDC: active or untreated pelvic inflammatory disease (PID), pregnancy, cervical or uterine cancer, uterine anomalies, and certain infections. 3. Evaluate options:\n- A) History of stroke or VTE: contraindicates hormonal IUDs, not copper IUD.\n- B) Active or recurrent PID: explicitly listed as an absolute contraindication for copper IUD due to risk of severe infection and infertility.\n- C) Past breast cancer: no contraindication for copper IUD.\n- D) Known liver neoplasm: no contraindication for copper IUD.\n4. Only option B matches the established contraindication list. 5. Therefore, copper IUD placement would be contraindicated if the patient had active or recurrent PID.",
+        "confidence": 0.99,
+        "fusion_weight": 0.207
+      },
+      {
+        "agent": "Pharmacologist",
+        "answer": "B",
+        "reasoning": "1. Identify the clinical scenario: a healthy 37\u2011year\u2011old woman seeking a copper IUD. 2. Review copper IUD contraindications: active or recurrent pelvic inflammatory disease (PID), pregnancy, uterine or cervical cancer, uterine anomalies, and certain infections. 3. Evaluate each option:\n- A) History of stroke or venous thromboembolism is a contraindication for hormonal IUDs, not for copper IUDs.\n- B) Active or recurrent PID is an absolute contraindication for copper IUD placement because it increases the risk of severe infection and infertility.\n- C) Past breast cancer is not a contraindication for copper IUDs.\n- D) Known liver neoplasm is not a contraindication for copper IUDs.\n4. Only option B matches the established contraindication list. 5. Therefore, copper IUD placement would be contraindicated if the patient had active or recurrent PID.",
+        "confidence": 0.99,
+        "fusion_weight": 0.169
+      },
+      {
+        "agent": "Evidence Reviewer",
+        "answer": "B",
+        "reasoning": "1. Identify the clinical scenario: a 37\u2011year\u2011old woman seeking a copper IUD, otherwise healthy. 2. Review copper IUD contraindications: active or untreated pelvic inflammatory disease (PID), pregnancy, cervical or uterine cancer, uterine anomalies, and certain infections. 3. Evaluate each option:\n   - A) History of stroke or VTE: contraindicates hormonal IUDs, not copper IUD.\n   - B) Active or recurrent PID: explicitly listed as an absolute contraindication for copper IUD placement.\n   - C) Past breast cancer: no contraindication for copper IUD.\n   - D) Known liver neoplasm: no contraindication for copper IUD.\n4. Only option B matches the established contraindication list. 5. Therefore, copper IUD placement would be contraindicated if the patient had a history of active or recurrent PID.",
+        "confidence": 0.99,
+        "fusion_weight": 0.217
+      }
+    ],
+    "rag_used": true,
+    "rag_sources": [
+      {
+        "source": "Hepatitis B.txt",
+        "distance": 1.1492
+      },
+      {
+        "source": "Cardiovascular diseases.txt",
+        "distance": 1.2035
+      },
+      {
+        "source": "Cardiovascular diseases.txt",
+        "distance": 1.2333
+      },
+      {
+        "source": "Cardiovascular diseases.txt",
+        "distance": 1.2971
+      }
+    ],
+    "elapsed_sec": 219.5
+  },
+  {
+    "index": 10,
+    "session_id": "193970a1-ad01-4643-923b-4911b6d73151",
+    "question_text": "[EXEMPLAR 1]\nQuestion: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse goiter. TSH is elevated, free T4 is low, anti-TPO antibodies positive. Most likely diagnosis?\nOptions: A) Graves disease B) Subacute thyroiditis C) Hashimoto thyroiditis D) Riedel thyroiditis\nReasoning: Hypothyroid symptoms with elevated TSH, low T4, and positive anti-TPO antibodies confirm Hashimoto thyroiditis. Graves causes hyperthyroidism; Riedel is a hard fibrotic mass.\nAnswer: C\n\n[EXEMPLAR 2]\nQuestion: A 67-year-old man with bladder cancer has sensorineural hearing loss after cisplatin chemo. What is the mechanism of action of the drug?\nOptions: A) Proteasome inhibition B) Microtubule stabilization C) Intrastrand DNA cross-linking D) Free radical generation\nReasoning: Cisplatin forms intra- and inter-strand DNA cross-links, inhibiting DNA synthesis and causing ototoxicity.\nAnswer: C\n\n[TARGET CLINICAL QUESTION]\nA 23-year-old woman comes to the physician because she is embarrassed about the appearance of her nails. She has no history of serious illness and takes no medications. She appears well. A photograph of the nails is shown. Which of the following additional findings is most likely in this patient?\n\nOptions:\nA) Silvery plaques on extensor surfaces\nB) Flesh-colored papules in the lumbosacral region\nC) Erosions of the dental enamel\nD) Holosystolic murmur at the left lower sternal border\n\nProvide your step-by-step clinical chain-of-thought and state the single correct option letter.",
+    "ground_truth": "A",
+    "predicted": "A",
+    "correct": true,
+    "debate_triggered": true,
+    "average_confidence": 0.976,
+    "lead_agent": "Neurologist",
+    "consensus_answer": "A",
+    "consensus_reasoning": "1. The patient\u2019s chief complaint is nail appearance in a young woman. Common nail disorders in this demographic include psoriasis, onychomycosis, lichen planus, and nail psoriasis. 2. Nail psoriasis typically presents with pitting, onycholysis, and subungual hyperkeratosis\u2014features that are most likely depicted in the photograph. 3. Psoriasis is a systemic inflammatory disease that characteristically produces silvery, scaly plaques on extensor surfaces such as the elbows, knees, and scalp. 4. The other options describe findings not associated with nail psoriasis: flesh\u2011colored papules in the lumbosacral region are not typical for psoriasis; dental enamel erosion is unrelated; a holosystolic murmur at the left lower sternal border indicates a cardiac lesion unrelated to nail disease. 5. Therefore the most likely additional finding is silvery plaques on extensor surfaces.",
+    "agent_breakdown": [
+      {
+        "agent": "General Physician",
+        "answer": "A",
+        "reasoning": "1. The patient\u2019s chief complaint is nail appearance in a young woman. Common nail disorders in this demographic include psoriasis, onychomycosis, lichen planus, and nail psoriasis. 2. The photograph (not shown) is described as typical of nail psoriasis: pitting, onycholysis, and subungual hyperkeratosis. 3. Nail psoriasis almost always coexists with cutaneous psoriasis, which presents as silvery, scaly plaques on extensor surfaces such as elbows, knees, and scalp. 4. The other options describe findings not associated with nail psoriasis: flesh\u2011colored papules in the lumbosacral region are characteristic of molluscum contagiosum or other dermatologic conditions; dental enamel erosion is linked to eating disorders or acid exposure; a holosystolic murmur at the left lower sternal border indicates mitral regurgitation, unrelated to nail disease. 5. Therefore the most likely additional finding is silvery plaques on extensor surfaces.",
+        "confidence": 0.97,
+        "fusion_weight": 0.171
+      },
+      {
+        "agent": "Cardiologist",
+        "answer": "A",
+        "reasoning": "1. The patient is a young woman with nail changes; common causes include psoriasis, onychomycosis, lichen planus, and nail psoriasis. 2. Nail psoriasis typically presents with pitting, onycholysis, and subungual hyperkeratosis\u2014features that are most consistent with a typical nail photograph in this scenario. 3. Psoriasis is a systemic inflammatory disease that almost always has cutaneous manifestations: silvery, scaly plaques on extensor surfaces such as elbows, knees, and scalp. 4. The other options describe findings not linked to nail psoriasis: flesh\u2011colored papules in the lumbosacral region are characteristic of molluscum contagiosum or other benign lesions; dental enamel erosion is associated with eating disorders or acid exposure; a holosystolic murmur at the left lower sternal border indicates mitral regurgitation or VSD, unrelated to nail disease. 5. Therefore the most likely additional finding is silvery plaques on extensor surfaces.",
+        "confidence": 0.97,
+        "fusion_weight": 0.17
+      },
+      {
+        "agent": "Neurologist",
+        "answer": "A",
+        "reasoning": "1. The patient\u2019s chief complaint is nail appearance in a young woman. Common nail disorders in this demographic include psoriasis, onychomycosis, lichen planus, and nail psoriasis. 2. Nail psoriasis typically presents with pitting, onycholysis, and subungual hyperkeratosis\u2014features that are most likely depicted in the photograph. 3. Psoriasis is a systemic inflammatory disease that characteristically produces silvery, scaly plaques on extensor surfaces such as the elbows, knees, and scalp. 4. The other options describe findings not associated with nail psoriasis: flesh\u2011colored papules in the lumbosacral region are not typical for psoriasis; dental enamel erosion is unrelated; a holosystolic murmur at the left lower sternal border indicates a cardiac lesion unrelated to nail disease. 5. Therefore the most likely additional finding is silvery plaques on extensor surfaces.",
+        "confidence": 0.99,
+        "fusion_weight": 0.258
+      },
+      {
+        "agent": "Pharmacologist",
+        "answer": "A",
+        "reasoning": "1. The patient\u2019s chief complaint is nail appearance in a young woman. Common nail disorders in this demographic include onychomycosis, lichen planus, and nail psoriasis. 2. Nail psoriasis typically presents with pitting, onycholysis, and subungual hyperkeratosis\u2014features that are classic for the nail changes described. 3. Nail psoriasis is strongly associated with cutaneous psoriasis, which manifests as silvery, scaly plaques on extensor surfaces such as the elbows, knees, and scalp. 4. The other options describe findings not linked to nail psoriasis: flesh\u2011colored papules in the lumbosacral region are more typical of molluscum contagiosum or other dermatologic conditions; dental enamel erosion is unrelated to nail disease; a holosystolic murmur at the left lower sternal border indicates a cardiac lesion (e.g., mitral regurgitation) and has no association with nail changes. 5. Therefore the most likely additional finding in this patient is silvery plaques on extensor surfaces.",
+        "confidence": 0.97,
+        "fusion_weight": 0.187
+      },
+      {
+        "agent": "Evidence Reviewer",
+        "answer": "A",
+        "reasoning": "1. The patient\u2019s chief complaint is nail appearance in a young woman. Common nail disorders in this demographic include psoriasis, onychomycosis, lichen planus, and nail psoriasis. 2. The photograph (not shown) is most consistent with nail psoriasis, characterized by pitting, onycholysis, and subungual hyperkeratosis. 3. Psoriasis is a systemic inflammatory disease that classically presents with silvery, scaly plaques on extensor surfaces such as elbows, knees, and scalp. 4. The other options describe findings not linked to nail psoriasis: flesh\u2011colored papules in the lumbosacral region are not typical for psoriasis; dental enamel erosion is unrelated; a holosystolic murmur at the left lower sternal border indicates a cardiac lesion unrelated to nail disease. 5. Therefore the most likely additional finding is silvery plaques on extensor surfaces.",
+        "confidence": 0.98,
+        "fusion_weight": 0.214
+      }
+    ],
+    "rag_used": true,
+    "rag_sources": [
+      {
+        "source": "Cardiovascular diseases.txt",
+        "distance": 1.3912
+      },
+      {
+        "source": "Cardiovascular diseases.txt",
+        "distance": 1.4181
+      },
+      {
+        "source": "Depressive disorder (depression).txt",
+        "distance": 1.4379
+      },
+      {
+        "source": "Migraine and other headache disorders.txt",
+        "distance": 1.4411
+      }
+    ],
+    "elapsed_sec": 292.0
   }
 ]
