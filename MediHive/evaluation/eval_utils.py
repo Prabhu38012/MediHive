@@ -35,7 +35,7 @@ def call_medihive(question_text: str, timeout: int = 900) -> dict:
     return resp.json()
 
 
-def call_medihive_with_retry(question_text: str, max_retries: int = 2, retry_wait: int = 15, timeout: int = 900) -> dict:
+def call_medihive_with_retry(question_text: str, max_retries: int = 5, retry_wait: int = 10, timeout: int = 900) -> dict:
     last_error = None
     for attempt in range(1, max_retries + 2):
         try:
@@ -83,56 +83,52 @@ def extract_mc_choice(text: str, options: dict) -> str | None:
     if not text:
         return None
 
-    text_clean = text.strip().strip("\"'.,;:").upper()
     valid_letters = set(k.upper() for k in options.keys())
+    text_clean = text.strip().strip("\"'.,;:").upper()
 
-    # 1. Exact letter match (e.g. "B" or "A")
+    # 1. Exact letter match (e.g. "C" or "B")
     if text_clean in valid_letters:
         return text_clean
 
-    # 2. Check JSON answer field
+    # 2. Leading letter match (e.g. "C) ...", "C: ...", "C. ...")
+    m_lead = re.match(r'^\s*([A-Da-d])[\s\)\.\:\,\-]', text)
+    if m_lead and m_lead.group(1).upper() in valid_letters:
+        return m_lead.group(1).upper()
+
+    # 3. JSON answer field
     match = re.search(r'"answer"\s*:\s*"?\b([A-Da-d])\b', text)
     if match and match.group(1).upper() in valid_letters:
         return match.group(1).upper()
 
-    text_lower = text.lower()
+    # 4. Explicit phrases (e.g. "Option C", "Choice C", "Answer: C", "corresponds to option C")
+    m_explicit = re.search(r'(?:option|choice|answer|corresponds to option|select)[\s\:\-\*]*\b([A-Da-d])\b', text, re.IGNORECASE)
+    if m_explicit and m_explicit.group(1).upper() in valid_letters:
+        return m_explicit.group(1).upper()
 
-    # 3. Explicit prefix patterns
-    for letter in options.keys():
-        letter_l = letter.lower()
-        patterns = [
-            rf"\b{letter_l}\)",
-            rf"\({letter_l}\)",
-            rf"\boption\s*[:\-]?\s*{letter_l}\b",
-            rf"\bchoice\s*[:\-]?\s*{letter_l}\b",
-            rf"\banswer\s*[:\-]?\s*{letter_l}\b",
-            rf"^{letter_l}\.",
-            rf"\b{letter_l}\.",
-            rf"\b{letter_l}\b",
-        ]
-        for pattern in patterns:
-            if re.search(pattern, text_lower):
-                return letter.upper()
+    # 5. Parenthesized letter (e.g. "(C)")
+    m_paren = re.search(r'\(([A-Da-d])\)', text)
+    if m_paren and m_paren.group(1).upper() in valid_letters:
+        return m_paren.group(1).upper()
 
-    # 4. Token overlap fallback
+    # 6. Fallback: semantic token overlap against option descriptions
     def _tokenize(s):
         return set(w.lower().strip(".,;:!?\"'()[]{}") for w in s.split() if len(w) > 3)
 
     answer_tokens = _tokenize(text)
-    if not answer_tokens:
-        return None
+    if answer_tokens:
+        best_letter, best_score = None, 0.0
+        for letter, option_text in options.items():
+            option_tokens = _tokenize(option_text)
+            if not option_tokens:
+                continue
+            overlap = len(answer_tokens & option_tokens) / len(option_tokens)
+            if overlap > best_score:
+                best_score = overlap
+                best_letter = letter.upper()
+        if best_score > 0.4:
+            return best_letter
 
-    best_letter, best_score = None, 0.0
-    for letter, option_text in options.items():
-        option_tokens = _tokenize(option_text)
-        if not option_tokens:
-            continue
-        overlap = len(answer_tokens & option_tokens) / len(option_tokens)
-        if overlap > best_score:
-            best_score = overlap
-            best_letter = letter.upper()
-
-    return best_letter if best_score > 0.3 else None
+    return None
 
 
 
@@ -261,7 +257,9 @@ class EvalRunner:
         agent_breakdown = response.get("agent_breakdown", [])
         combined_text = f"{consensus_answer} {consensus_reasoning}"
 
-        predicted = parse_fn(combined_text, *parse_args)
+        predicted = parse_fn(consensus_answer, *parse_args)
+        if predicted is None:
+            predicted = parse_fn(combined_text, *parse_args)
         correct = (predicted is not None) and (
             str(predicted).strip().lower() == str(ground_truth).strip().lower()
         )
@@ -304,6 +302,7 @@ class EvalRunner:
 
         self.completed_indices.add(index)
         self._save_incremental()
+        time.sleep(2.5)
 
     def _save_incremental(self):
         with open(self.detail_path, "w", encoding="utf-8") as f:

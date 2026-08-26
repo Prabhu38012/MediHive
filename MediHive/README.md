@@ -60,7 +60,7 @@ OLLAMA_MODEL=llama3.2:3b
 
 # If using Groq Cloud (Free API tier):
 GROQ_API_KEY=your_groq_api_key_here
-GROQ_MODEL=openai/gpt-oss-20b
+GROQ_MODEL=openai/gpt-oss-120b
 ```
 
 ### 3. Ingesting Medical Documents (RAG)

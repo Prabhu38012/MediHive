@@ -41,18 +41,56 @@ def load_medqa(limit: int):
 
 FEW_SHOT_COT_MEDQA = """
 [EXEMPLAR 1]
-Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse goiter. TSH is elevated, free T4 is low, anti-TPO antibodies positive. Most likely diagnosis?
-Options: A) Graves disease B) Subacute thyroiditis C) Hashimoto thyroiditis D) Riedel thyroiditis
-Reasoning: Hypothyroid symptoms with elevated TSH, low T4, and positive anti-TPO antibodies confirm Hashimoto thyroiditis. Graves causes hyperthyroidism; Riedel is a hard fibrotic mass.
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse non-tender goiter. Laboratory studies show an elevated serum TSH, low free T4, and positive anti-thyroid peroxidase (anti-TPO) antibodies. Which of the following is the most likely diagnosis?
+Options:
+A) Graves disease
+B) Subacute granulomatous thyroiditis
+C) Hashimoto thyroiditis
+D) Riedel thyroiditis
+Reasoning:
+1. Clinical Analysis: 32-year-old female presenting with classic hypothyroid symptoms (fatigue, cold intolerance, constipation, delayed relaxation of reflexes, dry skin) and painless goiter.
+2. Pathophysiology & Lab Findings: Elevated TSH with decreased free T4 confirms primary hypothyroidism. Positive anti-TPO and anti-thyroglobulin antibodies establish an autoimmune etiology.
+3. Distractor Elimination:
+- Option A (Graves disease): Causes hyperthyroidism (low TSH, high T4) via TSH-receptor stimulating antibodies.
+- Option B (Subacute thyroiditis): Post-viral, tender painful goiter with transient hyperthyroidism followed by recovery.
+- Option D (Riedel thyroiditis): Rare IgG4-related hard, 'woody', fixed, invasive fibrotic thyroid mass.
+4. Conclusion: Findings definitively match chronic lymphocytic (Hashimoto) thyroiditis.
 Answer: C
 
 [EXEMPLAR 2]
-Question: A 67-year-old man with bladder cancer has sensorineural hearing loss after cisplatin chemo. What is the mechanism of action of the drug?
-Options: A) Proteasome inhibition B) Microtubule stabilization C) Intrastrand DNA cross-linking D) Free radical generation
-Reasoning: Cisplatin forms intra- and inter-strand DNA cross-links, inhibiting DNA synthesis and causing ototoxicity.
-Answer: C
-"""
+Question: A 67-year-old man with transitional cell carcinoma of the bladder presents with sensorineural hearing loss and tinnitus 1 week after receiving his first cycle of neoadjuvant chemotherapy. Which of the following is the primary therapeutic mechanism of action of the causative antineoplastic agent?
+Options:
+A) 26S proteasome inhibition
+B) Hyperstabilization of polymerizing microtubules
+C) Generation of anthracycline free radicals
+D) Intra- and interstrand DNA cross-linking
+Reasoning:
+1. Clinical Analysis: Bladder cancer patient experiencing acute bilateral sensorineural hearing loss (ototoxicity) post-chemotherapy.
+2. Causative Agent: First-line neoadjuvant bladder cancer regimens (MVAC/GC) utilize cisplatin, a classic platinum-based alkylating-like agent known for dose-limiting nephrotoxicity and ototoxicity.
+3. Distractor Elimination:
+- Option A: Mechanism of bortezomib/carfilzomib (used in multiple myeloma).
+- Option B: Mechanism of taxanes (paclitaxel/docetaxel).
+- Option C: Mechanism of anthracyclines (doxorubicin/daunorubicin).
+4. Conclusion: Cisplatin exerts its antineoplastic effect by covalently binding to guanine bases to form intra- and inter-strand DNA cross-links, arresting the cell cycle.
+Answer: D
 
+[EXEMPLAR 3]
+Question: A 61-year-old man develops decreased urine output and mottled, purplish reticulated skin lesions (livedo reticularis) on his toes 2 weeks after an emergency coronary angioplasty. Laboratory evaluation reveals eosinophilia and an elevated serum creatinine. A renal biopsy reveals intravascular biconvex, needle-shaped clefts. What is the most likely diagnosis?
+Options:
+A) Acute tubular necrosis
+B) Cholesterol atheroembolism
+C) Contrast-induced nephropathy
+D) Polyarteritis nodosa
+Reasoning:
+1. Clinical Analysis: Post-vascular procedure patient presenting with subacute renal failure, livedo reticularis ('blue toe syndrome'), and systemic eosinophilia.
+2. Histopathology: Biopsy shows pathognomonic intravascular spindle-shaped/biconvex clefts (cholesterol crystals dissolved during tissue fixation).
+3. Distractor Elimination:
+- Option A (ATN): Shows muddy brown granular casts without livedo reticularis or cholesterol clefts.
+- Option C (Contrast nephropathy): Acute onset within 24-48 hours after contrast, not delayed 2 weeks with peripheral atheroembolic signs.
+- Option D (PAN): Necrotizing vasculitis of medium arteries with microaneurysms, not mechanically dislodged post-catheterization.
+4. Conclusion: The constellation of findings confirms cholesterol atheroembolism (atheroembolic renal disease).
+Answer: B
+"""
 
 
 def build_question_text(item, setting: str = "few_shot_cot") -> str:
@@ -61,18 +99,19 @@ def build_question_text(item, setting: str = "few_shot_cot") -> str:
 
     target = (
         f"[TARGET CLINICAL QUESTION]\n"
-        f"{item['question']}\n\n"
+        f"Question: {item['question']}\n"
         f"Options:\n{options_text}\n\n"
-        f"Provide your step-by-step clinical chain-of-thought and state the single correct option letter."
+        f"Provide your systematic clinical reasoning (1. Findings, 2. Pathophysiology, 3. Distractor Elimination) "
+        f"and state the exact single correct option letter (e.g. 'Answer: A')."
     )
 
     if setting == "few_shot_cot":
         return f"{FEW_SHOT_COT_MEDQA.strip()}\n\n{target}"
     elif setting == "zero_shot":
         return (
-            f"{item['question']}\n\n"
+            f"Question: {item['question']}\n"
             f"Options:\n{options_text}\n\n"
-            f"Answer with the single correct option letter only."
+            f"Conclude with the exact correct option letter only."
         )
     return target
 
