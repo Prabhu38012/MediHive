@@ -10,7 +10,7 @@ Usage:
     python evaluation/run_pubmedqa_eval.py --limit 10
     python evaluation/run_pubmedqa_eval.py --limit 100 --output evaluation/results/pubmedqa_100
 
-If the run is interrupted (crash, Ollama restart, closed terminal),
+If the run is interrupted (crash, network timeout, closed terminal),
 just run the EXACT SAME command again - it will detect the existing
 progress file and resume from where it left off instead of starting
 over.
