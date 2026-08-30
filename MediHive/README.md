@@ -52,11 +52,11 @@ pip install -r requirements_rag_addon.txt
 Copy `.env.example` to `.env` and configure your settings:
 
 ```ini
-LLM_PROVIDER=ollama # or 'groq'
+LLM_PROVIDER=gemini # or 'groq'
 
-# If using local Ollama (100% Free):
-OLLAMA_BASE_URL=http://localhost:11434
-OLLAMA_MODEL=llama3.2:3b
+# If using Google Gemini (100% Free & 1M tokens/min):
+GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_MODEL=gemini-3.7-flash
 
 # If using Groq Cloud (Free API tier):
 GROQ_API_KEY=your_groq_api_key_here

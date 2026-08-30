@@ -35,7 +35,7 @@
 ┌──────────────┐       ┌───────────────┐       ┌───────────────┐
 │ RAG Pipeline │       │ 5 Specialist  │       │ Shared Memory │
 │  (ChromaDB + │       │    Agents     │       │   (SQLite     │
-│   PyMuPDF)   │       │ (Groq/Ollama) │       │ Audit Trail)  │
+│   PyMuPDF)   │       │ (Gemini/Groq) │       │ Audit Trail)  │
 └──────┬───────┘       └───────┬───────┘       └───────┬───────┘
        │                       │                       │
        └───────────────────────┼───────────────────────┘
@@ -99,7 +99,7 @@
 | **Frontend UI** | React 18, Vite, JavaScript (ES6+), Vanilla CSS (Design Tokens), Lucide Icons |
 | **Middleware Proxy** | Node.js, Express.js, Axios, CORS |
 | **Backend API** | Python 3.11+, FastAPI, Uvicorn, Pydantic, Asyncio |
-| **LLM Orchestration** | Local Ollama / Groq Cloud (Free API tier), Structured JSON Schemas |
+| **LLM Orchestration** | Google Gemini (Free Tier) / Groq Cloud, Structured JSON Schemas |
 | **Vector DB & RAG** | ChromaDB, PyMuPDF (`fitz`), Recursive Chunker |
 | **Persistence / Memory** | SQLite (`shared_memory.py`) |
 | **Testing & Evaluation**| Pytest, MedQA, PubMedQA evaluation pipeline |
@@ -132,7 +132,7 @@
 │   │   ├── test_debate.py                  # Pytest unit tests for debate logic
 │   │   └── results_*.json / .csv           # Evaluation results
 │   ├── utils/
-│   │   └── llm_client.py                   # LLM client (Groq / Ollama)
+│   │   └── llm_client.py                   # LLM client (Gemini / Groq)
 │   ├── requirements.txt                    # Core Python dependencies
 │   └── requirements_rag_addon.txt          # RAG dependencies (ChromaDB, PyMuPDF)
 │

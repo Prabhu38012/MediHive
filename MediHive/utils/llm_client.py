@@ -1,7 +1,7 @@
 """
 utils/llm_client.py
 
-Single wrapper around the LLM provider (Ollama / Groq). All agents call through
+Single wrapper around the LLM provider (Google Gemini / Groq Cloud). All agents call through
 this module so that swapping providers only requires changes here.
 
 Design note: we ask the model to return STRICT JSON matching a known schema
@@ -16,9 +16,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-LLM_PROVIDER = os.getenv("LLM_PROVIDER", "ollama").lower()
-OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2:3b")
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "gemini").lower()
 GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0.1"))
 
@@ -238,29 +236,8 @@ def _call_groq(system_prompt: str, user_prompt: str, max_retries: int = 25) -> d
                 raise e
 
 
-def _call_ollama(system_prompt: str, user_prompt: str) -> dict:
-    import httpx
-
-    payload = {
-        "model": OLLAMA_MODEL,
-        "messages": [
-            {"role": "system", "content": system_prompt + JSON_INSTRUCTION},
-            {"role": "user", "content": user_prompt},
-        ],
-        "stream": False,
-        "format": "json",
-        "options": {
-            "temperature": LLM_TEMPERATURE,
-        },
-    }
-    resp = httpx.post(f"{OLLAMA_BASE_URL}/api/chat", json=payload, timeout=600)
-    resp.raise_for_status()
-    raw = resp.json()["message"]["content"]
-    return _extract_json(raw)
-
-
 def call_llm(system_prompt: str, user_prompt: str) -> dict:
-    """Route to the configured provider ('gemini', 'groq', or 'ollama'). Returns dict with
+    """Route to the configured provider ('gemini' or 'groq'). Returns dict with
     keys: answer, reasoning, confidence.
     """
     provider = os.getenv("LLM_PROVIDER", "gemini").lower()
@@ -268,4 +245,8 @@ def call_llm(system_prompt: str, user_prompt: str) -> dict:
         return _call_gemini(system_prompt, user_prompt)
     elif provider == "groq":
         return _call_groq(system_prompt, user_prompt)
-    return _call_ollama(system_prompt, user_prompt)
+    else:
+        raise ValueError(
+            f"Unsupported or unconfigured LLM provider: '{provider}'. "
+            f"Supported providers are 'gemini' and 'groq'."
+        )
