@@ -151,12 +151,24 @@ def build_consensus(responses: list[AgentResponse], debate_triggered: bool, cont
         clusters[key]["total_weight"] += weights.get(r.agent, 0.0)
         clusters[key]["responses"].append(r)
 
-    # Winning cluster = cluster with highest cumulative Self-Consistency + Fusion weight
-    winning_key = max(clusters.keys(), key=lambda k: clusters[k]["total_weight"])
+    # Sort clusters by cumulative weight
+    sorted_clusters = sorted(clusters.keys(), key=lambda k: clusters[k]["total_weight"], reverse=True)
+    winning_key = sorted_clusters[0]
     winning_responses = clusters[winning_key]["responses"]
 
     # Lead agent = highest-weighted agent within the winning cluster
     lead_response = max(winning_responses, key=lambda r: weights.get(r.agent, 0.0))
+
+    # Detect secondary reasonable alternative if notable clinical support exists
+    alternative_option = None
+    alternative_weight = 0.0
+    if len(sorted_clusters) > 1:
+        sec_key = sorted_clusters[1]
+        sec_weight = clusters[sec_key]["total_weight"]
+        if sec_weight >= 0.12:
+            sec_lead = max(clusters[sec_key]["responses"], key=lambda r: weights.get(r.agent, 0.0))
+            alternative_option = f"{sec_lead.agent}: {sec_lead.answer}"
+            alternative_weight = round(sec_weight, 3)
 
     avg_confidence = sum(r.confidence for r in responses) / len(responses)
     weighted_confidence = sum(r.confidence * weights[r.agent] for r in responses)
@@ -165,6 +177,9 @@ def build_consensus(responses: list[AgentResponse], debate_triggered: bool, cont
         "consensus_answer": lead_response.answer,
         "consensus_reasoning": lead_response.reasoning,
         "lead_agent": lead_response.agent,
+        "preferred_option": lead_response.answer,
+        "reasonable_alternative": alternative_option,
+        "alternative_weight": alternative_weight,
         "consensus_cluster": winning_key,
         "cluster_support_weight": round(clusters[winning_key]["total_weight"], 3),
         "average_confidence": round(avg_confidence, 3),

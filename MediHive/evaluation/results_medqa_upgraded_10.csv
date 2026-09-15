@@ -1,0 +1,21 @@
+index,question,ground_truth,predicted,consensus_answer,debate_triggered,average_confidence,correct,elapsed_sec,session_id,rag_used
+1,"[EXEMPLAR 1]
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse non-tender goiter. Laboratory studies show an el",B,B,B,True,0.95,True,92.5,fc460aa5-4d4d-45b9-b9c0-512c60a6565c,True
+2,"[EXEMPLAR 1]
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse non-tender goiter. Laboratory studies show an el",D,D,D,True,0.99,True,179.9,471d3a46-dbe4-47e1-a092-d1fdbb298009,True
+3,"[EXEMPLAR 1]
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse non-tender goiter. Laboratory studies show an el",B,B,B,True,0.99,True,219.2,9fcd13ac-1576-4c1e-bdab-c6214cf97036,True
+4,"[EXEMPLAR 1]
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse non-tender goiter. Laboratory studies show an el",D,D,D,True,0.968,True,235.5,60145d71-89b1-42f5-b46d-6fe769ac81ee,True
+5,"[EXEMPLAR 1]
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse non-tender goiter. Laboratory studies show an el",B,B,B,True,0.986,True,173.9,2e8270a6-a332-4969-a1c1-e29bf30f9e64,True
+6,"[EXEMPLAR 1]
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse non-tender goiter. Laboratory studies show an el",D,A,A,True,0.962,False,212.7,fbd67689-1869-4036-bf76-c5487c37b119,True
+7,"[EXEMPLAR 1]
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse non-tender goiter. Laboratory studies show an el",C,C,C,True,0.968,True,184.5,bc94e979-6885-4e1e-958b-3c69d767dc99,True
+8,"[EXEMPLAR 1]
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse non-tender goiter. Laboratory studies show an el",C,C,C,True,0.99,True,213.8,f5ab866d-b9c5-408c-89fa-8638ee432938,True
+9,"[EXEMPLAR 1]
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse non-tender goiter. Laboratory studies show an el",B,B,B,True,0.99,True,181.7,d50645c9-2ca4-47ac-98cd-b988a0ad1dbd,True
+10,"[EXEMPLAR 1]
+Question: A 32-year-old woman has fatigue, constipation, and cold intolerance. Physical exam shows dry skin, delayed reflexes, and diffuse non-tender goiter. Laboratory studies show an el",A,A,A,True,0.956,True,185.6,32f14b28-fe6b-4aab-897b-a2e122860bb9,True

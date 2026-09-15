@@ -26,6 +26,10 @@ import json
 import os
 import sys
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from evaluation.eval_utils import EvalRunner, extract_mc_choice
 
@@ -34,7 +38,7 @@ def load_medqa(limit: int):
     from datasets import load_dataset
 
     print("Downloading/loading MedQA (USMLE 4-options)... this may take a minute the first time.")
-    ds = load_dataset("GBaker/MedQA-USMLE-4-options", split="test")
+    ds = load_dataset("GBaker/MedQA-USMLE-4-options", split="test", token=os.getenv("HF_TOKEN"))
     ds = ds.select(range(min(limit, len(ds))))
     return ds
 

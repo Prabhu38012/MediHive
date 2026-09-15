@@ -26,8 +26,10 @@ def _ensure_dir():
 @contextmanager
 def _connection():
     _ensure_dir()
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=10.0)
     conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA journal_mode = WAL;")
+    conn.execute("PRAGMA busy_timeout = 5000;")
     try:
         yield conn
         conn.commit()
@@ -50,6 +52,12 @@ def init_db():
                 confidence REAL NOT NULL,
                 timestamp TEXT NOT NULL
             )
+            """
+        )
+        conn.execute(
+            """
+            CREATE INDEX IF NOT EXISTS idx_agent_responses_session_id
+            ON agent_responses(session_id)
             """
         )
 

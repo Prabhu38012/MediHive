@@ -1,0 +1,47 @@
+{
+  "dataset": "MedQA",
+  "total_questions": 10,
+  "correct": 9,
+  "wrong": 1,
+  "unparsed": 0,
+  "request_errors": 0,
+  "accuracy": 0.9,
+  "macro_precision": 0.875,
+  "macro_recall": 0.9167,
+  "macro_f1": 0.8667,
+  "per_label_metrics": {
+    "A": {
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.6667,
+      "support": 1
+    },
+    "B": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    },
+    "C": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 2
+    },
+    "D": {
+      "precision": 1.0,
+      "recall": 0.6667,
+      "f1": 0.8,
+      "support": 3
+    }
+  },
+  "accuracy_by_ground_truth_label": {
+    "B": 1.0,
+    "D": 0.6667,
+    "C": 1.0,
+    "A": 1.0
+  },
+  "debate_triggered_rate": 1.0,
+  "rag_used_rate": 1.0,
+  "avg_seconds_per_question": 187.9
+}
