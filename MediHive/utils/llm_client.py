@@ -76,6 +76,12 @@ def _extract_json(raw_text: str) -> dict:
                 parsed["confidence"] = float(parsed.get("confidence", 0.8))
             except (ValueError, TypeError):
                 parsed["confidence"] = 0.8
+
+            # Ensure reasoning is not empty
+            if not parsed.get("reasoning") or not str(parsed["reasoning"]).strip():
+                # Attempt to extract any text outside or inside raw response
+                alt_r = re.search(r'"reasoning"\s*:\s*"(.*?)"', text, re.DOTALL)
+                parsed["reasoning"] = alt_r.group(1).strip() if alt_r and alt_r.group(1).strip() else text
             return parsed
     except json.JSONDecodeError:
         pass
@@ -83,12 +89,27 @@ def _extract_json(raw_text: str) -> dict:
     # Tier 2: Regex extraction of individual fields if full JSON parse fails
     answer_match = re.search(r'"answer"\s*:\s*"?([A-Da-d]|yes|no|maybe|[^",}\n]+)"?', text, re.IGNORECASE)
     confidence_match = re.search(r'"confidence"\s*:\s*([0-1]?(?:\.\d+)?)', text)
-    reasoning_match = re.search(r'"reasoning"\s*:\s*"?(.*?)"?\s*(?:,\s*"confidence"|\}$)', text, re.DOTALL)
 
-    if answer_match:
-        extracted_answer = answer_match.group(1).strip().strip('"').strip("'")
-        extracted_conf = float(confidence_match.group(1)) if confidence_match else 0.75
-        extracted_reasoning = reasoning_match.group(1).strip() if reasoning_match else text[:500]
+    extracted_answer = answer_match.group(1).strip().strip('"').strip("'") if answer_match else ""
+    extracted_conf = float(confidence_match.group(1)) if confidence_match else 0.75
+
+    # Robust reasoning extraction
+    extracted_reasoning = ""
+    reason_blocks = re.findall(r'"reasoning"\s*:\s*"?(.*?)(?:"\s*,\s*"confidence"|"\s*\}|\Z)', text, re.DOTALL)
+    if reason_blocks and reason_blocks[0].strip():
+        extracted_reasoning = reason_blocks[0].strip()
+    else:
+        alt_match = re.search(r'"reasoning"\s*:\s*"?(.*)', text, re.DOTALL)
+        if alt_match:
+            cand = alt_match.group(1).strip()
+            cand = re.sub(r'[\s"\}\]]+$', '', cand)
+            cand = re.sub(r',?\s*"confidence"\s*:.*$', '', cand, flags=re.DOTALL)
+            extracted_reasoning = cand.strip()
+
+    if not extracted_reasoning:
+        extracted_reasoning = text.strip()
+
+    if extracted_answer:
         return {
             "answer": extracted_answer,
             "reasoning": extracted_reasoning,
@@ -102,7 +123,7 @@ def _extract_json(raw_text: str) -> dict:
 
     return {
         "answer": fallback_answer,
-        "reasoning": text[:500] if text else "Raw model response captured.",
+        "reasoning": text if text else "Raw model response captured.",
         "confidence": 0.5,
     }
 
