@@ -51,6 +51,9 @@ class QuestionResponse(BaseModel):
     consensus_answer: str
     consensus_reasoning: str
     lead_agent: str
+    preferred_option: str | None = None
+    reasonable_alternative: str | None = None
+    alternative_weight: float | None = 0.0
     average_confidence: float
     fusion_weighted_confidence: float
     fusion_weights: dict[str, float]

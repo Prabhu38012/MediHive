@@ -29,6 +29,10 @@ import json
 import os
 import sys
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from evaluation.eval_utils import EvalRunner, extract_yes_no_maybe
 
@@ -37,7 +41,7 @@ def load_pubmedqa(limit: int):
     from datasets import load_dataset
 
     print("Downloading/loading PubMedQA (pqa_labeled)... this may take a minute the first time.")
-    ds = load_dataset("qiaojin/PubMedQA", "pqa_labeled", split="train")
+    ds = load_dataset("qiaojin/PubMedQA", "pqa_labeled", split="train", token=os.getenv("HF_TOKEN"))
     ds = ds.select(range(min(limit, len(ds))))
     return ds
 
