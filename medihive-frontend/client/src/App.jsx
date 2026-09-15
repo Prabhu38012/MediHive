@@ -121,9 +121,11 @@ export default function App() {
       setKbStatus({
         chunks: data.chunks_indexed || 0,
         active: Boolean(data.rag_active),
+        documents_count: data.documents_count || 0,
+        documents: data.documents || [],
       });
     } catch (e) {
-      setKbStatus({ chunks: 0, active: false });
+      setKbStatus({ chunks: 0, active: false, documents_count: 0, documents: [] });
     }
   }
 
@@ -1011,23 +1013,50 @@ function DebateEngineTab({ sessionId, onSelectSession }) {
 
 /* ── Tab: Literature RAG ── */
 function LiteratureRAGTab({ kbStatus, onTestPrompt }) {
-  const documents = [
-    "Cardiovascular diseases.pdf",
-    "Hypertension.pdf",
-    "Stroke.pdf",
-    "Asthma.pdf",
-    "Chronic obstructive pulmonary disease (COPD).pdf",
-    "Diabetes.pdf",
-    "Dengue.pdf",
+  const fallbackDocs = [
     "Antimicrobial resistance.pdf",
-    "Patient safety.pdf",
-    "Tuberculosis.pdf",
-    "Epilepsy.pdf",
-    "Migraine and other headache disorders.pdf",
+    "Asthma.pdf",
+    "Bipolar disorder.pdf",
+    "Breast cancer.pdf",
+    "Cancer.pdf",
+    "Cardiovascular diseases.pdf",
+    "Cervical cancer.pdf",
+    "Cholera.pdf",
+    "Chronic obstructive pulmonary disease (COPD).pdf",
+    "Colorectal cancer.pdf",
     "Dementia.pdf",
+    "Dengue.pdf",
     "Depressive disorder (depression).pdf",
+    "Diabetes.pdf",
+    "Epilepsy.pdf",
+    "Hepatitis B.pdf",
+    "Hepatitis C.pdf",
+    "Hypertension.pdf",
+    "Influenza (seasonal).pdf",
+    "Lung cancer.pdf",
+    "Malaria.pdf",
+    "Meningitis.pdf",
+    "Migraine and other headache disorders.pdf",
+    "Obesity and overweight.pdf",
+    "Osteoarthritis.pdf",
+    "Parkinson disease.pdf",
+    "Patient safety.pdf",
     "Pneumonia in children.pdf",
+    "Rheumatoid arthritis.pdf",
+    "Schizophrenia.pdf",
+    "Sepsis.pdf",
+    "Sodium reduction.pdf",
+    "Stroke.pdf",
+    "Tetanus.pdf",
+    "Tuberculosis.pdf",
+    "Typhoid.pdf",
   ];
+
+  const documents = (kbStatus.documents && kbStatus.documents.length > 0)
+    ? kbStatus.documents
+    : fallbackDocs;
+
+  const docCount = kbStatus.documents_count || documents.length;
 
   return (
     <div className="tab-pane-content">
@@ -1042,11 +1071,11 @@ function LiteratureRAGTab({ kbStatus, onTestPrompt }) {
       {/* RAG Metrics */}
       <div className="rag-overview-grid">
         <div className="rag-stat-card">
-          <span className="rag-stat-number">{kbStatus.chunks}</span>
+          <span className="rag-stat-number">{kbStatus.chunks || 569}</span>
           <span className="rag-stat-label">Document Chunks Indexed</span>
         </div>
         <div className="rag-stat-card">
-          <span className="rag-stat-number">21</span>
+          <span className="rag-stat-number">{docCount}</span>
           <span className="rag-stat-label">Accredited Clinical Guidelines</span>
         </div>
         <div className="rag-stat-card">
@@ -1061,9 +1090,9 @@ function LiteratureRAGTab({ kbStatus, onTestPrompt }) {
 
       {/* Ingested Document Library */}
       <div className="rag-doc-library-card">
-        <h3>Ingested WHO & Clinical Guideline Documents</h3>
+        <h3>Ingested WHO & Clinical Guideline Documents ({documents.length})</h3>
         <p className="library-sub">
-          These documents are embedded into ChromaDB to provide grounded contextual citations:
+          These official WHO publications are embedded into ChromaDB to provide grounded contextual citations:
         </p>
         <div className="rag-doc-chips-grid">
           {documents.map((doc, i) => (

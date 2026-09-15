@@ -124,15 +124,22 @@ def get_memory(session_id: str):
 
 @app.get("/knowledge-base/status")
 def knowledge_base_status():
-    """Quick check: how many document chunks are currently indexed."""
+    """Quick check: how many document chunks and PDFs are currently indexed."""
+    import os
     count = collection_size()
+    docs = []
+    raw_dir = "data/raw_pdfs"
+    if os.path.isdir(raw_dir):
+        docs = sorted([f for f in os.listdir(raw_dir) if f.lower().endswith(".pdf")])
     return {
         "chunks_indexed": count,
         "rag_active": count > 0,
+        "documents_count": len(docs),
+        "documents": docs,
         "message": (
             "Knowledge base is empty - run `python rag/ingest.py` after adding "
             "PDFs to data/raw_pdfs/ to enable retrieval."
             if count == 0
-            else f"{count} chunks indexed and available for retrieval."
+            else f"{count} chunks indexed from {len(docs)} clinical documents and available for retrieval."
         ),
     }
