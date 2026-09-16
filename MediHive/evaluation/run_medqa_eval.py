@@ -1,10 +1,10 @@
 """
 evaluation/run_medqa_eval.py
 
-Evaluates MediHive against MedQA (USMLE-style 4-option multiple choice
+Evaluates MedTrustAI against MedQA (USMLE-style 4-option multiple choice
 questions).
 
-IMPORTANT: your MediHive server (`uvicorn app:app --reload`) must
+IMPORTANT: your MedTrustAI server (`uvicorn app:app --reload`) must
 already be running in another terminal before you run this script.
 
 Usage:
@@ -140,7 +140,7 @@ def main():
     dataset = load_medqa(args.limit)
     runner = EvalRunner("MedQA", output_base, max_retries=args.max_retries, retry_wait=args.retry_wait)
 
-    print(f"\nRunning {len(dataset)} MedQA questions against MediHive...\n")
+    print(f"\nRunning {len(dataset)} MedQA questions against MedTrustAI...\n")
 
     for i, item in enumerate(dataset, start=1):
         question_text = build_question_text(item, setting=args.setting)

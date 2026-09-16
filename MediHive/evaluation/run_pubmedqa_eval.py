@@ -1,9 +1,9 @@
 """
 evaluation/run_pubmedqa_eval.py
 
-Evaluates MediHive against PubMedQA (labeled subset).
+Evaluates MedTrustAI against PubMedQA (labeled subset).
 
-IMPORTANT: your MediHive server (`uvicorn app:app --reload`) must
+IMPORTANT: your MedTrustAI server (`uvicorn app:app --reload`) must
 already be running in another terminal before you run this script.
 
 Usage:
@@ -104,7 +104,7 @@ def main():
     dataset = load_pubmedqa(args.limit)
     runner = EvalRunner("PubMedQA", output_base, max_retries=args.max_retries, retry_wait=args.retry_wait)
 
-    print(f"\nRunning {len(dataset)} PubMedQA questions against MediHive [{args.setting}]...\n")
+    print(f"\nRunning {len(dataset)} PubMedQA questions against MedTrustAI [{args.setting}]...\n")
 
     for i, item in enumerate(dataset, start=1):
         question_text = build_question_text(item, setting=args.setting)

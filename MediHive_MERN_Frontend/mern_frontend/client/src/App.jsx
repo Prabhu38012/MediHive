@@ -77,7 +77,7 @@ export default function App() {
       <header>
         <div className="header-top">
           <div>
-            <h1>MediHive</h1>
+            <h1>MedTrustAI</h1>
             <p>Multi-agent medical QA — 5 specialists, shared memory, debate, RAG-grounded, iterative fusion</p>
           </div>
           <div className="kb-status">{kbStatus}</div>
@@ -88,7 +88,7 @@ export default function App() {
             className={`nav-tab ${activeTab === "ask" ? "active" : ""}`}
             onClick={() => setActiveTab("ask")}
           >
-            💬 Ask MediHive
+            💬 Ask MedTrustAI
           </button>
           <button
             className={`nav-tab ${activeTab === "debate" ? "active" : ""}`}
@@ -111,7 +111,7 @@ export default function App() {
               />
               <div className="ask-row">
                 <button onClick={askQuestion} disabled={loading}>
-                  {loading ? "Asking…" : "Ask MediHive"}
+                  {loading ? "Asking…" : "Ask MedTrustAI"}
                 </button>
               </div>
               {loading && (
@@ -139,7 +139,7 @@ export default function App() {
         )}
       </main>
 
-      <footer>MediHive — React client → Express proxy → Python FastAPI backend</footer>
+      <footer>MedTrustAI — React client → Express proxy → Python FastAPI backend</footer>
     </div>
   );
 }
@@ -303,9 +303,9 @@ function DebateView({ initialSessionId }) {
     <div className="debate-page">
       {/* 1. Architecture Flow Visualizer */}
       <div className="card pipeline-card">
-        <h2>🔬 How MediHive Multi-Agent Debate Works</h2>
+        <h2>🔬 How MedTrustAI Multi-Agent Debate Works</h2>
         <p className="section-subtitle">
-          When specialists disagree on diagnoses, MediHive initiates an automated 2-round deliberation cycle.
+          When specialists disagree on diagnoses, MedTrustAI initiates an automated 2-round deliberation cycle.
         </p>
 
         <div className="workflow-steps">

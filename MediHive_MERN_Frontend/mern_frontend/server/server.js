@@ -2,7 +2,7 @@
  * server/server.js
  *
  * Express proxy server sitting between the React frontend and the
- * Python FastAPI MediHive backend (agents, RAG, fusion all live there
+ * Python FastAPI MedTrustAI backend (agents, RAG, fusion all live there
  * and are UNCHANGED - this server does not reimplement any of that
  * logic, it just forwards requests).
  *
@@ -131,6 +131,6 @@ app.get("/api/memory/:sessionId", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`MediHive Express proxy server running on http://localhost:${PORT}`);
+  console.log(`MedTrustAI Express proxy server running on http://localhost:${PORT}`);
   console.log(`Forwarding to Python backend at ${PYTHON_API_URL}`);
 });

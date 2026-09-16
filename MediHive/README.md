@@ -1,6 +1,6 @@
-# 🏥 MediHive — Medical Multi-Agent Engine (Backend)
+# 🏥 MedTrustAI — Medical Multi-Agent Engine (Backend)
 
-The core AI engine powering **MediHive**. This module provides a 5-specialist agent deliberation pipeline, Retrieval-Augmented Generation (RAG) over medical PDFs via ChromaDB, autonomous debate triggered on clinical disagreement, SQLite audit-trail memory, and iterative consensus fusion.
+The core AI engine powering **MedTrustAI**. This module provides a 5-specialist agent deliberation pipeline, Retrieval-Augmented Generation (RAG) over medical PDFs via ChromaDB, autonomous debate triggered on clinical disagreement, SQLite audit-trail memory, and iterative consensus fusion.
 
 ---
 

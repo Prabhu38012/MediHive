@@ -264,7 +264,7 @@ export default function App() {
         <div className="nav-container">
           <div className="nav-brand" onClick={() => setActiveTab("ask")}>
             <span className="brand-symbol">✦</span>
-            <span className="brand-name">MediHive</span>
+            <span className="brand-name">MedTrustAI</span>
             <span className="brand-tag">Clinical AI</span>
           </div>
 
@@ -786,7 +786,7 @@ export default function App() {
       <footer className="eleven-footer">
         <div className="footer-container">
           <div className="footer-left">
-            <span>MediHive Clinical AI</span>
+            <span>MedTrustAI Clinical AI</span>
             <span className="footer-divider">•</span>
             <span>FastAPI Multi-Agent Core + Express Gateway + Vite Client</span>
           </div>
@@ -862,7 +862,7 @@ function DebateEngineTab({ sessionId, onSelectSession }) {
       <div className="pane-header-box">
         <h2>Autonomous Clinical Debate & Arbitration Engine</h2>
         <p>
-          When specialists disagree beyond threshold (Dissimilarity &ge; 0.50), MediHive triggers an autonomous
+          When specialists disagree beyond threshold (Dissimilarity &ge; 0.50), MedTrustAI triggers an autonomous
           re-deliberation round where specialists review and critique peer opinions before finalizing consensus.
         </p>
       </div>
@@ -1114,7 +1114,7 @@ function BenchmarksTab() {
       <div className="pane-header-box">
         <h2>Standardized Clinical Benchmark Evaluations</h2>
         <p>
-          MediHive is evaluated on recognized clinical question-answering benchmarks, verifying
+          MedTrustAI is evaluated on recognized clinical question-answering benchmarks, verifying
           that multi-agent consensus significantly outperforms individual LLMs.
         </p>
       </div>
