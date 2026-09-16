@@ -1,4 +1,4 @@
-# MediHive — RAG Addon (Phase 6 of the remaining 60%)
+# MedTrustAI — RAG Addon (Phase 6 of the remaining 60%)
 
 Implements: PDF Extraction → Text Chunking → Embeddings → ChromaDB →
 Retrieval → injected into your existing 5-agent system.

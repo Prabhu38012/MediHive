@@ -30,7 +30,7 @@ from fusion.consensus import build_consensus
 from rag.retriever import retrieve_context_with_sources
 from rag.vector_store import collection_size
 
-app = FastAPI(title="MediHive Medical QA System", version="0.7.0")
+app = FastAPI(title="MedTrustAI Medical QA System", version="0.7.0")
 
 # Serves the frontend (frontend/index.html) at http://127.0.0.1:8000/ui
 app.mount("/ui", StaticFiles(directory="frontend", html=True), name="ui")
@@ -66,7 +66,7 @@ class QuestionResponse(BaseModel):
 @app.get("/")
 def root():
     return {
-        "system": "MediHive Medical QA System",
+        "system": "MedTrustAI Medical QA System",
         "status": "ok",
         "phase": "70% implementation - multi-agent + shared memory + debate + RAG + iterative fusion",
         "knowledge_base_chunks": collection_size(),

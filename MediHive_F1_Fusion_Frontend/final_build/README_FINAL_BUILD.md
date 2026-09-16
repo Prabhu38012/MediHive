@@ -1,4 +1,4 @@
-# MediHive — F1 Score + Iterative Fusion + Frontend
+# MedTrustAI — F1 Score + Iterative Fusion + Frontend
 
 Three additions in this package, all building on your existing RAG-enabled project.
 

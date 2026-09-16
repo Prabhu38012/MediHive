@@ -1,4 +1,4 @@
-# 🏥 MediHive — Multi-Agent Medical Diagnostic & QA Platform
+# 🏥 MedTrustAI — Multi-Agent Medical Diagnostic & QA Platform
 
 [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688.svg)](https://fastapi.tiangolo.com/)
@@ -7,7 +7,7 @@
 [![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector_Store-orange.svg)](https://www.trychroma.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-**MediHive** is an end-to-end multi-agent medical diagnostic and Question-Answering (QA) platform. It leverages a team of five specialized AI clinical agents, autonomous debate mechanism, Retrieval-Augmented Generation (RAG) over medical literature, auditable SQLite shared memory, and iterative consensus fusion to produce accurate, explainable, and grounded medical recommendations.
+**MedTrustAI** is an end-to-end multi-agent medical diagnostic and Question-Answering (QA) platform. It leverages a team of five specialized AI clinical agents, autonomous debate mechanism, Retrieval-Augmented Generation (RAG) over medical literature, auditable SQLite shared memory, and iterative consensus fusion to produce accurate, explainable, and grounded medical recommendations.
 
 ---
 

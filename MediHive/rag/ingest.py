@@ -28,7 +28,7 @@ from rag.vector_store import embed_and_store, collection_size
 
 def main():
     print("=" * 60)
-    print("MediHive RAG Ingestion Pipeline")
+    print("MedTrustAI RAG Ingestion Pipeline")
     print("=" * 60)
 
     print("\n[1/3] Extracting text from PDFs in data/raw_pdfs/...")
@@ -52,7 +52,7 @@ def main():
     print("=" * 60)
     print(f"Chunks stored this run : {stored_count}")
     print(f"Total chunks in index  : {collection_size()}")
-    print("\nYour MediHive server will now use retrieved context automatically")
+    print("\nYour MedTrustAI server will now use retrieved context automatically")
     print("on the next /ask request - no restart needed unless the server")
     print("was started before ChromaDB existed.")
 

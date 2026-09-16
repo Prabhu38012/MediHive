@@ -1,4 +1,4 @@
-# MediHive — React + Express Frontend (MERN-style)
+# MedTrustAI — React + Express Frontend (MERN-style)
 
 Architecture:
 ```
@@ -8,7 +8,7 @@ React (client, port 3000)
 Express (server, port 5000)
         │  axios -> forwards request
         ▼
-Python FastAPI (your existing MediHive backend, port 8000)
+Python FastAPI (your existing MedTrustAI backend, port 8000)
         │
         ▼
 Agents + RAG + Debate + Iterative Fusion  (UNCHANGED - all Python)
@@ -50,7 +50,7 @@ medihive-frontend/
 ## Setup
 
 You'll run **three** things at once, each in its own terminal:
-1. Python FastAPI backend (your existing MediHive project)
+1. Python FastAPI backend (your existing MedTrustAI project)
 2. Express server (new)
 3. React dev server (new)
 
@@ -70,7 +70,7 @@ npm start
 ```
 You should see:
 ```
-MediHive Express proxy server running on http://localhost:5000
+MedTrustAI Express proxy server running on http://localhost:5000
 Forwarding to Python backend at http://127.0.0.1:8000
 ```
 
@@ -99,7 +99,7 @@ Open that URL in your browser.
 
 ## How requests flow
 
-1. You type a question in React and click "Ask MediHive"
+1. You type a question in React and click "Ask MedTrustAI"
 2. React sends `POST /api/ask` to Express (same-origin thanks to Vite's
    dev proxy config in `vite.config.js` — no CORS setup needed)
 3. Express forwards it to `POST http://127.0.0.1:8000/ask` on your

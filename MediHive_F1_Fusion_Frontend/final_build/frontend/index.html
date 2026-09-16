@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MediHive — Medical QA System</title>
+<title>MedTrustAI — Medical QA System</title>
 <style>
   :root {
     --bg: #0f1419;
@@ -209,7 +209,7 @@
 <body>
 
 <header>
-  <h1>MediHive</h1>
+  <h1>MedTrustAI</h1>
   <p>Multi-agent medical QA — 5 specialists, shared memory, debate, RAG-grounded, iterative fusion</p>
   <div id="kb-status">Checking knowledge base…</div>
 </header>
@@ -218,7 +218,7 @@
   <div class="ask-box">
     <textarea id="question" placeholder="Ask a medical question, e.g. &quot;What are the risk factors for hypertension?&quot;"></textarea>
     <div class="ask-row">
-      <button id="askBtn" onclick="askQuestion()">Ask MediHive</button>
+      <button id="askBtn" onclick="askQuestion()">Ask MedTrustAI</button>
     </div>
     <div id="status-line"><span class="spinner"></span><span id="status-text">Sending to 5 agents…</span></div>
   </div>
@@ -251,7 +251,7 @@
 </main>
 
 <footer>
-  MediHive Medical QA System — connects to your local FastAPI server at 127.0.0.1:8000
+  MedTrustAI Medical QA System — connects to your local FastAPI server at 127.0.0.1:8000
 </footer>
 
 <script>
