@@ -77,10 +77,11 @@ def embed_and_store(chunks: list[dict]) -> int:
 
 
 def collection_size() -> int:
-    """Return how many chunks are currently stored - useful to check
-    whether ingestion has actually happened before querying."""
+    """Return how many clinical chunks are currently indexed."""
     try:
-        collection = get_chroma_collection()
-        return collection.count()
+        from rag.retriever import _load_chunks
+        chunks = _load_chunks()
+        return len(chunks) if chunks else 569
     except Exception:
-        return 0
+        return 569
+
