@@ -151,8 +151,9 @@ export default function App() {
 
       const data = await res.json();
       if (!res.ok) {
-        throw new Error(data.error || `Server responded with status ${res.status}`);
+        throw new Error(data.detail || data.error || `Server responded with status ${res.status}`);
       }
+
 
       setResult(data);
       if (data.session_id) {
