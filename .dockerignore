@@ -1,0 +1,17 @@
+.git
+.github
+.gitignore
+.env
+**/node_modules
+**/venv
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+.DS_Store
+Thumbs.db
+MediHive/venv/
+medihive-frontend/client/node_modules/
+medihive-frontend/server/node_modules/
+MediHive_F1_Fusion_Frontend/
+MediHive_MERN_Frontend/

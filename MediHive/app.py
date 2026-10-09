@@ -18,8 +18,10 @@ Run with:
 """
 
 import asyncio
+import os
 import uuid
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
@@ -32,8 +34,18 @@ from rag.vector_store import collection_size
 
 app = FastAPI(title="MedTrustAI Medical QA System", version="0.7.0")
 
-# Serves the frontend (frontend/index.html) at http://127.0.0.1:8000/ui
-app.mount("/ui", StaticFiles(directory="frontend", html=True), name="ui")
+# Enable CORS for all domains
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Serves the legacy single-file HTML preview if present
+if os.path.isdir("frontend"):
+    app.mount("/ui", StaticFiles(directory="frontend", html=True), name="ui")
 
 
 @app.on_event("startup")
@@ -63,18 +75,19 @@ class QuestionResponse(BaseModel):
     rag_sources: list[dict]
 
 
-@app.get("/")
-def root():
+@app.get("/api/health")
+@app.get("/api/status")
+def health_status():
     return {
         "system": "MedTrustAI Medical QA System",
         "status": "ok",
         "phase": "70% implementation - multi-agent + shared memory + debate + RAG + iterative fusion",
         "knowledge_base_chunks": collection_size(),
-        "frontend": "http://127.0.0.1:8000/ui",
     }
 
 
 @app.post("/ask", response_model=QuestionResponse)
+@app.post("/api/ask", response_model=QuestionResponse)
 async def ask(request: QuestionRequest):
     session_id = str(uuid.uuid4())
     question = request.question
@@ -116,6 +129,7 @@ async def ask(request: QuestionRequest):
 
 
 @app.get("/memory/{session_id}")
+@app.get("/api/memory/{session_id}")
 def get_memory(session_id: str):
     """Inspect the full shared-memory trail for a session -
     useful for demos and for your project report/screenshots."""
@@ -123,6 +137,7 @@ def get_memory(session_id: str):
 
 
 @app.get("/knowledge-base/status")
+@app.get("/api/knowledge-base/status")
 def knowledge_base_status():
     """Quick check: how many document chunks and PDFs are currently indexed."""
     import os
@@ -143,3 +158,20 @@ def knowledge_base_status():
             else f"{count} chunks indexed from {len(docs)} clinical documents and available for retrieval."
         ),
     }
+
+
+# If the compiled React frontend exists, mount it at the root "/"
+# StaticFiles with html=True will serve index.html for "/" and static assets
+if os.path.isdir("static_react"):
+    app.mount("/", StaticFiles(directory="static_react", html=True), name="react_ui")
+else:
+    @app.get("/")
+    def fallback_root():
+        return {
+            "system": "MedTrustAI Medical QA System",
+            "status": "ok",
+            "phase": "70% implementation - multi-agent + shared memory + debate + RAG + iterative fusion",
+            "knowledge_base_chunks": collection_size(),
+            "frontend": "/ui",
+        }
+

@@ -1,4 +1,17 @@
+---
+title: MedTrustAI
+emoji: 🏥
+colorFrom: blue
+colorTo: indigo
+sdk: gradio
+sdk_version: 4.44.0
+app_file: app.py
+pinned: false
+license: mit
+---
+
 # 🏥 MedTrustAI — Multi-Agent Medical Diagnostic & QA Platform
+
 
 [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688.svg)](https://fastapi.tiangolo.com/)
