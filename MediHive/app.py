@@ -20,7 +20,7 @@ Run with:
 import asyncio
 import os
 import uuid
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
@@ -92,40 +92,54 @@ async def ask(request: QuestionRequest):
     session_id = str(uuid.uuid4())
     question = request.question
 
-    # --- Phase 6: RAG retrieval (safe no-op if nothing has been ingested) ---
-    retrieval = retrieve_context_with_sources(question)
-    context = retrieval["context"]
-    rag_used = bool(context)
+    try:
+        # --- Phase 6: RAG retrieval (safe fallback if nothing ingested or low memory) ---
+        try:
+            retrieval = retrieve_context_with_sources(question)
+            context = retrieval.get("context", "")
+            sources = retrieval.get("sources", [])
+        except Exception as rag_err:
+            print(f"RAG retrieval skipped safely: {rag_err}", flush=True)
+            context = ""
+            sources = []
+        rag_used = bool(context)
 
-    # --- Phase 3: run all 5 agents concurrently, with retrieved context ---
-    loop = asyncio.get_running_loop()
-    round1_responses = await asyncio.gather(
-        *[loop.run_in_executor(None, agent.run, question, context) for agent in ALL_AGENTS]
-    )
+        # --- Phase 3: run all 5 agents concurrently, with retrieved context ---
+        loop = asyncio.get_running_loop()
+        round1_responses = await asyncio.gather(
+            *[loop.run_in_executor(None, agent.run, question, context) for agent in ALL_AGENTS]
+        )
 
+        # --- Phase 4: persist round 1 to shared memory ---
+        for response in round1_responses:
+            save_response(session_id, round_num=1, response=response)
 
-    # --- Phase 4: persist round 1 to shared memory ---
-    for response in round1_responses:
-        save_response(session_id, round_num=1, response=response)
+        # --- Phase 5: debate if agents disagree ---
+        final_responses, debate_triggered = run_debate(
+            session_id=session_id,
+            question=question,
+            agents=ALL_AGENTS,
+            round1_responses=list(round1_responses),
+        )
 
-    # --- Phase 5: debate if agents disagree ---
-    final_responses, debate_triggered = run_debate(
-        session_id=session_id,
-        question=question,
-        agents=ALL_AGENTS,
-        round1_responses=list(round1_responses),
-    )
+        # --- Phase 7: iterative fusion (weighs agreement + RAG alignment) ---
+        consensus = build_consensus(final_responses, debate_triggered, context=context)
 
-    # --- Phase 7: iterative fusion (weighs agreement + RAG alignment) ---
-    consensus = build_consensus(final_responses, debate_triggered, context=context)
+        return QuestionResponse(
+            session_id=session_id,
+            question=question,
+            rag_used=rag_used,
+            rag_sources=sources,
+            **consensus,
+        )
+    except Exception as exc:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(
+            status_code=500,
+            detail=f"Clinical execution error: {str(exc)}"
+        )
 
-    return QuestionResponse(
-        session_id=session_id,
-        question=question,
-        rag_used=rag_used,
-        rag_sources=retrieval["sources"],
-        **consensus,
-    )
 
 
 @app.get("/memory/{session_id}")

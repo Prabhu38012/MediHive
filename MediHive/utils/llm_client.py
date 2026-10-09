@@ -258,16 +258,35 @@ def _call_groq(system_prompt: str, user_prompt: str, max_retries: int = 25) -> d
 
 
 def call_llm(system_prompt: str, user_prompt: str) -> dict:
-    """Route to the configured provider ('gemini' or 'groq'). Returns dict with
-    keys: answer, reasoning, confidence.
-    """
-    provider = os.getenv("LLM_PROVIDER", "gemini").lower()
-    if provider in ("gemini", "google"):
-        return _call_gemini(system_prompt, user_prompt)
-    elif provider == "groq":
+    """Route to the configured provider ('gemini' or 'groq') with automatic fallback."""
+    provider = os.getenv("LLM_PROVIDER", "groq").lower()
+
+    has_groq = bool(os.getenv("GROQ_API_KEY"))
+    has_gemini = bool(os.getenv("GEMINI_API_KEY"))
+
+    if provider == "groq" and has_groq:
+        try:
+            return _call_groq(system_prompt, user_prompt)
+        except Exception as e:
+            if has_gemini:
+                print(f"Groq call failed ({e}), falling back to Gemini...", flush=True)
+                return _call_gemini(system_prompt, user_prompt)
+            raise e
+    elif provider in ("gemini", "google") and has_gemini:
+        try:
+            return _call_gemini(system_prompt, user_prompt)
+        except Exception as e:
+            if has_groq:
+                print(f"Gemini call failed ({e}), falling back to Groq...", flush=True)
+                return _call_groq(system_prompt, user_prompt)
+            raise e
+    elif has_groq:
         return _call_groq(system_prompt, user_prompt)
+    elif has_gemini:
+        return _call_gemini(system_prompt, user_prompt)
     else:
         raise ValueError(
-            f"Unsupported or unconfigured LLM provider: '{provider}'. "
-            f"Supported providers are 'gemini' and 'groq'."
+            "Neither GROQ_API_KEY nor GEMINI_API_KEY is set in environment variables. "
+            "Please add your GROQ_API_KEY or GEMINI_API_KEY in the Render service Environment tab."
         )
+

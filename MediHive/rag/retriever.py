@@ -52,33 +52,37 @@ def retrieve_context(question: str, top_k: int = TOP_K) -> str:
 
 
 def retrieve_context_with_sources(question: str, top_k: int = TOP_K) -> dict:
-    if collection_size() == 0:
+    try:
+        if collection_size() == 0:
+            return {"context": "", "sources": []}
+
+        model = get_embedding_model()
+        collection = get_chroma_collection()
+
+        clean_q = _clean_query(question)
+        query_embedding = model.encode([clean_q], convert_to_numpy=True).tolist()
+
+        results = collection.query(
+            query_embeddings=query_embedding,
+            n_results=min(top_k, collection_size()),
+        )
+
+        documents = results.get("documents", [[]])[0]
+        metadatas = results.get("metadatas", [[]])[0]
+        distances = results.get("distances", [[]])[0]
+
+        sources = [
+            {"source": meta.get("source", "unknown"), "distance": round(dist, 4)}
+            for meta, dist in zip(metadatas, distances)
+        ]
+
+        context = "\n\n---\n\n".join(
+            f"[Source: {meta.get('source', 'unknown')}]\n{doc}"
+            for doc, meta in zip(documents, metadatas)
+        )
+
+        return {"context": context, "sources": sources}
+    except Exception as e:
+        print(f"RAG retrieval skipped due to memory/loading constraint: {e}")
         return {"context": "", "sources": []}
 
-    model = get_embedding_model()
-    collection = get_chroma_collection()
-
-    clean_q = _clean_query(question)
-    query_embedding = model.encode([clean_q], convert_to_numpy=True).tolist()
-
-    results = collection.query(
-        query_embeddings=query_embedding,
-        n_results=min(top_k, collection_size()),
-    )
-
-
-    documents = results.get("documents", [[]])[0]
-    metadatas = results.get("metadatas", [[]])[0]
-    distances = results.get("distances", [[]])[0]
-
-    sources = [
-        {"source": meta.get("source", "unknown"), "distance": round(dist, 4)}
-        for meta, dist in zip(metadatas, distances)
-    ]
-
-    context = "\n\n---\n\n".join(
-        f"[Source: {meta.get('source', 'unknown')}]\n{doc}"
-        for doc, meta in zip(documents, metadatas)
-    )
-
-    return {"context": context, "sources": sources}
