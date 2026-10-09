@@ -16,9 +16,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-LLM_PROVIDER = os.getenv("LLM_PROVIDER", "gemini").lower()
-GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "groq").lower()
+GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0.1"))
+
 
 
 JSON_INSTRUCTION = """
@@ -215,9 +216,10 @@ def _call_groq(system_prompt: str, user_prompt: str, max_retries: int = 25) -> d
     from openai import RateLimitError, APIError
 
     client = _get_groq_client()
-    model_name = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+    model_name = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
     if not model_name:
-        model_name = "openai/gpt-oss-120b"
+        model_name = "llama-3.3-70b-versatile"
+
 
     time.sleep(random.uniform(0.2, 0.6))
 

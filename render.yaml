@@ -11,11 +11,12 @@ services:
       - key: LLM_PROVIDER
         value: groq
       - key: GROQ_MODEL
-        value: openai/gpt-oss-120b
+        value: llama-3.3-70b-versatile
       - key: LLM_TEMPERATURE
         value: "0.1"
       - key: DEBATE_DISAGREEMENT_THRESHOLD
-        value: "0.35"
+        value: "0.55"
+
       - key: GROQ_API_KEY
         sync: false
       - key: GEMINI_API_KEY

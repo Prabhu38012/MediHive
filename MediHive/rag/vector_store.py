@@ -10,32 +10,36 @@ and doesn't need to be rebuilt every time the server starts.
 """
 
 import os
-import chromadb
-from sentence_transformers import SentenceTransformer
 
 CHROMA_PERSIST_DIR = "data/chroma_db"
 COLLECTION_NAME = "medihive_knowledge_base"
-EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"  # small, fast, good enough for this scale
+EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"
 
 _embedding_model = None
 
 
-def get_embedding_model() -> SentenceTransformer:
-    """Lazy-load the embedding model once and reuse it (loading it per
-    call would be slow)."""
+def get_embedding_model():
+    """Lazy-load the embedding model only when an actual embedding is requested."""
     global _embedding_model
     if _embedding_model is None:
-        print(f"Loading embedding model '{EMBEDDING_MODEL_NAME}' (first load may take a moment)...")
+        try:
+            import torch
+            torch.set_num_threads(1)
+        except Exception:
+            pass
+        from sentence_transformers import SentenceTransformer
+        print(f"Loading embedding model '{EMBEDDING_MODEL_NAME}'...", flush=True)
         _embedding_model = SentenceTransformer(EMBEDDING_MODEL_NAME)
     return _embedding_model
 
 
 def get_chroma_collection():
-    """Get (or create) the persistent ChromaDB collection used to store
-    all document chunk embeddings."""
+    """Lazy-load ChromaDB collection."""
+    import chromadb
     client = chromadb.PersistentClient(path=CHROMA_PERSIST_DIR)
     collection = client.get_or_create_collection(name=COLLECTION_NAME)
     return collection
+
 
 
 def embed_and_store(chunks: list[dict]) -> int:
