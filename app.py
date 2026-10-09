@@ -2,6 +2,15 @@ import os
 import sys
 import importlib.util
 
+# Hugging Face ZeroGPU compatibility
+try:
+    import spaces
+    @spaces.GPU(duration=15)
+    def _hf_zerogpu_ready():
+        return True
+except ImportError:
+    pass
+
 # Ensure MediHive is on the path and is the working directory
 root_dir = os.path.dirname(os.path.abspath(__file__))
 medihive_dir = os.path.join(root_dir, "MediHive")
